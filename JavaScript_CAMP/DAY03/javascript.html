@@ -4,7 +4,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="UTF-8">
   <title>JavaScript Core</title>
-  <script src="javascript-core.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+    // if ( !this.jQuery ) {
+    //   document.write('<script src="../lib/jquery.3.1.0.min.js"><\/script>');
+    // } else {
+    //   console.log('CDN jQuery 로드 성공!!!');
+    // }
+
+    // 논리 OR 연산자를 사용한 조건 구문 처리
+    this.jQuery || document.write('<script src="../lib/jquery.3.1.0.min.js"><\/script>');
+  </script>
+  <!-- <script src="javascript-core.js"></script> -->
 </head>
 <body>
 
