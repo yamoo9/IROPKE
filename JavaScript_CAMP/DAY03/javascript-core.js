@@ -131,17 +131,76 @@ var days = '일 월 화 수 목 금 토'.split(' ');
 // console.log(days);
 // var today = // 오늘 요일 받아온다. // 0, 1, 2, 3, 4, 5, 6
 var today = (new Date()).getDay();
+// var today = 7;
 var showDayMessage = function(n) {
   return '오늘은 ' + days[n] + '요일입니다. :-)';
 };
 // console.log('오늘은 ', today);
 // 오늘 요일이 무슨 요일인지 콘솔에 기록해보세요. 예) '수요일'
-if      ( today === 0 ) { console.log( showDayMessage(0) ); }
-else if ( today === 1 ) { console.log( showDayMessage(1) ); }
-else if ( today === 2 ) { console.log( showDayMessage(2) ); }
-else if ( today === 3 ) { console.log( showDayMessage(3) ); }
-else if ( today === 4 ) { console.log( showDayMessage(4) ); }
-else if ( today === 5 ) { console.log( showDayMessage(5) ); }
-else if ( today === 6 ) { console.log( showDayMessage(6) ); }
+// if      ( today === 0 ) { console.log( showDayMessage(0) ); }
+// else if ( today === 1 ) { console.log( showDayMessage(1) ); }
+// else if ( today === 2 ) { console.log( showDayMessage(2) ); }
+// else if ( today === 3 ) { console.log( showDayMessage(3) ); }
+// else if ( today === 4 ) { console.log( showDayMessage(4) ); }
+// else if ( today === 5 ) { console.log( showDayMessage(5) ); }
+// else if ( today === 6 ) { console.log( showDayMessage(6) ); }
 // else {}
+
+// 다중 삼항 조건식
+// today === 0 ? console.log( showDayMessage(0) ) :
+//   today === 1 ? console.log( showDayMessage(1) ) :
+//     today === 2 ? console.log( showDayMessage(2) ) :
+//       today === 3 ? console.log( showDayMessage(3) ) :
+//         today === 4 ? console.log( showDayMessage(4) ) :
+//           today === 5 ? console.log( showDayMessage(5) ) :
+//             today === 6 ? console.log( showDayMessage(6) ) : console.log('장난 하냐?');
+
+// switch ~ case, break, default 문으로 변경
+switch(today) {
+  case 0:
+    console.log( showDayMessage(0) );
+  break;
+  case 1:
+    console.log( showDayMessage(1) );
+  break;
+  case 2:
+    console.log( showDayMessage(2) );
+  break;
+  case 3:
+    console.log( showDayMessage(3) );
+  break;
+  case 4:
+    console.log( showDayMessage(4) );
+  break;
+  case 5:
+    console.log( showDayMessage(5) );
+  break;
+  case 6:
+    console.log( showDayMessage(6) );
+  break;
+  default:
+    console.log( '장난 하냐?' );
+}
+
+
+console.log('%c---------------------------------------------------', 'color: #b8b8b8');
+// for 구문을 통해 성능 체크
+var check_arr = new Array(1000);
+
+// ECMAScript 3rd Edition
+console.time('for문');
+for ( var i=0, l=check_arr.length; i<l; i+=1 ) {
+  if ( i === l - 1 ) {
+    console.log(i);
+  }
+}
+console.timeEnd('for문');
+
+
+// ECMAScript 6th Edition => ECMAScript 2015
+console.time('for ~ of문');
+for ( let m of check_arr ) {
+
+}
+console.timeEnd('for ~ of문');
 
