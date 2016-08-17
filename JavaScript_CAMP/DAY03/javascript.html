@@ -19,5 +19,32 @@
 </head>
 <body>
 
+  <div class="wrapper">
+    <header class="page-header">
+      <h1 class="brand">Iropke</h1>
+      <p class="slogan">Lorem ipsum dolor sit amet, consectetur
+      adipisicing elit. Aperiam, excepturi.</p>
+    </header>
+    <main role="main">
+      <article>article</article>
+    </main>
+  </div>
+
+  <script>
+    // while 구문을 사용하여 .wrapper 요소의 자식 노드들을 순환하는 처리
+    var childNodes = document.querySelector('.wrapper').childNodes;
+    var total = childNodes.length, collection = [], child;
+    console.log('%c---------------------------------------------------', 'color: #b8b8b8');
+    while( childNodes[--total] ) {
+      // 노드의 유형을 체크하려면 .nodeType
+      child = childNodes[total];
+      // console.log(childNodes[total].nodeType === document.ELEMENT_NODE);
+      if(child.nodeType === 1) {
+        collection.push(child);
+      }
+    }
+    console.log(collection.reverse());
+  </script>
+
 </body>
 </html>

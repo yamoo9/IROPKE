@@ -156,32 +156,46 @@ var showDayMessage = function(n) {
 //             today === 6 ? console.log( showDayMessage(6) ) : console.log('장난 하냐?');
 
 // switch ~ case, break, default 문으로 변경
+// switch(today) {
+//   case 0:
+//     console.log( showDayMessage(0) );
+//   break;
+//   case 1:
+//     console.log( showDayMessage(1) );
+//   break;
+//   case 2:
+//     console.log( showDayMessage(2) );
+//   break;
+//   case 3:
+//     console.log( showDayMessage(3) );
+//   break;
+//   case 4:
+//     console.log( showDayMessage(4) );
+//   break;
+//   case 5:
+//     console.log( showDayMessage(5) );
+//   break;
+//   case 6:
+//     console.log( showDayMessage(6) );
+//   break;
+//   default:
+//     console.log( '장난 하냐?' );
+// }
+
+
+// switch 구문을 사용하여 평일과 주말에 따라 처리되는 코드문 작성
 switch(today) {
   case 0:
-    console.log( showDayMessage(0) );
+  case 6:
+    console.log('오늘은 쉬는 날~');
   break;
   case 1:
-    console.log( showDayMessage(1) );
-  break;
   case 2:
-    console.log( showDayMessage(2) );
-  break;
   case 3:
-    console.log( showDayMessage(3) );
-  break;
   case 4:
-    console.log( showDayMessage(4) );
-  break;
   case 5:
-    console.log( showDayMessage(5) );
-  break;
-  case 6:
-    console.log( showDayMessage(6) );
-  break;
-  default:
-    console.log( '장난 하냐?' );
+    console.log('오늘은 출근 일~');
 }
-
 
 console.log('%c---------------------------------------------------', 'color: #b8b8b8');
 // for 구문을 통해 성능 체크
