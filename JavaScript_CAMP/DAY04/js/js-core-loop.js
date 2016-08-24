@@ -98,17 +98,62 @@ function init() {
 
   var data = [{'name': 'A'}, {'name': 'B'}, {'name': 'C'}, null, true, [], {'name': 'D'}];
   // data 배열을 순환하여 객체 유형만 선별한 새로운 new_data를 출력하시오.
-  for(var _data, new_data=[], i=0, l=data.length; i<l; i++) {
-    _data = data[i];
-    if ( isType(_data) !== 'object' ) {
-      // 조건이 참일 경우, for문의 다음 구문을 점프하여 다시 반복 구문을 돌리는 수행
-      continue;
+  // for(var _data, new_data=[], i=0, l=data.length; i<l; i++) {
+  //   _data = data[i];
+  //   if ( isType(_data) === 'array' ) { break; } // for문 종료
+  //   if ( isType(_data) !== 'object' ) {
+  //     // 조건이 참일 경우, for문의 다음 구문을 점프하여 다시 반복 구문을 돌리는 수행
+  //     continue;
+  //   }
+  //   new_data.push(_data);
+  // }
+
+  // console.log(new_data);
+
+  // --------------------------------------------------------------------------------
+  // Array.prototype.map 사용
+  var new_data_using_map = data.map(function(item, index) {
+    // console.log( isType(item) === 'object', index );
+    if ( isType(item) !== 'object' ) {
+      // break;
     }
-    new_data.push(_data);
+    return item;
+  });
+
+  // console.log(new_data_using_map);
+
+  // --------------------------------------------------------------------------------
+  // for~of 문 사용
+  new_data_using_map = [];
+  for ( let item of data ) {
+    isType(item) === 'object' && new_data_using_map.push(item);
   }
+  // console.log(new_data_using_map);
 
-  console.log(new_data);
+  // --------------------------------------------------------------------------------
+  // for~in 문 사용
 
+  var apple_device = {
+    'maker': 'Apple',
+    'location': 'US'
+  };
+
+  var mouse = Object.create(apple_device); // 상속
+
+  mouse['name'] = 'Magic Mouse';
+  mouse['use'] = true;
+
+  console.log(mouse);
+
+  // 객체 데이터 유형의 속성을 순환하여 처리하는 경우
+  // console.log(mouse.length);
+  for ( var property in mouse ) {
+    // 능력을 상속하게 하는 부모의 속성까지 거슬러 올라가지 않도록...
+    if ( mouse.hasOwnProperty(property) ) {
+      console.log('property:', property);
+      console.log('value:', mouse[property]); // ???
+    }
+  }
 
 }
 
