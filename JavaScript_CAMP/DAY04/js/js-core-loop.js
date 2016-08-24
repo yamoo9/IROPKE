@@ -140,20 +140,132 @@ function init() {
 
   var mouse = Object.create(apple_device); // 상속
 
+  mouse.constructor = apple_device;
   mouse['name'] = 'Magic Mouse';
   mouse['use'] = true;
 
-  console.log(mouse);
+  // console.log(mouse.constructor);
 
   // 객체 데이터 유형의 속성을 순환하여 처리하는 경우
   // console.log(mouse.length);
   for ( var property in mouse ) {
     // 능력을 상속하게 하는 부모의 속성까지 거슬러 올라가지 않도록...
     if ( mouse.hasOwnProperty(property) ) {
-      console.log('property:', property);
-      console.log('value:', mouse[property]); // ???
+      // console.log('property:', property);
+      // console.log('value:', mouse[property]); // ???
     }
   }
+
+  // --------------------------------------------------------------------------------
+  // 자바스크립트 함수
+  // 일급 객체(First Class Object)
+  // 왜? 일급 객체일까요?
+  // 함수 데이터 유형을 함수 인자로 전달 가능
+  // 함수에 함수 데이터 유형을 반환 가능
+  // 클로저....
+
+  // fn1(); // 성공
+  // fn2(); // 오류 (Hoist 개념 정리)
+
+  // 함수 선언 ()
+  function fn1() {}
+  // 함수 표현식 (Expression): 무명, 익명 함수
+  var fn2 = function() {}; // 함수 리터럴
+
+  var adios = null; // 전역 변수
+
+  function globalScopeFn2() {
+     var adios = '아디오스'; // 지역 변수
+     function inFn(__adios__) {
+       var inFn_adios = '인~ 아디오스';
+       // var adios; // undefined
+       console.log('inFn() 안:', __adios__); // '아디오스'
+       // console.log('inFn() 안:', adios); // '아디오스'
+       // 자바스크립트 호이스트 현상 발생
+       var adios = '아웃~ 아디오스'; // 실행 중에 데이터 값이 복사
+     }
+     inFn(adios);
+     console.log('함수 안:', adios); // '아디오스'
+  }
+
+  globalScopeFn2(); //
+
+  console.log('전역:', adios); // null
+
+  // --------------------------------------------------------------------------------
+  // 호이스트 현상: 영역 상단으로 끌어 올려짐
+  // function 선언문은 몸체가 전부 끌어 올려진다.
+  // var 키워드로 정의된 변수 이름만 끌어 올려진다.
+  // ※ ECMAScript 2015 버전에서는 let, class 정의된 것은 호이스트 되지 않는다.
+  // function understandHoist() {
+  //   goKingdom();
+  //   var king = '왕';
+  //   var goKingdom = function() {};
+  //   awayKingdom();
+  //   function awayKingdom() {}
+  // }
+
+
+  // 호이스트 된 결과 코드
+  function understandHoist() {
+    // ------------------------
+    // 영역 상단으로 끌어 올려진다.
+    // ------------------------
+    function awayKingdom() {}
+    var king;      // undefined
+    var goKingdom; // undefined
+    // ------------------------
+    goKingdom(); // 실행 오류 (함수가 아니기 때문!!!)
+    king = '왕';
+    goKingdom = function() {}; // 함수 값이 할당되는 것은 이 시점...
+    awayKingdom();
+  }
+
+  understandHoist();
+
+  // --------------------------------------------------------------------------------
+  // 테스트
+  // --------------------------------------------------------------------------------
+  // var result = test(momo);
+  // var momo = 'molmote modian';
+  // function test(m) {
+  //   if ( momo || m ) {
+  //     var momo = 'super cyan';
+  //   }
+  //   return momo;
+  // }
+
+  // console.log(result); // ?????
+
+  // --------------------------------------------------------------------------------
+  // 테스트 결과
+  // --------------------------------------------------------------------------------
+  function test(m) {
+    // m === undefined
+    var momo; // undefined
+    if ( momo || m ) {
+      momo = 'super cyan';
+    }
+    return momo;
+  }
+  var result, momo;
+  result = test(momo);
+  momo = 'molmote modian';
+
+  console.log(result); // undefined
+
+  // -----------------------------------------------------------------------
+  // function 내부에서만 접근 가능한 변수(집합 객체: Array like Object) -> arguments
+  // -----------------------------------------------------------------------
+  function sum() {
+     var result=0, l = arguments.length; // 7
+     while( arguments[--l] ) {
+        result += arguments[l];
+     }
+     return result;
+  }
+
+  sum(3, 201, 3, 4, -90, 201, 393);
 
 }
 
