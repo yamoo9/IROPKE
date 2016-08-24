@@ -75,20 +75,40 @@ function init() {
   // .gnb a 모두 수집한 다음
   // 수집된 각 <a>요소노드를 클릭하면
   // 콘솔에 수집될 당시의 인덱스 (for문의 l 값) 로그한다.
-  var gnb_links = document.querySelectorAll('.gnb a');
+  // var gnb_links = document.querySelectorAll('.gnb a');
   //
-  function printIndex(index) {
-    console.log(this, index);
-    return false; // [Legacy] Prevent Default Behavior
+  // function printIndex(index) {
+  //   console.log(this, index);
+  //   return false; // [Legacy] Prevent Default Behavior
+  // }
+  // for ( var l = --gnb_links.length; gnb_links[l]; l-- ) {
+  //   // JavaScript Closure
+  //   // 함수 다시!!
+  //   var link = gnb_links[l];
+  //   gnb_links[l].onclick = (function(index){
+  //     return printIndex.bind(link, index);
+  //   })(l);
+  // }
+
+  // --------------------------------------------------------------------------------
+
+  function isType(data) {
+    return Object.prototype.toString.call(data).slice(8,-1).toLowerCase();
   }
-  for ( var l= --gnb_links.length; gnb_links[l]; l-- ) {
-    // JavaScript Closure
-    // 함수 다시!!
-    var link = gnb_links[l];
-    gnb_links[l].onclick = (function(index){
-      return printIndex.bind(link, index);
-    })(l);
+
+  var data = [{'name': 'A'}, {'name': 'B'}, {'name': 'C'}, null, true, [], {'name': 'D'}];
+  // data 배열을 순환하여 객체 유형만 선별한 새로운 new_data를 출력하시오.
+  for(var _data, new_data=[], i=0, l=data.length; i<l; i++) {
+    _data = data[i];
+    if ( isType(_data) !== 'object' ) {
+      // 조건이 참일 경우, for문의 다음 구문을 점프하여 다시 반복 구문을 돌리는 수행
+      continue;
+    }
+    new_data.push(_data);
   }
+
+  console.log(new_data);
+
 
 }
 
