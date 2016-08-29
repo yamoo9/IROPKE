@@ -175,11 +175,12 @@ h1, .exa {
 
 ```js
 function getLeadingCount(font_size_ratio, base_leading_ratio){
-   base_leading_ratio = base_leading_ratio || 1.5;
-   return Math.ceil(font_size_ratio/base_leading_ratio);
+  base_leading_ratio = base_leading_ratio || 1.5;
+  return Math.ceil(font_size_ratio/base_leading_ratio);
 }
 function getLeadingRatio(font_size_ratio, base_leading_ratio) {
-    return getLeadingCount(font_size_ratio, base_leading_ratio) * base_leading_ratio / font_size_ratio;
+  base_leading_ratio = base_leading_ratio || 1.5;
+  return getLeadingCount(font_size_ratio, base_leading_ratio) * base_leading_ratio / font_size_ratio;
 }
 ```
 
