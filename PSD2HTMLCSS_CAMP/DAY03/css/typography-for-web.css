@@ -39,26 +39,31 @@ h1,h2,h3,h4,h5,h6 { margin-top: 0; }
 h6 {
   font-size: 1.250em;
   line-height: 1.2; /* 레딩 칸 개수: 1 */
+  margin-bottom: 1.2em;
 } /* 1em x 1.250 = 1.250em               */
 h5 {
   font-size: 1.5625em;
   line-height: 1.92; /* 레딩 칸 개수: 2 */
+  margin-bottom: 0.96em;
 } /* 1.250 x 1.250 = 1.5625em            */
 h4 {
   font-size: 1.953125em;
   line-height: 1.536; /* 레딩 칸 개수: 2 */
+  margin-bottom: 0.768em;
 } /* 1.5625 x 1.250 = 1.953125em         */
 h3 {
   font-size: 2.44140625em;
   line-height: 1.2288; /* 레딩 칸 개수: 2 */
+  margin-bottom: 0.6144em;
 } /* 1.953125 x 1.250 = 2.44140625em     */
 h2 {
   font-size: 3.051757812em;
-  line-height: 1.474560000241592; /* 레딩 칸 개수: 3 */
+  line-height: 1.475; /* 레딩 칸 개수: 3 */
+  margin-bottom: 0.49152000008053065em;
 } /* 2.44140625 x 1.250 = 3.051757812em  */
 h1 {
   font-size: 3.814697265em;
-  line-height: 1.1796480001932736; /* 3 x 1.5/3.814697265 = 1.1796480001932736 */
+  line-height: 1.180; /* 3 x 1.5/3.814697265 = 1.1796480001932736 */
   margin-bottom: 0.393216em;
 } /* 3.051757812 x 1.250 = 3.814697265em */
 
