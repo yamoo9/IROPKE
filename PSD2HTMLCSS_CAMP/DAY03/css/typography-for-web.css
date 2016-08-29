@@ -8,6 +8,8 @@
 }*/
 
 body {
+  /* 마진(Margin, 외부 여백) 초기화 */
+  margin: 0;
   /* 글자 모양(꼴) */
   font-family: "Spoqa Han Sans", Dotum, Gulim, Sans-Serif;
   /* 글자 크기 */
@@ -17,6 +19,16 @@ body {
   line-height: 1.5; /* 글자 크기 x1.5배 = 14px x 1.5 = 21px */
   /* 글자 색상 */
   color: #050606;
+  /* 배경 이미지 */
+  background-image: url("../images/leading-21px.gif");
+}
+
+p {
+  margin-top: 0;
+  /*margin-bottom: 21px;*/ /* 고정 디자인 */
+  margin-bottom: 1.5em; /* 상대 디자인 */ /* 1em = 14px, 14 x 1.5 = 21px */
+  /* [상속] font-size 값은 부모 요소인 <body>의 변화된 값을 물려 받는다. */
+  /*font-size: 14px;*/
 }
 
 /* 제목 디자인 */
