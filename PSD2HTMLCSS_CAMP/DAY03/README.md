@@ -171,12 +171,15 @@ h1, .exa {
 
 ##### 레딩(Leading) 간격 설정을 도와주는 자바스크립트 함수 `getLeadingRatio()` 정의
 
-###### 레딩 카운트를 구하는 계산 함수
+###### 레딩 카운트, 비율을 구하는 계산 함수
 
 ```js
 function getLeadingCount(font_size_ratio, base_leading_ratio){
    base_leading_ratio = base_leading_ratio || 1.5;
    return Math.ceil(font_size_ratio/base_leading_ratio);
+}
+function getLeadingRatio(font_size_ratio, base_leading_ratio) {
+    return getLeadingCount(font_size_ratio, base_leading_ratio) * base_leading_ratio / font_size_ratio;
 }
 ```
 
