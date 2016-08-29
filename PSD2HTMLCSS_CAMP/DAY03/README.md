@@ -182,6 +182,10 @@ function getLeadingRatio(font_size_ratio, base_leading_ratio) {
   base_leading_ratio = base_leading_ratio || 1.5;
   return getLeadingCount(font_size_ratio, base_leading_ratio) * base_leading_ratio / font_size_ratio;
 }
+function getMarginBottom(font_size_ratio, base_leading_ratio) {
+  base_leading_ratio = base_leading_ratio || 1.5;
+  return base_leading_ratio/font_size_ratio;
+}
 ```
 
 ```js
