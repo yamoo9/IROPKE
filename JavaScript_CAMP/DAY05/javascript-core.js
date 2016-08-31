@@ -128,14 +128,20 @@ function GlobalNavigationBar(settings) {
   if ( type(settings) !== 'object' ) {
     console.error('오류 발생!');
   }
-  this.els = settings.elements;
+  // 기존에도 그랬던 것처럼
+  // var 키워드를 붙이지 않은 변수를 선언했다...
+  // 기존 방식에서는 els라는 전역 변수를 만들어 낸다. (문제!!!!)
+  // 하지만 엄격 모드에서는 선언되지 않는 변수를 사용했을 때
+  // 이를 문제로 보고 오류를 출력한다.
+  els = settings.elements;
+  // var els = settings.elements;
   this.events = settings.events;
   // return undefined;
 }
 
 function init2() {
   // 생성자 함수를 그냥 일반 함수처럼 호출한 결과 .. 문제 초래
-  var gnb = GlobalNavigationBar({
+  var gnb = new GlobalNavigationBar({
     'elements': document.querySelectorAll('body *'),
     'events': 'click mouseenter mouseleave mousedown mousemove mouseup keydown keyup'.split(' ')
   });
