@@ -133,8 +133,9 @@ function GlobalNavigationBar(settings) {
   // 기존 방식에서는 els라는 전역 변수를 만들어 낸다. (문제!!!!)
   // 하지만 엄격 모드에서는 선언되지 않는 변수를 사용했을 때
   // 이를 문제로 보고 오류를 출력한다.
-  els = settings.elements;
+  // els = settings.elements;
   // var els = settings.elements;
+  this.els = settings.elements;
   this.events = settings.events;
   // return undefined;
 }
@@ -147,4 +148,54 @@ function init2() {
   });
 
   console.log('gnb:', gnb);
+}
+
+// --------------------------------------------------------------------------------
+// 자바스크립트 함수는 일급 객체(First Class Object)이다.
+// 일급 객체의 조건 1
+// 콜백 패턴이란? 함수를 함수 내부에 인자로 전달 하여 실행하는 방법을 말한다.
+// --------------------------------------------------------------------------------
+
+function callOut(count, timeout, callback) {
+  count = count || 100;
+  timeout = timeout || 1000;
+  console.time('for processing....');
+  for ( ; count--; ) {}
+  console.timeEnd('for processing....');
+
+  if ( callback && typeof callback === 'function' ) {
+    window.setTimeout(callback, timeout);
+    // callback();
+  }
+}
+
+// callOut();
+
+
+// 일급 객체의 조건 2
+// 함수 객체를 반환할 수 있다.
+// function countDown( initial_count ) {}
+
+// 카운트 다운할 초기 변수 값을 설정한다.
+var count = 10;
+
+function countDown() {
+  return count >= 0 ? count-- : undefined;
+}
+
+// countDown(); // 10
+// countDown(); // 9
+// countDown(); // 8
+// countDown(); // ...
+// countDown(); // 0
+
+
+// 함수를 반환하는 함수를 만든다.
+function countDownWrapper( initial_count ) {
+  // 초기 값 설정
+  var count = initial_count || 10;
+  function countDown() {
+    return count >= 0 ? count-- : undefined;
+  }
+  return countDown;
 }
