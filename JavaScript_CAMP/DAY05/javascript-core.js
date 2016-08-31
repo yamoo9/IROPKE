@@ -31,7 +31,20 @@ function showMeThisContextObject() {
 // console.log( window.showMeThisContextObject === showMeThisContextObject );
 
 // showMeThisContextObject(); // this === window {}
-showMeThisContextObject.call(document.documentElement); // this === ????
+// showMeThisContextObject.call(document.documentElement); // this === ????
 
 // document.onmouseenter = showMeThisContextObject; // this === document {}
 // document.onmouseenter = showMeThisContextObject.bind(document.head); // this === window {}
+
+// Legacy Event
+function init() {
+  // 문서에 존재하는 DOM 버튼 객체를 선택해 변수에 할당
+  var demo_btn = document.querySelector('.demo-btn');
+  // 변수 demo_btn에 참조된 문서 버튼 객체를 콘솔에 기록
+  console.log('demo_btn:', demo_btn);
+}
+// 이미지를 포함한 모든 리소스가 다운로드된 후에 init() 실행
+var win = window; // this
+win.onload = init;
+
+// Modern Event
