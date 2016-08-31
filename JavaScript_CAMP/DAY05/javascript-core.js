@@ -70,6 +70,22 @@ function init() {
   demo_btn.onmouseleave = function() {
     mouseEventHandler();
   };
+
+  /////////////////////////////
+  // this 컨텍스트 참조 변수 비교 //
+  /////////////////////////////
+  function callMe() {
+     console.log(this);
+  }
+
+  // 전역에서 실행 (암묵적으로 window 객체가 실행한 것처럼 동작)
+  callMe();
+
+  // 이벤트 속성에 callMe 할당(참조)
+  document.body.onclick = callMe;
+
+  // 메소드 빌려쓰기 패턴으로 컨텍스트 객체를 교체한 다음 실행
+  callMe.call( document.querySelector('button') );
 }
 // 이미지를 포함한 모든 리소스가 다운로드된 후에 init() 실행
 var win = window; // this
@@ -83,18 +99,46 @@ function doubleClickEventHandler(evt) {
   console.log(evt.type, this); // this === demo_btn
 };
 
-/////////////////////////////
-// this 컨텍스트 참조 변수 비교 //
-/////////////////////////////
-function callMe() {
-   console.log(this);
+
+
+// --------------------------------------------------------------------------------
+// 엄격모드(strict mode)
+// --------------------------------------------------------------------------------
+// 구형 브라우저는 단순한 문자열로 인식 (오류 발생 X)
+// 최신 브라우저는 엄격하게 모드를 변경하여 코드를 처리
+
+function type(data) {
+  return Object.prototype.toString.call(data).slice(8,-1).toLowerCase();
 }
 
-// 전역에서 실행 (암묵적으로 window 객체가 실행한 것처럼 동작)
-callMe();
+// 구형 이벤트 모델의 문제점!!
+// 이벤트 속성 당 하나의 핸들러만 참조된다.
+window.onload = init2;
 
-// 이벤트 속성에 callMe 할당(참조)
-document.body.onclick = callMe;
+// 전역에 정의된 전역 함수: 객체를 생성하는 생성자 함수 (Class)
+function GlobalNavigationBar(settings) {
+  // 엄격 모드 발동
+  // 함수 내부의 this는 무엇을 가리키나?
+  // 기준...
+  // 함수를 실행시키는 컨텍스트 객체가 명시적으로 설정되어 있다면?
+  // this는 컨텍스트 객체를 참조
+  // 반면 암묵적으로 함수를 실행한다면 더 이상 과거처럼
+  // this는 전역 객체를 참조하지 않고, undefined를 출력한다.
+  'use strict';
+  if ( type(settings) !== 'object' ) {
+    console.error('오류 발생!');
+  }
+  this.els = settings.elements;
+  this.events = settings.events;
+  // return undefined;
+}
 
-// 메소드 빌려쓰기 패턴으로 컨텍스트 객체를 교체한 다음 실행
-callMe.call( document.querySelector('button') );
+function init2() {
+  // 생성자 함수를 그냥 일반 함수처럼 호출한 결과 .. 문제 초래
+  var gnb = GlobalNavigationBar({
+    'elements': document.querySelectorAll('body *'),
+    'events': 'click mouseenter mouseleave mousedown mousemove mouseup keydown keyup'.split(' ')
+  });
+
+  console.log('gnb:', gnb);
+}
