@@ -36,15 +36,65 @@ function showMeThisContextObject() {
 // document.onmouseenter = showMeThisContextObject; // this === document {}
 // document.onmouseenter = showMeThisContextObject.bind(document.head); // this === window {}
 
-// Legacy Event
+//////////////////
+// Legacy Event //
+//////////////////
 function init() {
   // 문서에 존재하는 DOM 버튼 객체를 선택해 변수에 할당
   var demo_btn = document.querySelector('.demo-btn');
   // 변수 demo_btn에 참조된 문서 버튼 객체를 콘솔에 기록
-  console.log('demo_btn:', demo_btn);
+  // console.log('demo_btn:', demo_btn);
+  // 참조된 버튼 객체를 사용자가 클릭하면 이벤트 발생 (연결된 핸들러 실행)
+  // 비교 0. ------------------------------------------------------------------------
+  demo_btn.onclick = function(evt) {                  // 이벤트 속성에 함수 값(Literal) 참조
+    console.log(evt.type, this); // this === demo_btn
+  };
+  // 비교 1. ------------------------------------------------------------------------
+  // demo_btn.ondblclick = doubleClickEventHandler;   // 이벤트 발생 시에 함수를 실행
+  // 비교 2. ------------------------------------------------------------------------
+  // demo_btn.ondblclick = doubleClickEventHandler(); // 함수를 바로 실행
+  // 비교 3. ------------------------------------------------------------------------
+  demo_btn.onmouseenter = function() { // 익명 함수를 이벤트 속성에 참조
+    // 이벤트 속성에 연결된 함수 내부의 this는 누구를 가리키나?
+    console.log(this); // this === <button>
+
+    // 이벤트 핸들러(익명함수) 내부에서 실행되는 함수는
+    // 별도의 컨텍스트 객체가 명시되어 있지 않다면
+    // 암묵적으로 전역 객체를 컨텍스트 객체로 참조한다.
+    // 비교 3-1.
+    // mouseEventHandler(); // 함수 실행 // this === window {}
+    // 비교 3-2.
+    // .call()은 Function.prototype 객체의 메소드 (메소드 빌려쓰기 디자인 패턴)
+    mouseEventHandler.call(this); // 함수 실행 // this === ????
+  };
+  demo_btn.onmouseleave = function() {
+    mouseEventHandler();
+  };
 }
 // 이미지를 포함한 모든 리소스가 다운로드된 후에 init() 실행
 var win = window; // this
 win.onload = init;
 
-// Modern Event
+function mouseEventHandler() {
+  console.log(this); // this === demo_btn
+};
+
+function doubleClickEventHandler(evt) {
+  console.log(evt.type, this); // this === demo_btn
+};
+
+/////////////////////////////
+// this 컨텍스트 참조 변수 비교 //
+/////////////////////////////
+function callMe() {
+   console.log(this);
+}
+
+// 전역에서 실행 (암묵적으로 window 객체가 실행한 것처럼 동작)
+callMe();
+
+// 이벤트 속성에 callMe 할당(참조)
+document.body.onclick = callMe;
+
+// 메소드 빌려쓰기 패턴으로 컨텍스트 객체를 교체한 다음 실행
+callMe.call( document.querySelector('button') );
