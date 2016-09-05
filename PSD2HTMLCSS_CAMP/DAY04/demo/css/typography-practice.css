@@ -1,0 +1,17 @@
+body {
+  /* m0 */
+  margin: 0;
+}
+/* 요소를 화면 가운데 배치 */
+.page-container {
+  /* w960 */
+  width: 960px;
+  /* width를 뺀 남은 공간을 좌/우로 양분하라 */
+  margin-left: auto;
+  margin-right: auto;
+  /* h100vh */
+  height: 100vh;
+  /* 배경 색상 */
+  /* bgc#fe4940 */
+  background-color: #fe4940;
+}
