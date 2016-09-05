@@ -1,17 +1,59 @@
 body {
   /* m0 */
   margin: 0;
+  /* 배경 이미지로 레딩(leading) 패턴을 설정 */
+  background: url("../images/leading-21px.png");
+  font-size: 0.875rem;
+  line-height: 1.5; /* 21px */
+  font-family: "Spoqa Han Sans", Sans-Serif;
 }
+
+/* 제목 디자인 */
+h1, h5 {
+  letter-spacing: -0.05em;
+  margin-top: 0;
+  margin-bottom: 1.3125rem;
+}
+h1 {
+  font-weight: 200;
+  font-size: 3.902142857em;
+  line-height: 3.9375rem;
+  color: #333741;
+}
+h5 {
+  font-size: 1.312857143em;
+  line-height: 2.625rem;
+  color: #787f94;
+}
+
 /* 요소를 화면 가운데 배치 */
 .page-container {
   /* w960 */
   width: 960px;
+
+  /* h100vh */
+  height: 100vh;
+
   /* width를 뺀 남은 공간을 좌/우로 양분하라 */
   margin-left: auto;
   margin-right: auto;
-  /* h100vh */
-  height: 100vh;
+
+  /* 컨테이너 상단 공간 설정 */
+  padding-top: 5.25rem;
+
   /* 배경 색상 */
   /* bgc#fe4940 */
-  background-color: #fe4940;
+  /*background-color: #fe4940;*/
+
+  /* 내부에 포함된 콘텐츠(텍스트, 이미지 등) 가운데 정렬(Align) */
+  /* tac */
+  text-align: center;
+
+  /* 박스 쉐도우(Drop-Shadow) */
+  /*box-shadow: 0px 0px 10px #7dccfe;*/
+}
+
+/* 이미지 디자인 */
+.page-container img {
+  margin-top: 1.3125rem;
 }
