@@ -95,6 +95,62 @@ getGeo(function(position){
   latitude = position.coords.latitude;
   longitude = position.coords.longitude;
   // 지도 API에 사용
-  console.log('latitude:', latitude);
-  console.log('longitude:', longitude);
+  // console.log('latitude:', latitude);
+  // console.log('longitude:', longitude);
 });
+
+// ----------------------------------------------------
+// 객체를 반환하는 함수
+// 반환된 객체는 함수 실행 이후에도 실행된 함수 컨텍스트에 접근이 가능.
+// 반환된 객체는 모듈로서 사용될 수 있다.
+// 모던 모듈 패턴에 자주 사용된다.
+
+
+// 기본적으로 자바스크립트의 리터럴 표현식을 사용한 객체는
+// 모든 멤버(속성)가 공개되어서 수정될 우려가 있다.
+// 비공개 멤버가 존재하지 않는다.
+var obj = {
+  'name': '글로벌 객체',
+  'getOwn': function() {
+    console.log(this);
+  }
+};
+
+// console.dir( obj );
+// console.log( obj.name );
+// console.log( obj.getOwn() );
+// 전역에 공개된 객체 obj의 속성을 제거
+// delete obj.getOwn;
+// console.log( typeof obj.getOwn ); // 속성이 제거되었다.
+
+// 비공개 멤버를 가진 객체를 구현하기 위한
+// 클로저 사용 (객체 반환)
+function singletonObj() {
+  // 지역 변수
+  // 외부에 공개되지 않은 비공개 멤버
+  var _name = '글로벌 객체';
+  var _count = 0;
+  var _getOwn = function() {
+    console.log(this);
+  };
+  var _countUp = function() {
+    return ++_count;
+  }
+  // [모듈 노출 패턴] 외부에 노출되는 공개 객체
+  var _obj = {
+    'name': _name,
+    // 'getOwn': _getOwn,
+    'countUp': _countUp
+  };
+  return _obj;
+  // return undefined;
+}
+
+// 디자인 패턴 [객체를 생성하는 패턴: 싱글톤 객체]
+var obj2 = singletonObj();
+
+console.log(obj2);
+
+// obj2.name = '외부에서 변경을 가한 멤버';
+
+// console.log(obj2);
