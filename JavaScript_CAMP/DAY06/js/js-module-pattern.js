@@ -63,30 +63,32 @@ var $ = function(selector){
 
 (function(exports){
   'use strict';
-
   // 외부에 노출되지 않는 공간(영역)
   // 비공개 데이터 설정
-  var _data = [];
+  var _data, _set, _init, _reset, _get;
 
-  // 비공개 메소드
-  var _set = function(value) {
+  // 비공개 속성(변수)
+  _data = [];
+
+  // 비공개 함수(메소드)
+  _set = function(value) {
     // 유효성 검증
     if ( !value ) { throw new Error('값을 설정해야 합니다.'); }
     _data.push(value);
     // return undefined; // 암묵적으로 함수는 undefined를 반환
-    return this;
+    return this; // 메소드 체이닝(Method Chaining)
   };
 
-  var _init = function(data) {
+  _init = function(data) {
     if ( !Array.isArray(data) ) { throw new Error('초기화할 데이터는 배열이어야 합니다.'); }
     _data = data;
   };
 
-  var _reset = function() {
+  _reset = function() {
     _data = [];
   };
 
-  var _get = function() {
+  _get = function() {
     return _data;
   };
 

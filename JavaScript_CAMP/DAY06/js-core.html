@@ -11,5 +11,17 @@
 
 <!-- <script src="js/js-core.js"></script> -->
 <script src="js/js-module-pattern.js"></script>
+<script>
+(function(global, modelManager){
+  'use strict';
+
+  modelManager.init([{'name': 'Model Manager'}]);
+  modelManager.set(9).set(3).set(-10).set(5).set(2);
+  modelManager.get();
+  modelManager.remove(2); // index
+  modelManager.reset();
+
+})(this, this.modelManager);
+</script>
 </body>
 </html>
