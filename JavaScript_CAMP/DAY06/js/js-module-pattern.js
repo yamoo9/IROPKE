@@ -37,7 +37,7 @@ var $ = function(selector){
 // 모듈 패턴을 활용하여 객체를 반환하는 모듈을 구성해본다.
 
 // Model 객체 생성
-// 사용자가 데이터를 추가/제거(개별,모두)/가져오기 등이 가능한 객체
+// 사용자가 데이터를 초기화/리셋/추가/제거(개별,모두)/가져오기 등이 가능한 객체
 
 // // 패턴 1
 // (function(global){
@@ -60,3 +60,38 @@ var $ = function(selector){
 //   // md === 전역의 modelManager
 
 // })(this, (this.modelManager = this.modelManager || {}) );
+
+(function(exports){
+  'use strict';
+
+  // 외부에 노출되지 않는 공간(영역)
+  // 비공개 데이터 설정
+  var _data = [];
+
+  // 비공개 메소드
+  var _set = function(value) {
+    // 유효성 검증
+    if ( !value ) { throw new Error('값을 설정해야 합니다.'); }
+    _data.push(value);
+    // return undefined; // 암묵적으로 함수는 undefined를 반환
+  };
+
+  // 외부에 노출한 객체(모듈)
+  exports.modelManager = {
+    'init': function(data) {
+      if ( !Array.isArray(data) ) { throw new Error('초기화할 데이터는 배열이어야 합니다.'); }
+      _data = data;
+    },
+    'reset': function() {
+      _data = [];
+    },
+    'get': function() {
+      return _data;
+    },
+    // 'set': _set,
+    'remove': function(index) {
+      // 모델 데이터에서 해당 인덱스의 원소를 제거 한다.
+    }
+  };
+
+})(this);
