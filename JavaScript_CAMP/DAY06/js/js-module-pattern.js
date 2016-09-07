@@ -74,24 +74,33 @@ var $ = function(selector){
     if ( !value ) { throw new Error('값을 설정해야 합니다.'); }
     _data.push(value);
     // return undefined; // 암묵적으로 함수는 undefined를 반환
+    return this;
+  };
+
+  var _init = function(data) {
+    if ( !Array.isArray(data) ) { throw new Error('초기화할 데이터는 배열이어야 합니다.'); }
+    _data = data;
+  };
+
+  var _reset = function() {
+    _data = [];
+  };
+
+  var _get = function() {
+    return _data;
+  };
+
+  var _remove = function(index) {
+    _data.splice(index, 1);
   };
 
   // 외부에 노출한 객체(모듈)
   exports.modelManager = {
-    'init': function(data) {
-      if ( !Array.isArray(data) ) { throw new Error('초기화할 데이터는 배열이어야 합니다.'); }
-      _data = data;
-    },
-    'reset': function() {
-      _data = [];
-    },
-    'get': function() {
-      return _data;
-    },
-    // 'set': _set,
-    'remove': function(index) {
-      // 모델 데이터에서 해당 인덱스의 원소를 제거 한다.
-    }
+    'init'   : _init,
+    'reset'  : _reset,
+    'get'    : _get,
+    'set'    : _set,
+    'remove' : _remove
   };
 
 })(this);
