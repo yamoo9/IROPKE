@@ -75,10 +75,12 @@ function checkGeo() {
   var geo = window.navigator.geolocation;
   var _getGeo = null;
   if ( geo ) {
+    // 조건이 참일 경우, 함수를 반환
     _getGeo = function(success, error) {
       return geo.getCurrentPosition(success, error);
     };
   } else {
+    // 조건이 거짓일 경우, null을 반환
     console.info('지도 서비스를 사용할 수 없습니다.');
   }
   return _getGeo;
@@ -88,5 +90,11 @@ var getGeo = checkGeo();
 
 // getGeo() 함수 사용 예
 getGeo(function(position){
-  console.log(position);
+  // 위도, 경도
+  var latitude, longitude;
+  latitude = position.coords.latitude;
+  longitude = position.coords.longitude;
+  // 지도 API에 사용
+  console.log('latitude:', latitude);
+  console.log('longitude:', longitude);
 });
