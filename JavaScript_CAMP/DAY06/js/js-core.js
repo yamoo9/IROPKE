@@ -138,9 +138,9 @@ function singletonObj() {
   }
   // [모듈 노출 패턴] 외부에 노출되는 공개 객체
   var _obj = {
-    'name': _name,
+    // 'name': _name,
     // 'getOwn': _getOwn,
-    'countUp': _countUp
+    // 'countUp': _countUp
   };
   return _obj;
   // return undefined;
@@ -154,3 +154,42 @@ console.log(obj2);
 // obj2.name = '외부에서 변경을 가한 멤버';
 
 // console.log(obj2);
+
+// ----------------------------------------------------
+// 스코프 체이닝(영역 탐색, Scope Chaining)
+// 성능과 밀접한 관계
+
+// 전역 변수, 함수 정의
+// var x = 9;
+
+// function fn() {
+//   var y = -10;
+//   function inFn() {
+//     var z = 82;
+//     console.log('inFn에서 처리:', x + y * z); // 9 + -10 * 82
+//   }
+//   inFn();
+// }
+
+// fn();
+
+// console.log('전역:', x);
+
+// ----------------------------------------------------
+// 미션
+// 스코프 체이닝을 통해 성능이 악화되는 것을 방지하려면?
+
+var x = 9;
+
+function fn() {
+  var y = -10;
+  function inFn() {
+    var z = 82;
+    console.log('inFn에서 처리:', x + y * z); // 9 + -10 * 82
+  }
+  inFn();
+}
+
+fn();
+
+console.log('전역:', x);
