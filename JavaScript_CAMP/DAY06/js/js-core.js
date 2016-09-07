@@ -179,17 +179,46 @@ console.log(obj2);
 // 미션
 // "스코프 체이닝"으로 인해 성능이 악화되는 것을 방지하려면?
 
-var x = 9;
+// var x = 9;
 
-function fn(x) {
-  var y = -10;
-  function inFn(x, y) {
-    var z = 82;
-    console.log('inFn에서 처리:', x + y * z); // 9 + -10 * 82
+// function fn(x) {
+//   var y = -10;
+//   function inFn(x, y) {
+//     var z = 82;
+//     console.log('inFn에서 처리:', x + y * z); // 9 + -10 * 82
+//   }
+//   inFn(x, y);
+// }
+
+// fn(x);
+
+// console.log('전역:', x);
+
+// ----------------------------------------------------
+// IIFE 패턴
+// 즉시 실행되는 함수 패턴
+// 모듈 패턴
+// 클로저를 활용하는 패턴
+
+function counterWrapper(setting_count) {
+  var count = setting_count || 100;
+  function counterInner() {
+    return count--;
   }
-  inFn(x, y);
+  return counterInner;
 }
 
-fn(x);
+// 카운터 초기화
+var counter20 = counterWrapper(20);
 
-console.log('전역:', x);
+counter20(); // 20
+counter20(); // 19
+counter20(); // 18
+counter20(); // 17
+
+var counter10 = counterWrapper(10);
+
+counter10(); // 10
+counter10(); // 9
+counter10(); // 8
+counter10(); // 7
