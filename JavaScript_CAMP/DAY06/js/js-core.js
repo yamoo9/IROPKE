@@ -208,6 +208,7 @@ console.log(obj2);
 ~function(){}();
 
 // 무명(익명) 함수: 함수의 이름이 없다.
+// IIFE 패턴: 함수를 괄호()로 감싸 바로 실행시킨다.
 var count = (function(setting_count) {
   var count = setting_count || 100;
   function counterInner() {
