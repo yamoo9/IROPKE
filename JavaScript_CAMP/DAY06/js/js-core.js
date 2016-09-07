@@ -177,19 +177,19 @@ console.log(obj2);
 
 // ----------------------------------------------------
 // 미션
-// 스코프 체이닝을 통해 성능이 악화되는 것을 방지하려면?
+// "스코프 체이닝"으로 인해 성능이 악화되는 것을 방지하려면?
 
 var x = 9;
 
-function fn() {
+function fn(x) {
   var y = -10;
-  function inFn() {
+  function inFn(x, y) {
     var z = 82;
     console.log('inFn에서 처리:', x + y * z); // 9 + -10 * 82
   }
-  inFn();
+  inFn(x, y);
 }
 
-fn();
+fn(x);
 
 console.log('전역:', x);
