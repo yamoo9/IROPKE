@@ -200,25 +200,19 @@ console.log(obj2);
 // 모듈 패턴
 // 클로저를 활용하는 패턴
 
-function counterWrapper(setting_count) {
+// IIFE 패턴 유형
+(function(){}()); // 권장 (Yahoo 엔지니어 더글라스 크록포드 추천!!!)
+(function(){})(); // 권장
++function(){}();
+!function(){}();
+~function(){}();
+
+// 무명(익명) 함수: 함수의 이름이 없다.
+var count = (function(setting_count) {
   var count = setting_count || 100;
   function counterInner() {
     return count--;
   }
   return counterInner;
-}
+}(30));
 
-// 카운터 초기화
-var counter20 = counterWrapper(20);
-
-counter20(); // 20
-counter20(); // 19
-counter20(); // 18
-counter20(); // 17
-
-var counter10 = counterWrapper(10);
-
-counter10(); // 10
-counter10(); // 9
-counter10(); // 8
-counter10(); // 7
