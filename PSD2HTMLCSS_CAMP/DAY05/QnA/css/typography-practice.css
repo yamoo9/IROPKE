@@ -1,0 +1,79 @@
+body {
+	margin: 0;
+	background-image: url(../images/Leading_21px.png);
+	font-size: 87.5%;
+	line-height: 1.5; /*21px*/
+	font-family: "Spoqa Han Sans", Sans-serif;
+}
+img {
+	margin-top: 21px;
+	margin-bottom: 2.8em;
+	vertical-align: bottom;
+}
+/*제목디자인*/
+h1, h5, h3{
+	/*letter-spacing: -50/1000*/
+	letter-spacing: -0.05em;
+	margin-top: 0;
+}
+h1{
+	font-size: 3.902326745317793em;
+	line-height: 1.154;
+	margin-bottom: 0.384386059368241em;
+	color: #333741;
+	font-weight: 200;
+}
+h5 {
+	font-size: 1.313em;
+	line-height: 2.286;
+	margin-bottom: 1.1424219345011424em;
+	color: #787f94;
+}
+
+h3, h6, p{
+	text-align: left;
+	margin-top: 0;
+}
+h3{
+	font-size: 2.263571297em;
+	line-height: 1.326;
+	margin-bottom: 0.6626696503830072em;
+	font-weight: lighter;
+	color: #333741;
+}
+h6{
+	font-size: 1em;
+	line-height: 1.5;
+	margin-bottom: 1.5em;
+	font-weight: bold;
+	color:#787f94;
+	letter-spacing: -0.01em;
+}
+p{
+	margin-top: 0;
+	margin-bottom: 1.5em;
+	font-weight: normal;
+	color: #333741;
+	letter-spacing: -0.02em;
+}
+/*요소를 화면 가운데 배치*/
+.page-container {
+	padding-top: 6em;
+	padding-left: 4.375em;
+	padding-right: 4.375em;
+	/*w960*/
+	width: 820px;
+	/*width를 뺀 남은 공간을 좌/우로 양분하라*/
+	margin-left: auto;
+	margin-right: auto;
+	/*h100vh, vh=뷰포트=보이는 높이*/
+	height: 1800px;
+	/*배경색상*/
+	/*bgc*/
+	/*background-color: #f5f5f5;*/
+	/*박스 쉐도우(Drop-Shadow)*/
+	/*box-shadow: x y blur spread color;*/
+	/*box-shadow: 0px 0px 15px hsla(0, 0%, 0%, 50);*/
+	/*내부에 포함된 콘텐츠(텍스트, 이미지 등) 가운데 정렬(Align)*/
+	text-align: center;
+}
