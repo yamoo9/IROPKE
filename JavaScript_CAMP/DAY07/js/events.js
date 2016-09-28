@@ -31,21 +31,45 @@
   function printContent() {
     var _link = this;
 
-    // 클릭된 <a> 요소가 포함하는 텍스트 노드 값을 가져와서 변수에 참조
-    var _content = _link.firstChild.nodeValue;
-
-    // #print-select-link-content 요소의 콘텐츠 값이
-    // 선택된 <a> 요소의 콘텐츠 값으로 출력되도록 한다.
-    print_area.firstChild.nodeValue = _content;
-
-    // 선택된 <a> 요소 선택된 상태를 시각적으로 표시하도록 설정한다.
-    var _changed_class = _link.getAttribute('class') + ' selected';
-    _link.setAttribute('class', _changed_class);
+    printAssignContent(_link);
+    assignClass(_link);
 
     // .selected 클래스 속성을 추가 한다.
     // 단, 각 <a> 요소는 선택된 상태가 고유해야 한다.
 
     // 오래 전에 사용되던 브라우저 기본 동작 차단 방법
+    return false;
+  }
+
+  function printAssignContent(_link) {
+    // 클릭된 <a> 요소가 포함하는 텍스트 노드 값을 가져와서 변수에 참조
+    var _content = _link.firstChild.nodeValue;
+    // #print-select-link-content 요소의 콘텐츠 값이
+    // 선택된 <a> 요소의 콘텐츠 값으로 출력되도록 한다.
+    print_area.firstChild.nodeValue = _content;
+  }
+
+  function assignClass(_link) {
+    // 선택된 <a> 요소 선택된 상태를 시각적으로 표시하도록 설정한다.
+    var _has_selected_class = checkSelectedClass(_link);
+    // console.log('_has_selected_class:', _has_selected_class); // false
+    if( _has_selected_class ) { return; }
+    var _pre_class = _link.getAttribute('class');
+    _pre_class = _pre_class || '';
+    var _changed_class = _pre_class + ' selected';
+    _link.setAttribute( 'class', _changed_class.trim() );
+  }
+
+  function checkSelectedClass(_link) {
+    // return selected 클래스가 있다? 없다?;
+    var _classes = _link.getAttribute('class');
+    _classes = !_classes ? [] : _classes.split(' ');
+    var i=0, l=_classes.length;
+    for (; i<l; i++) {
+      if ( _classes[i] === 'selected' ) {
+        return true;
+      }
+    }
     return false;
   }
 
