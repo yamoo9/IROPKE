@@ -38,7 +38,8 @@
   // 선택된 <a> 요소의 콘텐츠 값으로 출력되도록 한다.
   function printAssignContent() {
     var _content = this.firstChild.nodeValue;
-    print_area.firstChild.nodeValue = _content;
+    // print_area.firstChild.nodeValue = _content;
+    print_area.value = _content;
   }
   // 선택된 <a> 요소 선택된 상태를 시각적으로 표시하도록 설정한다.
   function assignClass() {

@@ -41,23 +41,27 @@
       margin-bottom: 0;
       padding-left: 0;
     }
-    .demo-nav ul::after {
+    .demo-nav li {
+      border-bottom: 1px solid #c7edff;
+    }
+    .demo-nav li::after {
       content:'';
       display: block;
       clear: both;
     }
-    .demo-nav li {
-      border-bottom: 1px solid #c7edff;
+    .demo-nav a {
+      float: left;
+      width: calc(100% - 30px);
       padding-top: 0.25em;
       padding-bottom: 0.25em;
-    }
-    .demo-nav a {
       text-decoration: none;
       color: #1c1c1c;
     }
     .demo-nav .remove-item {
       cursor: pointer;
       float: right;
+      position: relative;
+      top: 6px;
       width: 20px;
       height: 20px;
       border-radius: 50%;
@@ -84,43 +88,43 @@
     <ul>
       <li>
         <a href="#item12">Mujer uno.</a>
-        <button type="button" class="remove-item">x</button>
+        <button type="button" class="remove-item" aria-label="remove item">x</button>
       </li>
       <li>
         <a href="#item13">ipsum Lorem.</a>
-        <button type="button" class="remove-item">x</button>
+        <button type="button" class="remove-item" aria-label="remove item">x</button>
       </li>
       <li>
         <a class="rusia" href="#item14">Далеко-далеко за словесными.</a>
-        <button type="button" class="remove-item">x</button>
+        <button type="button" class="remove-item" aria-label="remove item">x</button>
       </li>
       <li>
         <a href="#item15">한글 로렘입숨.</a>
-        <button type="button" class="remove-item">x</button>
+        <button type="button" class="remove-item" aria-label="remove item">x</button>
       </li>
       <li>
         <a href="#item16">Mujer uno dolor mas.</a>
-        <button type="button" class="remove-item">x</button>
+        <button type="button" class="remove-item" aria-label="remove item">x</button>
       </li>
       <li>
         <a href="#item17">Далеко-далеко за словесными горами в стране, гласных.</a>
-        <button type="button" class="remove-item">x</button>
+        <button type="button" class="remove-item" aria-label="remove item">x</button>
       </li>
       <li>
         <a href="#item18">Mujer uno dolor.</a>
-        <button type="button" class="remove-item">x</button>
+        <button type="button" class="remove-item" aria-label="remove item">x</button>
       </li>
       <li>
         <a href="#item19">uno Mujer dolor.</a>
-        <button type="button" class="remove-item">x</button>
+        <button type="button" class="remove-item" aria-label="remove item">x</button>
       </li>
       <li>
         <a href="#item20">Далеко-далеко.</a>
-        <button type="button" class="remove-item">x</button>
+        <button type="button" class="remove-item" aria-label="remove item">x</button>
       </li>
       <li>
         <a href="#item21">даdsлеко.</a>
-        <button type="button" class="remove-item">x</button>
+        <button type="button" class="remove-item" aria-label="remove item">x</button>
       </li>
     </ul>
   </nav>
