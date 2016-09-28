@@ -8,6 +8,7 @@
   var demo_nav             = null;
   var demo_nav_links       = null;
   var demo_nav_remove_btns = null;
+  var forEach              = Array.prototype.forEach;
 
   // 모듈 초기화 수행 함수 정의
   function initialization() {
@@ -22,12 +23,14 @@
     }
     // .demo-nav 요소 내부의 <button> 요소를 클릭할 때,
     // 선택된 <button>을 포함한 목록 항목(List Item)을 제거한다.
-    Array.prototype.forEach.call(demo_nav_remove_btns, function(button, index) {
+    forEach.call(demo_nav_remove_btns, function(button, index) {
       button.onclick = removeItem;
     });
 
     // 사용자가 입력 가능한 인풋 컴포넌트에 이벤트 바인딩
     print_area.onkeydown = userInput;
+    print_area.onclick = userSelect;
+    print_area.onfocus = userSelect;
   }
   // 이벤트 핸들러 printContent 정의
   function printContent() {
@@ -36,29 +39,30 @@
     // 오래 전에 사용되던 브라우저 기본 동작 차단 방법
     return false;
   }
-  // #print-select-link-content 요소의 콘텐츠 값이
+  // #print-select-link-content 요소 내부 <input>의 값(value)이
   // 선택된 <a> 요소의 콘텐츠 값으로 출력되도록 한다.
   function printAssignContent() {
     var _content = this.firstChild.nodeValue;
-    // print_area.firstChild.nodeValue = _content;
-    print_area.value = _content;
+    print_area.querySelector('input').value = _content;
   }
   // 선택된 <a> 요소 선택된 상태를 시각적으로 표시하도록 설정한다.
   function assignClass() {
+    // 선택된 <a> 요소에 이미 selected 클래스 속성이 존재할 경우,
+    // 함수 종료
     var _has_selected_class = checkSelectedClass(this);
     if( _has_selected_class ) { return; }
+    // 선택된 <a>의 부모 <li>의 형제 <li> 내부의 <a> 중
+    // selected 클래스 속성을 가진 요소 제거
     removeSiblingsSelectedClass.call(this);
     var _pre_class = this.getAttribute('class') || '';
     var _changed_class = _pre_class + ' selected';
     this.setAttribute( 'class', _changed_class.trim() );
   }
-  // return selected 클래스가 있다? 없다?;
+  // selected 클래스 존재 유무를 반환하는 함수
   function checkSelectedClass(el_node) {
     var _classes = el_node.getAttribute('class');
     _classes = !_classes ? [] : _classes.split(' ');
-    var i=0, l=_classes.length;
-    for (; i<l; i++) {
-      // console.log(_classes[i]);
+    for (var i=0, l=_classes.length; i<l; i++) {
       if ( _classes[i] === 'selected' ) { return true; }
     }
     return false;
@@ -86,7 +90,10 @@
     var _target   = event.target;
     var _key_code = event.keyCode || event.which;
     var _content  = _target.value;
-    if(_key_code === 13) { createListItem(_content); }
+    if(_key_code === 13) {
+      createListItem(_content);
+      _target.value = '';
+    }
   }
   // 리스트 아이템 추가 함수
   function createListItem(content) {
@@ -96,7 +103,6 @@
     li.appendChild( document.createElement('a') );
     // <button> 요소 생성
     li.appendChild( document.createElement('button') );
-
     var link = li.querySelector('a');
     link.setAttribute('href', '#');
     link.innerHTML = content;
@@ -105,7 +111,12 @@
     btn.setAttribute('type', 'button');
     btn.setAttribute('aria-label', 'remove item');
     btn.innerHTML = 'x';
+    btn.onclick = removeItem;
     demo_nav.querySelector('ul').appendChild(li);
+  }
+  // <input> 클릭/포커스 이벤트 발생 시, 텍스트 블록 선택 함수
+  function userSelect(event) {
+    event.target.select();
   }
   // 이벤트 발생 감지 시, 모듈 초기화 함수 실행
   window.onload = initialization;
