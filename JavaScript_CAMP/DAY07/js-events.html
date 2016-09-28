@@ -4,12 +4,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="UTF-8">
   <title>자바스크립트 이벤트</title>
+  <link href="http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet">
   <style>
     body {
       width: 60vw;
       margin-top: 10vh;
       margin-left: auto;
       margin-right: auto;
+      font: 1rem/1.5rem "Spoqa Han Sans", Sans-Serif;
+      color: #434343;
+    }
+    h1 {
+      font-weight: 200;
+      font-size: 2.2rem;
     }
     #print-select-link-content {
       border-radius: 4px;
@@ -17,18 +24,37 @@
       padding: 1em;
       color: #34c0ff;
     }
+    .demo-nav {
+      margin-top: 3rem;
+    }
     .demo-nav ul {
       list-style: none;
       margin-bottom: 0;
       padding-left: 0;
     }
+    .demo-nav ul::after {
+      content:'';
+      display: block;
+      clear: both;
+    }
     .demo-nav li {
+      border-bottom: 1px solid #c7edff;
       padding-top: 0.25em;
       padding-bottom: 0.25em;
     }
     .demo-nav a {
       text-decoration: none;
       color: #1c1c1c;
+    }
+    .demo-nav .remove-item {
+      cursor: pointer;
+      float: right;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 0;
+      background: #000;
+      color: #fff;
     }
     .demo-nav .selected {
       background: #ff0;
@@ -38,49 +64,52 @@
 </head>
 <body>
 
-  <p id="print-select-link-content">link content</p>
+  <h1>DEMONSTRATION</h1>
+
+  <p id="print-select-link-content">Print Selected Link content</p>
 
   <!-- nav>ul>li*10>a{item $$@12} -->
   <nav class="demo-nav">
+    <h1>Event Binding Links</h1>
     <ul>
       <li>
-        <a href="#item12">item 12</a>
+        <a href="#item12">Mujer uno.</a>
         <button type="button" class="remove-item">x</button>
       </li>
       <li>
-        <a href="#item13">item 13</a>
+        <a href="#item13">ipsum Lorem.</a>
         <button type="button" class="remove-item">x</button>
       </li>
       <li>
-        <a href="#item14">item 14</a>
+        <a href="#item14">Далеко-далеко за словесными.</a>
         <button type="button" class="remove-item">x</button>
       </li>
       <li>
-        <a href="#item15">item 15</a>
+        <a href="#item15">한글 로렘입숨.</a>
         <button type="button" class="remove-item">x</button>
       </li>
       <li>
-        <a href="#item16">item 16</a>
+        <a href="#item16">Mujer uno dolor mas.</a>
         <button type="button" class="remove-item">x</button>
       </li>
       <li>
-        <a href="#item17">item 17</a>
+        <a href="#item17">Далеко-далеко за словесными горами в стране, гласных.</a>
         <button type="button" class="remove-item">x</button>
       </li>
       <li>
-        <a href="#item18">item 18</a>
+        <a href="#item18">Mujer uno dolor.</a>
         <button type="button" class="remove-item">x</button>
       </li>
       <li>
-        <a href="#item19">item 19</a>
+        <a href="#item19">uno Mujer dolor.</a>
         <button type="button" class="remove-item">x</button>
       </li>
       <li>
-        <a href="#item20">item 20</a>
+        <a href="#item20">Далеко-далеко.</a>
         <button type="button" class="remove-item">x</button>
       </li>
       <li>
-        <a href="#item21">item 21</a>
+        <a href="#item21">даdsлеко.</a>
         <button type="button" class="remove-item">x</button>
       </li>
     </ul>
