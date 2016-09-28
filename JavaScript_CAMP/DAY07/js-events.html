@@ -6,6 +6,12 @@
   <title>자바스크립트 이벤트</title>
   <link href="http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css" rel="stylesheet">
   <style>
+    ::-webkit-input-placeholder {
+      color: #34c0ff;
+    }
+    ::input-placeholder {
+      color: #34c0ff;
+    }
     body {
       width: 60vw;
       margin-top: 10vh;
@@ -19,9 +25,12 @@
       font-size: 2.2rem;
     }
     #print-select-link-content {
+      box-sizing: border-box;
+      width: 100%;
       border-radius: 4px;
       border: 3px solid #34c0ff;
-      padding: 1em;
+      padding: 1.1em 1em;
+      font-size: 1rem;
       color: #34c0ff;
     }
     .demo-nav {
@@ -66,7 +75,8 @@
 
   <h1>DEMONSTRATION</h1>
 
-  <p id="print-select-link-content">Print Selected Link content</p>
+  <!-- <p id="print-select-link-content">Print Selected Link content</p> -->
+  <input type="text" id="print-select-link-content" placeholder="Print Selected Link content">
 
   <!-- nav>ul>li*10>a{item $$@12} -->
   <nav class="demo-nav">
