@@ -81,15 +81,14 @@
     var _parent = this.parentNode;
     _parent.parentNode.removeChild(_parent);
   }
+  // 사용자 입력 감지/처리 함수
   function userInput(event) {
     var _target   = event.target;
     var _key_code = event.keyCode || event.which;
     var _content  = _target.value;
-    if(_key_code === 13) {
-      createListItem(_content);
-    }
+    if(_key_code === 13) { createListItem(_content); }
   }
-
+  // 리스트 아이템 추가 함수
   function createListItem(content) {
     // <li> 요소 생성
     var li = document.createElement('li');
