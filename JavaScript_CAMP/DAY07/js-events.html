@@ -25,6 +25,9 @@
       font-size: 2.2rem;
     }
     #print-select-link-content {
+      position: relative;
+    }
+    #print-select-link-content input {
       box-sizing: border-box;
       width: 100%;
       border-radius: 4px;
@@ -32,6 +35,17 @@
       padding: 1.1em 1em;
       font-size: 1rem;
       color: #34c0ff;
+    }
+    #print-select-link-content::after {
+      content: '';
+      position: absolute;
+      top: 25px;
+      right: 20px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid #34c0ff;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
     }
     .demo-nav {
       margin-top: 3rem;
@@ -80,7 +94,9 @@
   <h1>DEMONSTRATION</h1>
 
   <!-- <p id="print-select-link-content">Print Selected Link content</p> -->
-  <input type="text" id="print-select-link-content" placeholder="Print Selected Link content">
+  <div id="print-select-link-content">
+    <input type="text" placeholder="Print Selected Link content">
+  </div>
 
   <!-- nav>ul>li*10>a{item $$@12} -->
   <nav class="demo-nav">
