@@ -8,6 +8,7 @@
   // lg  1440 - 1919
   // xl  1920 - ∞
 
+  /** @type {Object} Breakpoint {} */
   var bp = {
     // 'xs': 0
     'sm': 600,
@@ -29,35 +30,32 @@
     assignClass('html', device_id);
   }
 
+  /** @function getWindowWidth */
   function getWindowWidth() {
+    // innerWidth IE 9+
     return global.innerWidth || document.body.clientWidth;
   }
 
+  /** @function printDetectionDeviceId */
   function printDetectionDeviceId() {
-    var device_w = getWindowWidth();
-    var device_id = null;
-    if ( device_w < bp.sm ) {
-      device_id = 'xs';
-    }
-    else if ( device_w < bp.md ) {
-      device_id = 'sm';
-    }
-    else if ( device_w < bp.lg ) {
-      device_id = 'md';
-    }
-    else if ( device_w < bp.xl ) {
-      device_id = 'lg';
-    } else {
-      device_id = 'xl';
-    }
+    var device_w  = getWindowWidth(),
+        device_id = null;
+    if ( device_w < bp.sm ) { device_id = 'xs'; }
+    else if ( device_w < bp.md ) { device_id = 'sm'; }
+    else if ( device_w < bp.lg ) { device_id = 'md'; }
+    else if ( device_w < bp.xl ) { device_id = 'lg'; }
+    else { device_id = 'xl'; }
     return device_id;
   }
 
+  /** @function assignClass */
   function assignClass(target_el, class_name) {
     console.log('class_name:', class_name);
   }
 
-  function detectionResize() {
-    console.log('detect width:', window.innerWidth);
-  }
+
+  // function detectionResize() {
+  //   console.log('detect width:', window.innerWidth);
+  // }
+
 })(this);
