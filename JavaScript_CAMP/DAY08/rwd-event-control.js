@@ -27,7 +27,8 @@
     // 1. 문자열 값으로 어떤 기기인지 반환하는 함수
     var device_id = printDetectionDeviceId();
     // 2. 반환된 함수를 <html> 요소의 class 속성에 설정하는 함수
-    assignClass('html', device_id);
+    // assignClass(document.documentElement, device_id); // DOM Element
+    assignClass('html', device_id);                   // Selector
   }
 
   /** @function getWindowWidth */
@@ -40,17 +41,27 @@
   function printDetectionDeviceId() {
     var device_w  = getWindowWidth(),
         device_id = null;
-    if ( device_w < bp.sm ) { device_id = 'xs'; }
+    if      ( device_w < bp.sm ) { device_id = 'xs'; }
     else if ( device_w < bp.md ) { device_id = 'sm'; }
     else if ( device_w < bp.lg ) { device_id = 'md'; }
     else if ( device_w < bp.xl ) { device_id = 'lg'; }
-    else { device_id = 'xl'; }
+    else                         { device_id = 'xl'; }
     return device_id;
   }
 
   /** @function assignClass */
   function assignClass(target_el, class_name) {
-    console.log('class_name:', class_name);
+    if (
+      // 전달인자 없거나(undefined), null
+      !target_el ||
+      // DOM 요소가 아닌 경우, 문자열이 아닌 경우
+      ( target_el.nodeType !== 1 && typeof target_el !== 'string' )
+    ) { throw new Error('전달인자 유형을 올바르게 확인해주세요.'); }
+    if ( typeof target_el === 'string' ) {
+      target_el = document.querySelector(target_el);
+    }
+    var _org_class_name = target_el.getAttribute('class') || '';
+    target_el.setAttribute('class', (_org_class_name + ' ' + class_name).trim() );
   }
 
 
