@@ -24,7 +24,7 @@ function assignClass(target_el, class_name) {
   }
 }
 
-/** @functino removeClass */
+/** @function removeClass */
 function removeClass(target_el, class_name) {
   if ( !class_name ) { target_el.setAttribute('class', ''); }
   var _class = target_el.getAttribute('class');
