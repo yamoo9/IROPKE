@@ -83,20 +83,34 @@
     return false;
   }
 
+  function removeClass(target_el, class_name) {
+    if ( !class_name ) { target_el.setAttribute('class', ''); }
+    var _class = target_el.getAttribute('class');
+    _class = _class.replace(class_name, '');
+    target_el.setAttribute('class', _class);
+  }
+
   function detectionResize() {
     var device_id = printDetectionDeviceId();
     // 비교 device_id <-> detectionResize.memory_class 값을 비교
-    console.log('device_id:', device_id);
-    console.log('detectionResize.memory_class:', detectionResize.memory_class);
-    // assignClass('html', device_id);
-    // console.log( 'device_id:', device_id );
-    // console.log( 'detect width:', getWindowWidth() );
+    // 비교한 값이 달라진다면 기존 클래스 속성 제거 (기억)
+    // 새롭게 변경된 기기의 폭에 따른 식별자를 새 클래스 속성으로 추가
+    // console.log('device_id:', device_id);
+    // console.log('detectionResize.memory_class:', detectionResize.memory_class);
+    // console.log(device_id === detectionResize.memory_class);
+    if ( device_id === detectionResize.memory_class ) {
+      return; // 함수 종료
+    }
+    // 기억된 클래스 속성 값을 제거 한다.
+    removeClass( query('html') , detectionResize.memory_class);
+    // 변경된 새 클래스 속성을 <html> 요소의 클래스 속성 값으로 할당한다.
+    assignClass('html', device_id);
+    // 변경된 새 클래스 속성 값을 기억한다.
+    detectionResize.memory_class = device_id;
   }
   // 메모이제이션 패턴
   // 함수 또한 객체이기 때문에 속성을 가질 수 있다.
   // 초기 값 설정
   detectionResize.memory_class = null;
-
-  // console.log(detectionResize.memory_class);
 
 })(this);
