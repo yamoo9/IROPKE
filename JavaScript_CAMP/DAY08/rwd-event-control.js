@@ -17,6 +17,7 @@
     'xl': 1920
   };
 
+  // 로드 이벤트 발생 시, 애플리케이션 초기화
   global.onload = init;
 
   /** @function initialization */
@@ -86,8 +87,8 @@
   function removeClass(target_el, class_name) {
     if ( !class_name ) { target_el.setAttribute('class', ''); }
     var _class = target_el.getAttribute('class');
-    _class = _class.replace(class_name, '');
-    target_el.setAttribute('class', _class);
+    _class = _class.replace(class_name, ''); // 'name '
+    target_el.setAttribute( 'class', _class.trim() );
   }
 
   function detectionResize() {
