@@ -29,8 +29,8 @@
 
     // 사용자가 입력 가능한 인풋 컴포넌트에 이벤트 바인딩
     print_area.onkeydown = userInput;
-    print_area.onclick = userSelect;
-    print_area.onfocus = userSelect;
+    print_area.onclick   = userSelect;
+    print_area.onfocus   = userSelect;
   }
   // 이벤트 핸들러 printContent 정의
   function printContent() {
@@ -56,7 +56,8 @@
     removeSiblingsSelectedClass.call(this);
     var _pre_class = this.getAttribute('class') || '';
     var _changed_class = _pre_class + ' selected';
-    this.setAttribute( 'class', _changed_class.trim() );
+    // this.setAttribute( 'class', _changed_class.trim() );
+    this.setAttribute( 'class', trim(_changed_class) );
   }
   // selected 클래스 존재 유무를 반환하는 함수
   function checkSelectedClass(el_node) {
@@ -90,6 +91,12 @@
     var _target   = event.target;
     var _key_code = event.keyCode || event.which;
     var _content  = _target.value;
+    // var _is_whitespace = !_content.trim();
+    var _is_whitespace = !trim(_content);
+    if( _is_whitespace ) {
+      console.info('아무런 값을 입력하지 않았습니다.');
+      return;
+    }
     if(_key_code === 13) {
       createListItem(_content);
       _target.value = '';
@@ -111,7 +118,9 @@
     btn.setAttribute('type', 'button');
     btn.setAttribute('aria-label', 'remove item');
     btn.innerHTML = 'x';
+    // 생성된 문서 객체에 이벤트 연결
     btn.onclick = removeItem;
+    link.onclick = printContent;
     demo_nav.querySelector('ul').appendChild(li);
   }
   // <input> 클릭/포커스 이벤트 발생 시, 텍스트 블록 선택 함수

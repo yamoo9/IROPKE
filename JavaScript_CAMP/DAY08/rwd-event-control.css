@@ -1,0 +1,21 @@
+/*! rwd-event-control.css © yamoo9.net, 2016 */
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body:after {
+  content: 'Detect Device Width';
+  position: fixed;
+  font-size: 5rem;
+  font-weight: 100;
+}
+
+.xs body:after { content: 'x-small'; }
+.sm body:after { content: 'small'; }
+.md body:after { content: 'medium'; }
+.lg body:after { content: 'large'; }
+.xl body:after { content: 'x-large'; }
