@@ -15,7 +15,7 @@ body:after {
 }
 
 .xs body:after { content: 'x-small'; }
-.sm body:after { content: 'small'; }
-.md body:after { content: 'medium'; }
-.lg body:after { content: 'large'; }
+.sm body:after { content: 'small';   }
+.md body:after { content: 'medium';  }
+.lg body:after { content: 'large';   }
 .xl body:after { content: 'x-large'; }

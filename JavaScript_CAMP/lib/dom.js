@@ -1,7 +1,9 @@
+/** @function query */
 function query(selector) {
   return document.querySelector(selector);
 }
 
+/** @function hasClass */
 function hasClass(target_el, class_name) {
   var _classes = target_el.getAttribute('class').split(' ');
   for ( var i=0, l=_classes.length; i<l; i++ ) {
@@ -22,6 +24,7 @@ function assignClass(target_el, class_name) {
   }
 }
 
+/** @functino removeClass */
 function removeClass(target_el, class_name) {
   if ( !class_name ) { target_el.setAttribute('class', ''); }
   var _class = target_el.getAttribute('class');

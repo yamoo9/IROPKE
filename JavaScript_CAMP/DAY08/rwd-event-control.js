@@ -48,9 +48,10 @@
     else                         { device_id = 'xl'; }
     return device_id;
   }
-
+  /** @function detectionResize */
   function detectionResize() {
     var device_id = printDetectionDeviceId();
+    // 비교된 값이 동일하다면 함수를 종료해 불필요한 업무를 수행하지 않도록 설정한다.
     if ( device_id === detectionResize.memory_class ) { return; }
     // 기억된 클래스 속성 값을 제거 한다.
     removeClass( root_el , detectionResize.memory_class);
