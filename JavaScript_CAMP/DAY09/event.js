@@ -21,8 +21,10 @@
     // console.log('초기화 2');
     body.addEventListener('mouseover', function init2Action() {
       console.log('Action 2');
-      // W3C 표준 이벤트 제거
+      // W3C 표준 이벤트 모델: 이벤트 제거
       body.removeEventListener('mouseover', init2Action, false);
+      // MS 진보 이벤트 모델: 이벤트 제거 (비표준)
+      // body.detachEvent('onmouseover', init2Action);
     }, false);
 
     console.log(typeof init2Action); // undefined
@@ -53,9 +55,13 @@
   //   init();
   //   init2();
   // };
-  // W3C 진보 이벤트 모델
+  // W3C 진보 이벤트 모델: 이벤트 등록 (표준)
   // .addEventListener('type', handler, capture);
   global.addEventListener('load', init1, false);
   global.addEventListener('load', init2, false);
+
+  // MS 진보 이벤트 모델: 이벤트 등록 (비표준)
+  // global.attachEvent('onload', init1);
+  // global.attachEvent('onload', init2);
 
 })(this);
