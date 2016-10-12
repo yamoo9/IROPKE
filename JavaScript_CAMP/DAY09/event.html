@@ -10,11 +10,28 @@
       height: 100vh;
       background-color: #52c88c;
     }
+
+    .parent, .parent * {
+      padding: 1em;
+    }
+
+    .parent        { background-color: #7045cf; }
+    .child         { background-color: #354cc4; }
+    .grand-child   { background-color: #b513aa; }
+    .grand-child a { display: block; background-color: #ffd219; color: #333; }
   </style>
 <script src="event.js"></script>
 </head>
 <body>
 
+
+  <div class="parent">
+    <ul class="child">
+      <li class="grand-child">
+        <a href="">super child</a>
+      </li>
+    </ul>
+  </div>
 
 
 </body>

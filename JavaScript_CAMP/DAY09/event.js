@@ -20,7 +20,10 @@
   function init2() {
     // console.log('초기화 2');
     body.addEventListener('mouseover', function init2Action() {
+      // W3C 표준 방식
       console.log('Action 2');
+      // 함수 자신을 호출하기 위해 예전에 사용되던 방법
+      // console.log(arguments.callee);
       // W3C 표준 이벤트 모델: 이벤트 제거
       body.removeEventListener('mouseover', init2Action, false);
       // MS 진보 이벤트 모델: 이벤트 제거 (비표준)
