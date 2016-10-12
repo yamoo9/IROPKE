@@ -12,7 +12,7 @@
     }
 
     .parent, .parent * {
-      padding: 1em;
+      padding: 2em;
     }
 
     .parent        { background-color: #7045cf; }
@@ -20,7 +20,7 @@
     .grand-child   { background-color: #b513aa; }
     .grand-child a { display: block; background-color: #ffd219; color: #333; }
   </style>
-<script src="event.js"></script>
+<!-- <script src="event.js"></script> -->
 </head>
 <body>
 
@@ -33,6 +33,63 @@
     </ul>
   </div>
 
+<script>
+(function(global){
+  'use strict';
 
+  var parent      = document.querySelector('.parent');
+  var child       = parent.querySelector('.child');
+  var grand_child = child.querySelector('.grand-child');
+  var link        = grand_child.querySelector('a');
+
+  // console.log('parent:', parent);
+  // console.log('child:', child);
+  // console.log('grand_child:', grand_child);
+  // console.log('link:', link);
+
+  function checkEvTarget(e) {
+    // 크로스 브라우징을 위한 목적으로 e 매개변수에 window.event 객체를 할당
+    // if (typeof e === 'undefined') {
+    // if (!e) {
+    //   e = window.event; // {} 참조
+    // }
+    e = e || window.event;
+    var node_name = e.currentTarget.nodeName.toLowerCase();
+    if( node_name === 'a' ) {
+      e.preventDefault(); // 웹 브라우저 기본 동작 차단
+    }
+    // if ( node_name === 'ul' ) {
+    //   e.stopPropagation(); // 이벤트 전파 중지...
+    // }
+    // console.dir(e);
+    // target은 사용자가 클릭한 대상을 가리킨다.
+    console.log('e.target:', e.target);
+    // currentTarget은 이벤트가 전파되는 과정에서 이벤트가 현재 발생한 대상을 가리킵니다.
+    console.log('e.currentTarget:', e.currentTarget);
+  }
+
+  // parent.onclick      =
+  // child.onclick       =
+  // grand_child.onclick =
+  // link.onclick        = checkEvTarget;
+
+  // W3C
+  if ( widnow.addEventListener ) {
+    parent.addEventListener('click', checkEvTarget);
+    child.addEventListener('click', checkEvTarget);
+    grand_child.addEventListener('click', checkEvTarget);
+    link.addEventListener('click', checkEvTarget);
+  }
+  // MS
+  else {
+    parent.attachEvent('onclick', checkEvTarget);
+    child.attachEvent('onclick', checkEvTarget);
+    grand_child.attachEvent('onclick', checkEvTarget);
+    link.attachEvent('onclick', checkEvTarget);
+  }
+
+
+})(this);
+</script>
 </body>
 </html>
