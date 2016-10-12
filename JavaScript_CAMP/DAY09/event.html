@@ -73,21 +73,48 @@
   // grand_child.onclick =
   // link.onclick        = checkEvTarget;
 
-  // W3C
-  if ( widnow.addEventListener ) {
-    parent.addEventListener('click', checkEvTarget);
-    child.addEventListener('click', checkEvTarget);
-    grand_child.addEventListener('click', checkEvTarget);
-    link.addEventListener('click', checkEvTarget);
-  }
-  // MS
-  else {
-    parent.attachEvent('onclick', checkEvTarget);
-    child.attachEvent('onclick', checkEvTarget);
-    grand_child.attachEvent('onclick', checkEvTarget);
-    link.attachEvent('onclick', checkEvTarget);
+  function addEvent(el, type, handler, capture) {
+    // capture는 옵션, 초기 값은 false
+    capture = capture || false;
+    // 전달인자 데이터 유형 검증
+    if( !el || el.nodeType !== 1 ) { console.error('el는 요소노드를 전달해야 합니다.'); }
+    if( !type || typeof type !== 'string' ) { console.error('type은 문자열을 전달해야 합니다.'); }
+    if( !handler || typeof handler !== 'function' ) { console.error('handler는 함수를 전달해야 합니다.'); }
+
+    // W3C 표준을 준수(지원)하는가?
+    if ( el.addEventListener ) {
+      el.addEventListener(type, handler, capture);
+    }
+    // MS 비표준을 지원하는가?
+    else if ( el.attachEvent ) {
+      el.attachEvent('on'+type, handler);
+    }
+    // 진보 이벤트 모델을 지원하지 않는가?
+    else {
+      el['on'+type] = handler;
+    }
   }
 
+  // W3C
+  // if ( window.addEventListener ) {
+  //   parent.addEventListener('click', checkEvTarget);
+  //   child.addEventListener('click', checkEvTarget);
+  //   grand_child.addEventListener('click', checkEvTarget);
+  //   link.addEventListener('click', checkEvTarget);
+  // }
+  // MS
+  // else {
+  //   parent.attachEvent('onclick', checkEvTarget);
+  //   child.attachEvent('onclick', checkEvTarget);
+  //   grand_child.attachEvent('onclick', checkEvTarget);
+  //   link.attachEvent('onclick', checkEvTarget);
+  // }
+
+  // using Helper Function `addEvent`
+  addEvent(parent, 'click', checkEvTarget);
+  addEvent(child, 'click', checkEvTarget);
+  addEvent(grand_child, 'click', checkEvTarget);
+  addEvent(link, 'click', checkEvTarget);
 
 })(this);
 </script>
