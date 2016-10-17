@@ -12,7 +12,7 @@
 
 -
 
-### Comming Soon 페이지 디자인
+### Coming Soon 페이지 디자인
 
 - [ranjoolee.github.io](https://ranjoolee.github.io/homework/index.html)
 - [soulruji.github.io](https://soulruji.github.io/homework/week01_welcome/index.html)

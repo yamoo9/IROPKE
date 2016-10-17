@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8">
+  <title>현대카드 테이블 디자인 [컬처프로젝트 24 시규어 로스]</title>
+  <!-- You And I Modern 웹폰트 로드 -->
+  <link rel="stylesheet" href="../Resources/Web Fonts/you_and_i_modern/you_and_i_modern.css">
+  <!-- CSS 초기화 모듈
+    에릭마이어         reset.css
+    야후 YUI         reset.css
+    일반화(Normalize) normalize.css [모바일 대응, 불 필요하게 공간을 모두 초기화시키지 않음]
+  -->
+  <link rel="stylesheet" href="../modules/normalize.min.css">
+  <style>
+    body { margin: 4rem; }
+    .hc-table {
+      /* 셀 사이 간격을 접어버림 */
+      border-collapse: collapse;
+      /* YouAndIModern 웹 폰트 적용 */
+      font-family: "YouandiModernTR";
+    }
+    .hc-table,
+    .hc-table th,
+    .hc-table td {
+      border: 1px solid #202020;
+    }
+    .hc-table th,
+    .hc-table td {
+      padding: 1em;
+    }
+    .hc-table th {
+      /* 글 덩어리를 왼쪽으로 정렬 */
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 표(Table) 디자인 -->
+  <table class="hc-table">
+    <!-- 표의 행(Table Row) -->
+    <tr>
+      <!-- 제목 셀(Table Cell Header) -->
+      <th>YouandiModernTR 제목 셀</th>
+      <th>제목 셀</th>
+      <th>제목 셀</th>
+      <th>제목 셀</th>
+      <th>제목 셀</th>
+    </tr>
+    <tr>
+      <td>내용 셀</td>
+      <td>내용 셀</td>
+      <td>내용 셀</td>
+      <td>내용 셀</td>
+      <td>내용 셀</td>
+    </tr>
+    <tr>
+      <td>내용 셀</td>
+      <td>내용 셀</td>
+      <td>내용 셀</td>
+      <td>내용 셀</td>
+      <td>내용 셀</td>
+    </tr>
+    <tr>
+      <td>내용 셀</td>
+      <td>내용 셀</td>
+      <td>내용 셀</td>
+      <td>내용 셀</td>
+      <td>내용 셀</td>
+    </tr>
+  </table>
+
+</body>
+</html>
