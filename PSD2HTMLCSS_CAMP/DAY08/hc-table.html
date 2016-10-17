@@ -52,17 +52,18 @@
   <!-- 표(Table) 디자인 -->
 
   <section class="hc-section">
-    <h1>제목 셀이 수평 방향으로 있는 표</h1>
-    <table class="hc-table">
+    <h1>이롭게 에이전시 연간 실적 보고</h1>
+    <p class="a11y-hidden" id="hc-table-summary-1">이 표는 x행  y열로 구성된...... </p>
+    <table class="hc-table" aria-describedby="hc-table-summary-1">
       <caption class="a11y-hidden">테이블을 대표하는 제목</caption>
       <!-- 표의 행(Table Row) -->
       <tr>
         <!-- 제목 셀(Table Cell Header) -->
-        <th>YouandiModernTR 제목 셀</th>
-        <th>제목 셀</th>
-        <th>제목 셀</th>
-        <th>제목 셀</th>
-        <th>제목 셀</th>
+        <th scope="col">YouandiModernTR 제목 셀</th>
+        <th scope="col">제목 셀</th>
+        <th scope="col">제목 셀</th>
+        <th scope="col">제목 셀</th>
+        <th scope="col">제목 셀</th>
       </tr>
       <tr>
         <td>내용 셀</td>
@@ -94,28 +95,28 @@
     <table class="hc-table">
       <caption class="a11y-hidden">테이블을 대표하는 제목</caption>
       <tr>
-        <th>제목 셀</th>
+        <th scope="row">제목 셀</th>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
       </tr>
       <tr>
-        <th>제목 셀</th>
+        <th scope="row">제목 셀</th>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
       </tr>
       <tr>
-        <th>제목 셀</th>
+        <th scope="row">제목 셀</th>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
       </tr>
       <tr>
-        <th>제목 셀</th>
+        <th scope="row">제목 셀</th>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
@@ -131,24 +132,24 @@
       <caption class="a11y-hidden">테이블을 대표하는 제목</caption>
       <tr>
         <td></td>
-        <th>제목 셀</th>
-        <th>제목 셀</th>
-        <th>제목 셀</th>
+        <th scope="col">제목 셀</th>
+        <th scope="col">제목 셀</th>
+        <th scope="col">제목 셀</th>
       </tr>
       <tr>
-        <th>제목 셀</th>
-        <td>내용 셀</td>
-        <td>내용 셀</td>
-        <td>내용 셀</td>
-      </tr>
-      <tr>
-        <th>제목 셀</th>
+        <th scope="row">제목 셀</th>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
       </tr>
       <tr>
-        <th>제목 셀</th>
+        <th scope="row">제목 셀</th>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+      <tr>
+        <th scope="row">제목 셀</th>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
@@ -161,19 +162,25 @@
     <table class="hc-table">
       <caption class="a11y-hidden">테이블을 대표하는 제목</caption>
       <tr>
-        <th rowspan="2">제목 셀</th>
-        <th colspan="3">제목 셀</th>
+        <th
+          scope="rowgroup"
+          rowspan="2">제목 셀</th>
+        <th
+          scope="colgroup"
+          colspan="3">제목 셀</th>
         <!-- <th>제목 셀</th> -->
         <!-- <th>제목 셀</th> -->
       </tr>
       <tr>
         <!-- <th>제목 셀</th> -->
-        <th>제목 셀</th>
-        <th>제목 셀</th>
-        <th>제목 셀</th>
+        <th scope="col">제목 셀</th>
+        <th scope="col">제목 셀</th>
+        <th scope="col">제목 셀</th>
       </tr>
       <tr>
-        <th rowspan="2">제목 셀</th>
+        <th
+          scope="rowgroup"
+          rowspan="2">제목 셀</th>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
@@ -185,7 +192,7 @@
         <td>내용 셀</td>
       </tr>
       <tr>
-        <th>제목 셀</th>
+        <th scope="row">제목 셀</th>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
@@ -199,21 +206,21 @@
       <caption class="a11y-hidden">테이블을 대표하는 제목</caption>
       <tr>
         <td></td>
-        <th>제목 셀</th>
-        <th>제목 셀</th>
-        <th>제목 셀</th>
+        <th id="hc-table-read-3" scope="col">제목 셀</th>
+        <th scope="col">제목 셀</th>
+        <th scope="col">제목 셀</th>
       </tr>
       <tr>
-        <th colspan="4">병합된 제목 셀</th>
+        <th id="hc-table-read-1" scope="colgroup" colspan="4">병합된 제목 셀</th>
       </tr>
       <tr>
-        <th>제목 셀</th>
-        <td>내용 셀</td>
+        <th id="hc-table-read-2" scope="row">제목 셀</th>
+        <td headers="hc-table-read-1 hc-table-read-2 hc-table-read-3">내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
       </tr>
       <tr>
-        <th>제목 셀</th>
+        <th scope="row">제목 셀</th>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>

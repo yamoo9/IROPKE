@@ -11,3 +11,6 @@
   border:   0;
   padding:  0;
 }
+caption.a11y-hidden {
+  position: static;
+}
