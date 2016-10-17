@@ -12,6 +12,7 @@
     일반화(Normalize) normalize.css [모바일 대응, 불 필요하게 공간을 모두 초기화시키지 않음]
   -->
   <link rel="stylesheet" href="../modules/normalize.min.css">
+  <link rel="stylesheet" href="../modules/common.css">
   <style>
     body { margin: 4rem; }
     .hc-section {
@@ -53,6 +54,7 @@
   <section class="hc-section">
     <h1>제목 셀이 수평 방향으로 있는 표</h1>
     <table class="hc-table">
+      <caption class="a11y-hidden">테이블을 대표하는 제목</caption>
       <!-- 표의 행(Table Row) -->
       <tr>
         <!-- 제목 셀(Table Cell Header) -->
@@ -90,6 +92,7 @@
   <section class="hc-section">
     <h1>제목 셀이 수직 방향으로 있는 표</h1>
     <table class="hc-table">
+      <caption class="a11y-hidden">테이블을 대표하는 제목</caption>
       <tr>
         <th>제목 셀</th>
         <td>내용 셀</td>
@@ -125,6 +128,7 @@
   <section class="hc-section">
     <h1>제목이 상단, 좌단에 모두 존재하는 표</h1>
     <table class="hc-table">
+      <caption class="a11y-hidden">테이블을 대표하는 제목</caption>
       <tr>
         <td></td>
         <th>제목 셀</th>
@@ -155,6 +159,7 @@
   <section class="hc-section">
     <h1>행 또는 열이 합쳐진 표</h1>
     <table class="hc-table">
+      <caption class="a11y-hidden">테이블을 대표하는 제목</caption>
       <tr>
         <th rowspan="2">제목 셀</th>
         <th colspan="3">제목 셀</th>
@@ -175,6 +180,34 @@
       </tr>
       <tr>
         <!-- <th>제목 셀</th> -->
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+      <tr>
+        <th>제목 셀</th>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="hc-section">
+    <h1>제목은 양쪽에 존재, 2번째 행을 모두 합친 표</h1>
+    <table class="hc-table">
+      <caption class="a11y-hidden">테이블을 대표하는 제목</caption>
+      <tr>
+        <td></td>
+        <th>제목 셀</th>
+        <th>제목 셀</th>
+        <th>제목 셀</th>
+      </tr>
+      <tr>
+        <th colspan="4">병합된 제목 셀</th>
+      </tr>
+      <tr>
+        <th>제목 셀</th>
         <td>내용 셀</td>
         <td>내용 셀</td>
         <td>내용 셀</td>
