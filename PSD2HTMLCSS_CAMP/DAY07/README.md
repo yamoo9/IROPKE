@@ -2,12 +2,6 @@
 
 # DAY07
 
-### 표 디자인
-
-[현대카드 컬처프로젝트 24 시규어 로스 테이블](https://www.hyundaicard.com/cpl/cu/CPLCU0302_01.hc)
-
--
-
 ## Front-End Environment
 
 ### 1. Sign in [GitHub.com](http://github.com/)

@@ -1,0 +1,38 @@
+/**
+ * --------------------------------
+ * 브라우저 초기화
+ * ----------------------------- */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  font: 1.375rem/1.5 "Spoqa Han Sans", Dotum, Sans-Serif;
+  color: #fff;
+  background: #000 url("../Assets/main-page-bg.jpg") no-repeat center top;
+}
+
+h1 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 5rem;
+  animation: wiggle 10s infinite;
+}
+
+@keyframes wiggle {
+  0%, 50%, 100% {
+    text-shadow: 0 0 20px #0c0603;
+    transform: scale(0.6);
+    letter-spacing: 3em;
+    font-size: 2rem;
+    opacity: 0.3;
+  }
+  25%, 75% {
+    text-shadow: 0 0 2px #3e180d;
+    transform: scale(1.1);
+    letter-spacing: 0;
+    font-size: 4rem;
+    opacity: 1;
+  }
+}
