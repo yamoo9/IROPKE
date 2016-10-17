@@ -14,6 +14,14 @@
   <link rel="stylesheet" href="../modules/normalize.min.css">
   <style>
     body { margin: 4rem; }
+    .hc-section {
+      margin: 3em;
+    }
+    .hc-section h1 {
+      font-family: "YouandiModernHEB";
+      font-weight: normal;
+      font-size: 1.5em;
+    }
     .hc-table {
       /* 셀 사이 간격을 접어버림 */
       border-collapse: collapse;
@@ -32,44 +40,153 @@
     .hc-table th {
       /* 글 덩어리를 왼쪽으로 정렬 */
       text-align: left;
+      /* 글꼴을 두꺼운 서체 */
+      font-family: "YouandiModernTB";
+      font-weight: normal;
     }
   </style>
 </head>
 <body>
 
   <!-- 표(Table) 디자인 -->
-  <table class="hc-table">
-    <!-- 표의 행(Table Row) -->
-    <tr>
-      <!-- 제목 셀(Table Cell Header) -->
-      <th>YouandiModernTR 제목 셀</th>
-      <th>제목 셀</th>
-      <th>제목 셀</th>
-      <th>제목 셀</th>
-      <th>제목 셀</th>
-    </tr>
-    <tr>
-      <td>내용 셀</td>
-      <td>내용 셀</td>
-      <td>내용 셀</td>
-      <td>내용 셀</td>
-      <td>내용 셀</td>
-    </tr>
-    <tr>
-      <td>내용 셀</td>
-      <td>내용 셀</td>
-      <td>내용 셀</td>
-      <td>내용 셀</td>
-      <td>내용 셀</td>
-    </tr>
-    <tr>
-      <td>내용 셀</td>
-      <td>내용 셀</td>
-      <td>내용 셀</td>
-      <td>내용 셀</td>
-      <td>내용 셀</td>
-    </tr>
-  </table>
+
+  <section class="hc-section">
+    <h1>제목 셀이 수평 방향으로 있는 표</h1>
+    <table class="hc-table">
+      <!-- 표의 행(Table Row) -->
+      <tr>
+        <!-- 제목 셀(Table Cell Header) -->
+        <th>YouandiModernTR 제목 셀</th>
+        <th>제목 셀</th>
+        <th>제목 셀</th>
+        <th>제목 셀</th>
+        <th>제목 셀</th>
+      </tr>
+      <tr>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+      <tr>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+      <tr>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- 제목 셀이 각 행마다 존재하는 표 -->
+  <section class="hc-section">
+    <h1>제목 셀이 수직 방향으로 있는 표</h1>
+    <table class="hc-table">
+      <tr>
+        <th>제목 셀</th>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+      <tr>
+        <th>제목 셀</th>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+      <tr>
+        <th>제목 셀</th>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+      <tr>
+        <th>제목 셀</th>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- 제목이 상단, 좌단에 모두 존재하는 표 -->
+  <section class="hc-section">
+    <h1>제목이 상단, 좌단에 모두 존재하는 표</h1>
+    <table class="hc-table">
+      <tr>
+        <td></td>
+        <th>제목 셀</th>
+        <th>제목 셀</th>
+        <th>제목 셀</th>
+      </tr>
+      <tr>
+        <th>제목 셀</th>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+      <tr>
+        <th>제목 셀</th>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+      <tr>
+        <th>제목 셀</th>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="hc-section">
+    <h1>행 또는 열이 합쳐진 표</h1>
+    <table class="hc-table">
+      <tr>
+        <th rowspan="2">제목 셀</th>
+        <th colspan="3">제목 셀</th>
+        <!-- <th>제목 셀</th> -->
+        <!-- <th>제목 셀</th> -->
+      </tr>
+      <tr>
+        <!-- <th>제목 셀</th> -->
+        <th>제목 셀</th>
+        <th>제목 셀</th>
+        <th>제목 셀</th>
+      </tr>
+      <tr>
+        <th rowspan="2">제목 셀</th>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+      <tr>
+        <!-- <th>제목 셀</th> -->
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+      <tr>
+        <th>제목 셀</th>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+        <td>내용 셀</td>
+      </tr>
+    </table>
+  </section>
 
 </body>
 </html>
