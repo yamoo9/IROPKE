@@ -13,17 +13,11 @@
 </head>
 <body>
 
+  <button type="button" class="target-btn">target</button>
 
+  <div class="my-tab"></div>
 
-
-
-
-
-
-
-
-
-
+  <div data-target="your-tab"></div>
 
 <script>
 
@@ -49,17 +43,19 @@ console.log('typeof _validateEvent: %c'+ typeof _validateEvent, console__style);
 
 console.log('%c----------------------------------', 'color: #3d9a21');
 
-addEvent(window, 'load', init);
-addEvent(document, 'DOMContentLoaded', init);
-addEvent(document, 'DOMContentLoaded', createTable);
-addEvent(document.body, 'click', init);
+// addEvent(window, 'load', init);
+// addEvent(document, 'DOMContentLoaded', init);
+// addEvent(document, 'DOMContentLoaded', createTable);
+// addEvent(document.body, 'click', init);
 
 // <body> 요소를 사용자가 3회 클릭 후, 4회 부터는 동작하지 않도록 이벤트를 제거 하려면?
 var count = 3;
 
 function init(e) {
+  e = e || window.event;
   var type   = e.type;
-  var target = e.target;
+  var key    = e.keyCode || e.which;
+  var target = e.target || e.srcElement;
   console.log('Event Type is ' + '%c'+type, console__style);
 
   if ( type === 'click' ) {
@@ -126,6 +122,64 @@ function createTable() {
 
   // document.body.innerHTML += table_code;
 }
+
+var target = document.querySelector('.target-btn');
+
+// addEvent(document, 'DOMContentLoaded', bindTarget);
+// addEvent(document, 'DOMContentLoaded', bindTarget.bind(target));
+
+var test = function (e) {
+  console.log('this:', this);
+  console.log('e.target:', e.target);
+}
+
+// addEvent(target, 'click', test);
+addEvent(target, 'click', test.bind(document.body));
+
+// function bindTarget() {
+//   console.log('this::::::::', this);
+
+// }
+
+function showError() {
+  // console.error('error message');
+  if (true) { throw new Error('error message'); }
+  console.log('this is error message.');
+}
+
+// 사용자 정의 객체
+// Tab UI 컴포넌트
+function TabUI(target) {
+  this.el = isType(target) === 'string' ?
+    document.querySelector(target) :
+    isElementNode(target) ?
+      target : null;
+}
+
+TabUI.prototype = {
+  'setCorpClass': function(name) {
+    this.el.className += ' ' + name;
+  },
+  'getCorpClass': function() {
+    return this.el.className;
+  }
+};
+
+// var my_tab = new TabUI( '.my-tab' );
+var my_tab_el = document.getElementsByClassName('my-tab').item(0);
+var my_tab = new TabUI( my_tab_el );
+var your_tab = new TabUI( '[data-target="your-tab"]' );
+
+my_tab.setCorpClass('iropke');
+
+console.dir(my_tab);
+
+console.dir(your_tab);
+
+window.setTimeout(function() {
+  your_tab.setCorpClass('yamoo9');
+  console.log(your_tab.getCorpClass());
+}, 1000);
 
 </script>
 </body>
