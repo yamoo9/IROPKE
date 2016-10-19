@@ -1,15 +1,15 @@
-/** @function isType() 데이터 유형을 체크하여 정확한 값을 반환하는 함수 */
-function isType(data) {
-  return Object.prototype.toString.call(data).toLowerCase().slice(8,-1);
-}
-/** @function isWindow() window {} 객체인지 검증하는 함수 */
-function isWindow(obj) { return isType(obj) === 'window'; }
-/** @function isDocument() document {} 객체인지 검증하는 함수 */
-function isDocument(obj) { return isType(obj) === 'htmldocument'; }
-/** @function isElementNode() 문서 요소 객체인지 검증하는 함수 */
-function isElementNode(node) { return node.nodeType === document.ELEMENT_NODE; }
-
 (function(global){
+
+  /** @function isType() 데이터 유형을 체크하여 정확한 값을 반환하는 함수 */
+  function isType(data) {
+    return Object.prototype.toString.call(data).toLowerCase().slice(8,-1);
+  }
+  /** @function isWindow() window {} 객체인지 검증하는 함수 */
+  function isWindow(obj) { return isType(obj) === 'window'; }
+  /** @function isDocument() document {} 객체인지 검증하는 함수 */
+  function isDocument(obj) { return isType(obj) === 'htmldocument'; }
+  /** @function isElementNode() 문서 요소 객체인지 검증하는 함수 */
+  function isElementNode(node) { return node.nodeType === document.ELEMENT_NODE; }
 
   // window 객체가 로드된 시점에서 함수를 처리
   // 전달인자 데이터 유형 검증
@@ -21,8 +21,8 @@ function isElementNode(node) { return node.nodeType === document.ELEMENT_NODE; }
     if( !el || !isElementNode(el) && !isWindow(el) && !isDocument(el) ) {
       throw new Error('el는 요소노드 또는 window, document를 전달해야 합니다.');
     }
-    if( !type || typeof type !== 'string' ) { throw new Error('type은 문자열을 전달해야 합니다.'); }
-    if( !handler || typeof handler !== 'function' ) { throw new Error('handler는 함수를 전달해야 합니다.'); }
+    if( !type || !isType('string') ) { throw new Error('type은 문자열을 전달해야 합니다.'); }
+    if( !handler || !isType('function') ) { throw new Error('handler는 함수를 전달해야 합니다.'); }
   }
 
   var addEvent = (function(){
@@ -95,8 +95,14 @@ function isElementNode(node) { return node.nodeType === document.ELEMENT_NODE; }
   // console.log('in addEvent:', typeof addEvent);
   // console.log('in removeEvent:', typeof removeEvent);
 
-  global.addEvent = addEvent;
-  global.removeEvent = removeEvent;
+  // 외부에 공개
+  // 노출 패턴
+  global.addEvent      = addEvent;
+  global.removeEvent   = removeEvent;
+  global.isType        = isType;
+  global.isWindow      = isWindow;
+  global.isDocument    = isDocument;
+  global.isElementNode = isElementNode;
 
 })(this);
 

@@ -12,15 +12,30 @@
 <body>
 
 <script>
-console.log('addEvent:', typeof addEvent);
-console.log('removeEvent:', typeof removeEvent);
-console.log('_validateEvent:', typeof _validateEvent);
+
+console.log('addEvent:', typeof addEvent);             // 공개된 모듈
+console.log('removeEvent:', typeof removeEvent);       // 공개된 모듈
+console.log('_validateEvent:', typeof _validateEvent); // 비 공개된 모듈
+
 addEvent(window, 'load', init);
 addEvent(document, 'DOMContentLoaded', init);
 addEvent(document.body, 'click', init);
 
-function init() {
-  console.log('window is loaded.');
+// <body> 요소를 사용자가 3회 클릭 후, 4회 부터는 동작하지 않도록 이벤트를 제거 하려면?
+
+var count = 3;
+
+function init(e) {
+  var type = e.type;
+  var target = e.target;
+  console.log('Event Type is ' + type);
+  if ( type === 'click' ) {
+    // <body> 요소에 이벤트 제거
+    var check = --count > 0;
+    if ( !check ) {
+      removeEvent(target, 'click', init);
+    }
+  }
 }
 
 </script>
