@@ -6,29 +6,62 @@
   <title>자바스크립트 이벤트 핸들링</title>
   <style>
     body {margin: 0; min-height: 100vh;}
+    .iropke-table { border-collapse: collapse; border: 1px solid; }
+    .iropke-table th, .iropke-table td { border: 1px solid; }
   </style>
   <script src="dom_helper.js"></script>
 </head>
 <body>
 
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 
-console.log('addEvent:', typeof addEvent);             // 공개된 모듈
-console.log('removeEvent:', typeof removeEvent);       // 공개된 모듈
-console.log('_validateEvent:', typeof _validateEvent); // 비 공개된 모듈
+var console_style = [
+  'border-radius: 3px;',
+  'padding: 2px 4px;',
+  'font-family: Source Code Pro',
+  'background: #0a0220;',
+  'color: #fff;'
+].join('');
+
+var console__style = `
+  border-radius: 3px;
+  padding: 2px 4px;
+  font-family: "Source Code Pro";
+  background: #0a0220;
+  color: #fff;
+`;
+
+console.log('typeof addEvent: %c'+ typeof addEvent, console__style);             // 공개된 모듈
+console.log('typeof removeEvent: %c'+ typeof removeEvent, console__style);       // 공개된 모듈
+console.log('typeof _validateEvent: %c'+ typeof _validateEvent, console__style); // 비 공개된 모듈
+
+console.log('%c----------------------------------', 'color: #3d9a21');
 
 addEvent(window, 'load', init);
 addEvent(document, 'DOMContentLoaded', init);
+addEvent(document, 'DOMContentLoaded', createTable);
 addEvent(document.body, 'click', init);
 
 // <body> 요소를 사용자가 3회 클릭 후, 4회 부터는 동작하지 않도록 이벤트를 제거 하려면?
-
 var count = 3;
 
 function init(e) {
-  var type = e.type;
+  var type   = e.type;
   var target = e.target;
-  console.log('Event Type is ' + type);
+  console.log('Event Type is ' + '%c'+type, console__style);
+
   if ( type === 'click' ) {
     // <body> 요소에 이벤트 제거
     var check = --count > 0;
@@ -36,6 +69,62 @@ function init(e) {
       removeEvent(target, 'click', init);
     }
   }
+}
+
+function createTable() {
+
+  // var table_code = '<table class="iropke-table"><caption>table caption</caption><tr><th scope="col">table cell header</th><th scope="col">table cell header</th><th scope="col">table cell header</th></tr><tr><td>table cell data</td><td>table cell data</td><td>table cell data</td></tr><tr><td>table cell data</td><td>table cell data</td><td>table cell data</td></tr></table>';
+
+  var table_caption = 'iropke table caption';
+
+  // var table_code = [
+  //   '<table class="iropke-table">',
+  //      '<caption>'+ table_caption +'</caption>',
+  //      '<tr>',
+  //         '<th scope="col">table cell header</th>',
+  //         '<th scope="col">table cell header</th>',
+  //         '<th scope="col">table cell header</th>',
+  //      '</tr>',
+  //      '<tr>',
+  //         '<td>table cell data</td>',
+  //         '<td>table cell data</td>',
+  //         '<td>table cell data</td>',
+  //      '</tr>',
+  //      '<tr>',
+  //         '<td>table cell data</td>',
+  //         '<td>table cell data</td>',
+  //         '<td>table cell data</td>',
+  //      '</tr>',
+  //   '</table>'
+  // ].join('');
+
+  // ECMAScript 2015
+  var table_code = `
+    <table class="iropke-table">
+       <caption>${table_caption}</caption>
+       <tr>
+          <th scope="col">table cell header</th>
+          <th scope="col">table cell header</th>
+          <th scope="col">table cell header</th>
+       </tr>
+       <tr>
+          <td>table cell data</td>
+          <td>table cell data</td>
+          <td>table cell data</td>
+       </tr>
+       <tr>
+          <td>table cell data</td>
+          <td>table cell data</td>
+          <td>table cell data</td>
+       </tr>
+    </table>
+  `;
+
+  console.log(table_code);
+
+  document.body.innerHTML = table_code + document.body.innerHTML;
+
+  // document.body.innerHTML += table_code;
 }
 
 </script>
