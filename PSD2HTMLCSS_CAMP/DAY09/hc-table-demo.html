@@ -8,6 +8,21 @@
     .a11y-hidden {
       overflow: hidden; position: absolute; clip: rect(0 0 0 0); /* IE 6,7 */
       clip: rect(0,0,0,0); width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; }
+    caption.a11y-hidden { position: static; }
+
+    .hc-table {
+      /* 표 초기화 */
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    /* 표 테두리 설정 */
+    /* .hc-table, .hc-table th, .hc-table td { border: 1px solid #333; } */
+    .hc-table { border-top: 3px solid #333; }
+    .hc-table tr { border-bottom: 1px solid #cacaca; }
+    .hc-table th { border-right: 1px solid #cacaca; }
+    .hc-table td { border-right: 1px solid #cacaca; }
+    .hc-table th:last-child,
+    .hc-table td:last-child { border-right: 0; }
   </style>
 </head>
 <body>
