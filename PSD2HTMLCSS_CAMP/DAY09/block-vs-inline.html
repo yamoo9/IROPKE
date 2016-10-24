@@ -8,8 +8,34 @@
   <link rel="stylesheet" href="../Resources/Web Fonts/you_and_i_modern/you_and_i_modern.css">
   <style>
     body {
+      /* 최소 너비 폭 설정 */
       min-width: 640px;
-      margin: 20px 20%;
+      /* 최대 너비 폭 설정 */
+      max-width: 960px;
+      /* 남은 좌우 공간 동일하게 나눠 가운데 정렬 */
+      margin: 0 auto;
+      /*margin-top: 10px;
+      margin-right: 20px;
+      margin-bottom: 10px;
+      margin-left: 20px;
+      margin: 10px 20px 30px 40px;
+      margin: 10px 20px 30px;
+      margin: 10px 20px;
+      margin: 10px;*/
+      /*margin: 20px 20%;*/
+      /*border-top-width: 3px;
+      border-top-style: solid;
+      border-top-color: #fe4940;
+      border-right-width: 3px;
+      border-right-style: solid;
+      border-right-color: #fe4940;
+      border-bottom-width: 3px;
+      border-bottom-style: solid;
+      border-bottom-color: #fe4940;
+      border-left-width: 3px;
+      border-left-style: solid;
+      border-left-color: #fe4940;*/
+      border: 3px solid #fe4940;
       font-family: "Spoqa Han Sans";
       font-family: "YouandiModernTR";
       font-size: 13px;
@@ -18,10 +44,11 @@
     }
 
     p {
+      /*width: 400px;*/
       margin: 0;
       margin-top: 30px;
       margin-bottom: 20px;
-      border: 4px double #6262ab; /* solid, dotted, dashed, double, inset, outset */
+      border: 10px outset #6262ab; /* solid, dotted, dashed, double, inset, outset */
       padding: 1em 1.5em;
       background-color: #e3e2f4;
       text-align: justify;
@@ -30,9 +57,18 @@
     p a {
       color: #203c2c;
     }
+
+    header {
+      background-color: #fe4940;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
+
+  <header>
+    <h1>margin이 밖으로 삐져나가는 현상</h1>
+  </header>
 
   <div>
     <p>야무 한글 로렘입숨 로렘입숨이란? <span><a href="">디자인을 위한 더미 텍스트!</a>. 다 들리는, 그대.</span> 어디에나 피어나는 젊음의 청춘 않고 설레는 만들 거추장스런 너 엮어가는 쿵쿵대는 하루를 소리 장엄한 청춘아! 너야말로, 해도 하고 빛나는, 숨 죽여도 가슴을 다 들리는. 아름다운 내일의, 그대 청춘아! 만들 젊음의 꽃처럼 너 고동소리, 세상을 해도, 운동화도 씩씩하게 찬란한 피어나는 청춘의. 숨 죽여도 청춘 쉬지 아름다운 티셔츠. 다 들리는 꽃처럼 티셔츠 찬란한 세상을 심장 꽃보다 숨소리가 너 고동소리 청춘의 씩씩하게 장엄한 어디에나 숨 죽여도 내일의, 거추장스런 청춘 만들, 실수조차도 눈부신. 찬란한 숨소리가 너야말로, 거추장스런 흐르는 심장 않고 씩씩하게 아름답다! 흐르는.</p>
