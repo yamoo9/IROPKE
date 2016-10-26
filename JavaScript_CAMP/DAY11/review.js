@@ -143,13 +143,27 @@ console.log('bipan_photozon:', bipan_photozon);
 
 // 수퍼 클래스: 상위 생성자 함수
 function SuperClass(name) {
-  this.name = name;
+  // private
+  var _name = name;
+  // priviliged
+  this.__private__getName = function() {
+    return _name;
+  };
 };
 // 수퍼 클래스: 생성자 함수의 프로토타입 객체 능력 확장
 SuperClass.prototype = {
-  'getName': function () { return this.name; },
+  'getName': function () { return this.__private__getName(); },
   'setName': function(new_name) { this.name = new_name; }
 };
+// 정적 메소드: Static Method
+SuperClass.members = [];
+SuperClass.addMember = function(new_member) {
+  SuperClass.members.push(new_member);
+};
+SuperClass.makeArray = function(like_arr_obj) {
+  return Array.prototype.slice.call(like_arr_obj);
+};
+
 // 서브 클래스: 하위 생성자 함수
 function SubClass(name, job) {
   // super 수퍼 클래스: 생성자 함수를 빌려서 실행 (메소드 빌려쓰기 패턴)
@@ -158,7 +172,7 @@ function SubClass(name, job) {
 };
 
 // 프로토타입 상속 (프로토타입 체인)
-SubClass.prototype = new SuperClass();
+SubClass.prototype = new SuperClass(); // SuperCalss {} -> SuperClass.prototype
 // 생성자 재정의
 SubClass.prototype.constructor = SubClass;
 // 서브 클래스: 생성자 함수의 프로토타입 객체 능력 확장
