@@ -6,3 +6,9 @@
 - 자바스크립트 생성자 함수(Consturctor)
 - 자바스크립트 프로토타입 객체(Prototype)
 - 자바스크립트 상속(Inheritance)
+
+---
+
+## 참고
+
+[[번역] 당신이 2016년에 배워야 하는 언어와 프레임워크](http://han41858.tistory.com/6)
