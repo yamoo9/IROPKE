@@ -137,29 +137,30 @@ console.log('bipan_photozon:', bipan_photozon);
 
 // --------------------------------------------------------------------------------
 // 객체지향 자바스크립트 상속
-
 /////////
 // ES3 //
 /////////
 
-// 수퍼 클래스
-var SuperClass = function(name) {
+// 수퍼 클래스: 상위 생성자 함수
+function SuperClass(name) {
   this.name = name;
 };
+// 수퍼 클래스: 생성자 함수의 프로토타입 객체 능력 확장
 SuperClass.prototype = {
   'getName': function () { return this.name; },
-  'setName': function(name) { this.name = name; }
+  'setName': function(new_name) { this.name = new_name; }
 };
-// 서브 클래스
-var SubClass = function(name, job) {
-  // super 수퍼 생성자 함수 실행
+// 서브 클래스: 하위 생성자 함수
+function SubClass(name, job) {
+  // super 수퍼 클래스: 생성자 함수를 빌려서 실행 (메소드 빌려쓰기 패턴)
   SuperClass.apply(this, arguments);
   this.job = job;
 };
 
-// 프로토타입 상속
+// 프로토타입 상속 (프로토타입 체인)
 SubClass.prototype = new SuperClass();
+// 생성자 재정의
 SubClass.prototype.constructor = SubClass;
-SubClass.prototype.getJob = function() {
-  return this.job;
-};
+// 서브 클래스: 생성자 함수의 프로토타입 객체 능력 확장
+SubClass.prototype.getJob = function() { return this.job; };
+SubClass.prototype.setJob = function(new_job) { this.job = new_job; };
