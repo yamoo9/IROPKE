@@ -13,7 +13,6 @@ body {
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
-  font-size: 0;
 }
 
 .show-grid .grid-container {
@@ -28,9 +27,8 @@ body {
  * ----------------------------- */
 
 .box {
-  /* 방법 1. display: inline-block */
-  display: inline-block;
-  font-size: 16px;
+  /* 방법 2. float */
+  float: right;
   width: 160px;
   height: 160px;
   text-align: center;
