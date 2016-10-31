@@ -109,9 +109,9 @@ function Photozone( location, use_case, database ) {
   // case 2
   // if ( this.constructor !== Photozone ) { return new Photozone( location, use_case, database ); }
 
-  this.locations      = location || '강릉';
-  this.use_case       = use_case || '사진 촬영';
-  this.database       = database || [];
+  this.locations = location || '강릉';
+  this.use_case  = use_case || '사진 촬영';
+  this.database  = database || [];
   // return this;
 }
 
@@ -178,3 +178,41 @@ SubClass.prototype.constructor = SubClass;
 // 서브 클래스: 생성자 함수의 프로토타입 객체 능력 확장
 SubClass.prototype.getJob = function() { return this.job; };
 SubClass.prototype.setJob = function(new_job) { this.job = new_job; };
+
+
+///////
+//ES5//
+///////
+
+// Object.create();
+// Object.freeze();
+// Object.defineProperty();
+// Object.defineProperties();
+
+///////
+//ES6//
+///////
+// class SuperClass {
+//   private name;
+//   private job;
+//   constructor(name, job) {
+//     this.name = name;
+//     this.job = job;
+//   }
+
+//   get name() {
+//     return this.name;
+//   }
+
+//   set name(new_name) {
+//     this.name = new_name;
+//   }
+
+//   static makeArray() {
+
+//   }
+// }
+
+// class SubClass extends SuperClass {
+//   super
+// }
