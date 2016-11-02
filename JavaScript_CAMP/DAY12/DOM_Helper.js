@@ -34,24 +34,8 @@
     return _isDataType(data) === 'object';
   };
 
-  // ES5 Shim Library
-  if ( !Object.keys ) {
-    Object.keys = function(obj) {
-      var props = [];
-      for ( var prop in obj ) {
-        if ( obj.hasOwnProperty(prop) ) {
-          props.push(prop);
-        }
-      }
-      return props;
-    }
-  }
-
-  $.isEmptyObject = function(obj) {
-    return Object.keys(obj).length === 0;
-  };
-
-  // function(obj) {
+  // 함수를 실행할 때 마다, Object.keys 지원 여부를 물어보는 경우
+  // $.isEmptyObject = function(obj) {
   //     // 객체인가?
   //     if ( !$.isObject(obj) ) {
   //       throw new Error('전달인자는 객체 유형이어야 합니다.');
@@ -77,6 +61,10 @@
   //       return props_count === 0;
   //     }
   //   };
+
+  // --------------------------------------------------------------
+
+  // IIFE 패턴을 사용하여 코드 분기를 1회만 수행하는 경우
   // $.isEmptyObject = (function(){
   //   if (Object.keys) {
   //     return function(obj) {
@@ -94,6 +82,25 @@
   //     }
   //   }
   // })();
+
+  // --------------------------------------------------------------
+
+  // ES5 Shim Library를 사용한 경우
+  if ( !Object.keys ) {
+    Object.keys = function(obj) {
+      var props = [];
+      for ( var prop in obj ) {
+        if ( obj.hasOwnProperty(prop) ) {
+          props.push(prop);
+        }
+      }
+      return props;
+    }
+  }
+
+  $.isEmptyObject = function(obj) {
+    return Object.keys(obj).length === 0;
+  };
 
 
   // 문서객체 [선택]
