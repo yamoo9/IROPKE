@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8">
+  <title>DOM(문서객체모델) API</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
+  <base href="./">
+</head>
+<body>
+
+  <div id="link_list">
+    <a href="">link</a>
+    <a href="">link</a>
+    <a href="">link</a>
+  </div>
+
+  <img usemap="demo-map-01" src="http://placehold.it/300x140/000/fff/?text=map image" alt="map image">
+  <map name="demo-map-01">
+    <area shape="rect" coords="0,0,100,100" href="" alt="area">
+  </map>
+
+  <ul>
+    <li>
+      <a href="">link</a>
+    </li>
+    <li>
+      <a href="">link</a>
+    </li>
+    <li>
+      <a href="">link</a>
+    </li>
+  </ul>
+
+  <img usemap="demo-map-02" src="http://placehold.it/300x140/000/fff/?text=map image" alt="map image">
+  <map name="demo-map-02">
+    <area shape="rect" coords="0,0,100,100" href="" alt="area">
+  </map>
+
+  <div>
+    <a href="">link</a>
+    <a href="">link</a>
+    <a href="">link</a>
+  </div>
+
+  <img usemap="demo-map-03" src="http://placehold.it/300x140/000/fff/?text=map image" alt="map image">
+  <map name="demo-map-03">
+    <area shape="rect" coords="0,0,100,100" href="" alt="area">
+  </map>
+
+  <p>
+    <a href="">link</a>
+  </p>
+
+<!-- 사용자 정의 JS 라이브러리 -->
+<script src="DOM_Helper.js"></script>
+<script src="app.js"></script>
+<script>
+(function(global){
+  'use strict';
+
+  // 구형 이벤트 모델의 단점
+
+  // 신형 이벤트 모델
+
+  // function init() {
+  //   printAppMessage();
+  //   assignBodyClass('app');
+  // }
+
+  function printAppMessage() {
+    console.log(this);
+    console.log('application initialization');
+  }
+
+  function assignBodyClass(class_name) {
+    console.log(this);
+    document.body.className += ' ' + class_name;
+  }
+
+  document.onclick = function() {
+    assignBodyClass.call(this, 'application');
+    printAppMessage.apply(this);
+  };
+
+  document.addEventListener('click', printAppMessage, false);
+  document.addEventListener('click', assignBodyClass.bind(document, 'application'), false);
+}); // (this)
+</script>
+</body>
+</html>
