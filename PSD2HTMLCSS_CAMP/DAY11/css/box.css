@@ -1,0 +1,85 @@
+@charset "utf-8";
+/**
+ * --------------------------------
+ * Box Layout
+ * ----------------------------- */
+
+.box {
+  float: left;
+  width: 160px;
+  height: 160px;
+  text-align: center;
+  line-height: 160px;
+  color: #fff;
+}
+.box.primary {
+  background: #000;
+}
+.box.secondary {
+  background: #454545;
+}
+.box.tertiary {
+  background: #767666;
+}
+
+/**
+ * --------------------------------
+ * PSD -> HTML/CSS
+ * ----------------------------- */
+
+.hanger-chip {
+  float: left;
+  width: 320px;
+  height: 320px;
+  background: #fe4940;
+}
+
+.heart-love {
+  float: left;
+  width: 320px;
+  height: 320px;
+  background: #941f20;
+}
+
+.cactus {
+  float: left;
+  width: 320px;
+  height: 320px;
+  background: #3e1010;
+}
+
+.dinner-food {
+  float: left;
+  height: 240px;
+  width: 480px;
+  background: #000;
+}
+.icon-food {
+  float: left;
+  height: 240px;
+  width: 240px;
+  background: #3d3d3d;
+}
+.morning-food {
+  float: left;
+  height: 240px;
+  width: 240px;
+  background: #929292;
+}
+
+.products {
+  padding-top: 80px;
+}
+
+.foods {
+  padding-top: 40px;
+}
+
+/*float 적용된 자식 요소를 감싼 부모 요소에 class 속성 값으로 설정함에 따라
+float 적용된 자식 요소를 감살 수 있게 된다. 즉, 자식 요소만큼 높이가 생성되어
+뒤 따르는 요소들에게 float 영향을 끼치지 않는다.*/
+.clearfix::after {
+  content: '';
+  clear: both;
+  display: block;
+}
