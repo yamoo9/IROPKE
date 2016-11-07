@@ -4,6 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="UTF-8">
   <title>CSS 레이아웃: 플로팅(Floating) 방법</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   <link rel="stylesheet" href="css/css-layout.css">
   <link rel="stylesheet" href="css/box.css">
   <script src="js/toggleGrid.js"></script>
@@ -12,14 +13,50 @@
 
   <div class="grid-container">
     <div class="row products clearfix">
-      <div class="hanger-chip"></div>
-      <div class="heart-love"></div>
-      <div class="cactus"></div>
+      <div class="hanger-chip">
+        <img
+          src="images/photo-01.png"
+          srcset="images/photo-01x2.png 2x"
+          alt="">
+        <h3 class="product-headline">Hanger Chip</h3>
+        <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipisic adipisic  consectetur adipisic a</p>
+      </div>
+      <div class="heart-love">
+        <img
+          src="images/photo-02.png"
+          srcset="images/photo-02x2.png 2x"
+          alt="">
+        <h3 class="product-headline">Heart love</h3>
+        <p class="product-description">dolor sit amet, consectetur adipisic adipisic ipsum consectetur consectetur adipisica</p>
+      </div>
+      <div class="cactus">
+        <img
+          src="images/photo-03.png"
+          srcset="images/photo-03x2.png 2x"
+          alt="">
+        <h3 class="product-headline">cactus</h3>
+        <p class="product-description">adipisic consectetur adipisic aum dolor sit amet, consectetur adi design master pisic</p>
+      </div>
     </div>
     <div class="row foods clearfix">
-      <div class="dinner-food"></div>
-      <div class="icon-food"></div>
-      <div class="morning-food"></div>
+      <div class="dinner-food">
+        <img
+          src="images/row2-photo-01.jpg"
+          srcset="images/row2-photo-01x2.jpg 2x"
+          alt="">
+      </div>
+      <div class="icon-food">
+        <img
+          src="images/row2-deco.png"
+          srcset="images/row2-decox2.png 2x"
+          alt="">
+      </div>
+      <div class="morning-food">
+        <img
+          src="images/row2-photo-02.jpg"
+          srcset="images/row2-photo-02x2.jpg 2x"
+          alt="">
+      </div>
     </div>
   </div>
 

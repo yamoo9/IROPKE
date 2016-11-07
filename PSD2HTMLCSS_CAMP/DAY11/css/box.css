@@ -31,21 +31,24 @@
   float: left;
   width: 320px;
   height: 320px;
-  background: #fe4940;
+  text-align: center;
+  /* background: #fe4940; */
 }
 
 .heart-love {
   float: left;
   width: 320px;
   height: 320px;
-  background: #941f20;
+  text-align: center;
+  /*background: #941f20;*/
 }
 
 .cactus {
   float: left;
   width: 320px;
   height: 320px;
-  background: #3e1010;
+  text-align: center;
+  /*background: #3e1010;*/
 }
 
 .dinner-food {
@@ -82,4 +85,47 @@ float 적용된 자식 요소를 감살 수 있게 된다. 즉, 자식 요소만
   content: '';
   clear: both;
   display: block;
+}
+
+.hanger-chip img {
+  margin-top: 39px;
+  vertical-align: top;
+}
+.heart-love img {
+  margin-top: 39px;
+  vertical-align: top;
+}
+.cactus img {
+  margin-top: 32px;
+  vertical-align: top;
+}
+
+.product-headline {
+  margin-bottom: 0;
+  color: #93444c;
+  text-transform: uppercase;
+  font-family: "Open Sans";
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+.product-description {
+  margin-top: 8px;
+  color: #605867;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  line-height: 1.23;
+  padding: 0px 4em;
+}
+
+.heart-love .product-headline {
+  margin-top: 29px;
+  color: #74479a;
+}
+
+.cactus .product-headline {
+  margin-top: 9px;
+  color: #507101;
 }
