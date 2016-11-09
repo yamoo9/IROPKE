@@ -13,11 +13,11 @@
     };
 
     addClass = function(el, assign_class) {
-      el.classList.contains(assign_class) || el.classList.add(assign_class);
+      el.classList.add(assign_class);
     };
 
     removeClass = function(el, delete_class) {
-      el.classList.contains(delete_class) && el.classList.remove(delete_class);
+      el.classList.remove(delete_class);
     };
 
   }
@@ -63,6 +63,12 @@
   var document         = global.document;
   var album            = document.querySelector('.album');
 
+  // 오디오 객체 생성
+  var sound = new Audio();
+  sound.setAttribute('src', 'media/Eton-Messy-Presents.mp3');
+  var tic = new Audio();
+  tic.setAttribute('src', 'media/tic.mp3');
+
   // album 참조 변수에 이벤트 연결(bind event)
   album.addEventListener('mouseenter', moveDisk);
   album.addEventListener('click', playDisk);
@@ -82,6 +88,9 @@
 
     // classList API
     // disk.classList.add('move-disk');
+
+    // 효과음 재생
+    tic.play();
   }
   function playDisk(evt) {
     // var name = 'playDisk';
@@ -93,6 +102,8 @@
       // removeClass(disk, 'move-disk');
       // 디스크 요소에 play-disk 클래스를 추가
       addClass(disk, 'play-disk');
+      // 오디오 재생
+      sound.play();
     }
   }
   function stopDisk(evt) {
