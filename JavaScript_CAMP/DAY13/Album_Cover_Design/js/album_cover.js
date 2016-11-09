@@ -2,7 +2,7 @@
 (function(global){
   'use strict';
 
-  var hasClass, addClass, removeClass, toggleClass;
+  var hasClass, addClass, removeClass, toggleClass, radioClass;
 
   // 조건 확인: 사용자의 웹 브라우저가 classList를 지원하는가?
   // classList 지원 브라우저
@@ -65,9 +65,15 @@
 
   }
 
+  radioClass = function(el, radio_class) {
+    // hasClass, addClass, removeClass, toggleClass
+  };
+
   global.hasClass    = hasClass;
   global.addClass    = addClass;
   global.removeClass = removeClass;
+  global.toggleClass = toggleClass;
+  global.radioClass  = radioClass;
 
 })(this);
 
