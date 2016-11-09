@@ -64,15 +64,12 @@
 
   }
 
-  // 이전에 active 클래스를 가진 요소
+  // 이전에 radio_class 전달인자에 해당하는 클래스를 가진 요소
   var pre_active_el = null;
 
   radioClass = function(el, radio_class) {
-    if ( pre_active_el ) {
-      removeClass(pre_active_el, radio_class);
-    }
-    pre_active_el = el;
-    addClass(pre_active_el, radio_class);
+    pre_active_el && removeClass(pre_active_el, radio_class);
+    addClass( (pre_active_el = el), radio_class );
   };
 
   global.hasClass    = hasClass;
