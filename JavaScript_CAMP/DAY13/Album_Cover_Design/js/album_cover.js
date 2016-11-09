@@ -2,7 +2,7 @@
 (function(global){
   'use strict';
 
-  var hasClass, addClass, removeClass;
+  var hasClass, addClass, removeClass, toggleClass;
 
   // 조건 확인: 사용자의 웹 브라우저가 classList를 지원하는가?
   // classList 지원 브라우저
@@ -18,6 +18,10 @@
 
     removeClass = function(el, delete_class) {
       el.classList.remove(delete_class);
+    };
+
+    toggleClass = function(el, toggle_class) {
+      el.classList.toggle(toggle_class);
     };
 
   }
@@ -40,10 +44,23 @@
       el.setAttribute('class', pre_class + ' ' + assign_class);
     };
 
+    // 'design a m designs d k design b ddesign c d design'.replace(/(^|\s+)design(\s+|$)/g, ' ');
+    // 'design a designs d design b ddesign c design design'.match(/(^|\s+)design(\s+|$)/g);
     removeClass = function(el, delete_class) {
       if ( hasClass(el, delete_class) ) {
-        el.getAttribute('class').replace(delete_class, '');
+        var reg = new RegExp('(^|\\s+)' + delete_class + '(\\s+|$)', 'g');
+        el.getAttribute('class').replace(reg, ' ');
       }
+    };
+
+    toggleClass = function(el, toggle_class) {
+      // hasClass, addClass, removeClass
+      if ( hasClass(el, toggle_class) ) {
+        removeClass(el, toggle_class);
+      } else {
+        addClass(el, toggle_class);
+      }
+      // hasClass(el, toggle_class) ? removeClass(el, toggle_class) : addClass(el, toggle_class);
     };
 
   }
@@ -111,6 +128,14 @@
     var pressed_shift = evt.shiftKey; // true
     if ( pressed_shift ) {
       // console.log('event type:', evt.type, name, pressed_shift);
+
+      // 디스크 객체를 찾아
+      var disk = this.querySelector('.album-disk');
+      removeClass(disk, 'play-disk');
+      addClass(disk, 'stop-disk');
+
+      // 오디오 사운드 일시 정지
+      sound.pause();
     }
   }
 

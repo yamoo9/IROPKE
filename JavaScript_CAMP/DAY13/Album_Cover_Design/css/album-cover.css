@@ -31,6 +31,10 @@ body {
   left: 80px;
   animation: playDisk 2.2s linear infinite;
 }
+.album-disk.stop-disk {
+  left: 80px;
+  animation: stopDisk 0.8s cubic-bezier(0, 0, 0.3, 1.19) forwards;
+}
 @keyframes moveVinyl {
   0% {
     left: 0;
@@ -53,5 +57,13 @@ body {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+@keyframes stopDisk {
+  0% {
+    transform: rotate(70deg);
+  }
+  100% {
+    transform: rotate(160deg);
   }
 }
