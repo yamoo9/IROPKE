@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8">
+  <title>Radio Class</title>
+  <style>
+    .target .active {
+      outline-offset: 5px;
+      box-shadow: 0 0 0 5px hsla(20, 100%, 61%, 0.6);
+      border-radius: 4px;
+    }
+  </style>
+  <script src="helper.js"></script>
+</head>
+<body>
+
+<nav class="target">
+  <ul>
+    <li><a href="">home</a></li>
+    <li><a href="">intro</a></li>
+    <li><a href="">works</a></li>
+    <li><a href="">contact</a></li>
+    <li><a href="">reports</a></li>
+  </ul>
+</nav>
+
+<script>
+(function(global){
+  'use strict';
+
+  var target_links = document.querySelectorAll('.target a');
+  var radioActiveClass = function(evt) {
+    evt.preventDefault();
+    var parent = evt.target.parentNode;
+    radioClass(parent, 'active');
+  };
+
+  for ( var link, i=0, l=target_links.length; i<l; i++ ) {
+    link = target_links.item(i);
+    link.addEventListener('click', radioActiveClass);
+  }
+
+})(this);
+</script>
+</body>
+</html>

@@ -67,7 +67,13 @@
 
   radioClass = function(el, radio_class) {
     // hasClass, addClass, removeClass, toggleClass
+    if (radioClass.pre_el) {
+      removeClass(pre_el, radio_class);
+    }
+    pre_el = el;
+    addClass(pre_el, radio_class);
   };
+  radioClass.pre_el = null;
 
   global.hasClass    = hasClass;
   global.addClass    = addClass;
