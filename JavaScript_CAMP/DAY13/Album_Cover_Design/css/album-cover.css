@@ -28,6 +28,7 @@ body {
   animation: moveDisk 1s ease-out 1.2s forwards;
 }
 .album-disk.play-disk {
+  left: 80px;
   animation: playDisk 2.2s linear infinite;
 }
 @keyframes moveVinyl {
