@@ -25,7 +25,7 @@ body {
   animation: moveVinyl 1s ease-out 0.3s forwards;
 }
 .album-disk.move-disk {
-  animation: moveDisk 1s ease-out 1.2s forwards;
+  animation: moveDisk 0.4s ease-out forwards;
 }
 .album-disk.play-disk {
   left: 80px;
