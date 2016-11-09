@@ -2,7 +2,7 @@
 (function(global){
   'use strict';
 
-  var hasClass, addClass;
+  var hasClass, addClass, removeClass;
 
   // 조건 확인: 사용자의 웹 브라우저가 classList를 지원하는가?
   // classList 지원 브라우저
@@ -12,34 +12,45 @@
       return el.classList.contains(check_class);
     };
 
-    addClass = function (el, assign_class) {
-      el.classList.contains(check_class) || el.classList.add(assign_class);
+    addClass = function(el, assign_class) {
+      el.classList.contains(assign_class) || el.classList.add(assign_class);
+    };
+
+    removeClass = function(el, delete_class) {
+      el.classList.contains(delete_class) && el.classList.remove(delete_class);
     };
 
   }
   // classList 미지원 브라우저
   else {
 
-    hasClass = function (el, check_class) {
+    hasClass = function(el, check_class) {
       // @el          {element_node}
       // @check_class {string}
       var check_class = new RegExp('(^|\\s+)'+ check_class +'(\\s+|$)');
       return check_class.test( el.getAttribute('class') );
     };
 
-    addClass = function (el, assign_class) {
+    addClass = function(el, assign_class) {
       // 해당 클래스 속성이 이미 존재하면 함수 종료
       if ( hasClass(el, assign_class) ) { return; }
       // @el           {element_node}
       // @assign_class {string}
       var pre_class = el.getAttribute('class');
       el.setAttribute('class', pre_class + ' ' + assign_class);
-    }
+    };
+
+    removeClass = function(el, delete_class) {
+      if ( hasClass(el, delete_class) ) {
+        el.getAttribute('class').replace(delete_class, '');
+      }
+    };
 
   }
 
   global.hasClass    = hasClass;
   global.addClass    = addClass;
+  global.removeClass = removeClass;
 
 })(this);
 
@@ -77,6 +88,11 @@
     var pressed_shift = evt.shiftKey; // false
     if ( !pressed_shift ) {
       // console.log('event type:', evt.type, name);
+      var disk = this.querySelector('.album-disk');
+      // move-disk 클래스 제거
+      // removeClass(disk, 'move-disk');
+      // 디스크 요소에 play-disk 클래스를 추가
+      addClass(disk, 'play-disk');
     }
   }
   function stopDisk(evt) {
