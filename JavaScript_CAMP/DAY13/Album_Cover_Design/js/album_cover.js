@@ -2,12 +2,40 @@
 (function(global){
   'use strict';
 
+  function hasClass(el, check_class) {
+    // @el          {element_node}
+    // @check_class {string}
+    var check_class = new RegExp('(^|\\s+)'+ check_class +'(\\s+|$)');
+    return check_class.test( el.getAttribute('class') );
+  }
+  function addClass(el, assign_class) {
+    // 해당 클래스 속성이 이미 존재하면 함수 종료
+    if ( hasClass(el, assign_class) ) { return; }
+    // @el           {element_node}
+    // @assign_class {string}
+    var pre_class = el.getAttribute('class');
+    el.setAttribute('class', pre_class + ' ' + assign_class);
+  }
+  function removeClass() {
+
+  }
+  function toggleClass() {}
+  // function radioClass() {}
+
+  global.hasClass = hasClass;
+  global.addClass = addClass;
+  global.removeClass = removeClass;
+
+})(this);
+
+(function(global){
+  'use strict';
+
   // 초기 설정(init)
   // 문서에서 다음 객체를 컨트롤
   // .album 참조
   var document         = global.document;
   var album            = document.querySelector('.album');
-  var check_class_move = 'move-disk';
 
   // album 참조 변수에 이벤트 연결(bind event)
   album.addEventListener('mouseenter', moveDisk);
@@ -22,10 +50,7 @@
     // 디스크 요소에 move-disk 클래스 속성을 추가한다.
     var disk        = evt.target.querySelector('.album-disk');
     var pre_class   = disk.getAttribute('class');
-    var check_class = new RegExp('(^|\\s+)'+ check_class_move +'(\\s+|$)');
-    if ( !check_class.test(pre_class) ) {
-      disk.setAttribute('class', pre_class + ' ' + check_class_move);
-    }
+    addClass(disk, 'move-disk');
   }
   function playDisk(evt) {
     // var name = 'playDisk';
