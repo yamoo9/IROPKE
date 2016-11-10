@@ -1,0 +1,22 @@
+.target {
+  margin: 4rem 10rem;
+}
+.target ul {
+  width: 8em;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.target a {
+  text-decoration: none;
+  color: hsla(48, 47%, 55%, 1);
+}
+.target a:focus {
+  outline: none;
+  text-shadow: 0 2px 2px hsla(43, 47%, 75%, 0.9);
+}
+.target .active {
+  box-shadow: 0 0 0 3px hsla(48, 47%, 75%, 0.6);
+  border-radius: 2px;
+}
