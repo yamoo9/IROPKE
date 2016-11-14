@@ -1,5 +1,35 @@
 .banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 800px;
   height: 320px;
+  margin: -160px 0 0 -400px;
   background: url("../images/BG.jpg");
 }
+
+.banner-apes {
+  position: absolute;
+  left: 4px;
+  bottom: 94px;
+}
+
+.banner-golliras {
+  position: absolute;
+  bottom: 24px;
+  left: 11px;
+}
+
+.banner-kingkong {
+  position: absolute;
+  bottom: 0px;
+  right: 12px;
+}
+
+.banner-logo {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+}
+
+.banner-headline {position: absolute;top: 31px;left: 122px;margin: 0;font-family: "Spoqa Han Sans";font-size: 33px;font-weight: 700;font-style: italic;line-height: 1.1;letter-spacing: 0.03em;color: #ffffff;text-shadow: 0 0 4px rgba(1, 1, 1, 0.6);}
