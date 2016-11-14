@@ -28,11 +28,24 @@
       100% { background-position-x: 0px; }
     }
     /* x2 */
+    @media
+      (-webkit-min-device-pixel-ratio: 2),
+      (min--moz-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      .rocket_2x {
+        background: url("assets/rocket_2x.png");
+        background-size: 500px 115px;
+        background-position: -450px 0;
+      }
+    }
   </style>
 </head>
 <body>
 
   <div class="rocket"></div>
+
+  <div class="rocket rocket_2x"></div>
 
 </body>
 </html>
