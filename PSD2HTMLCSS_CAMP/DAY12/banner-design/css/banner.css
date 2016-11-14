@@ -1,4 +1,5 @@
 .banner {
+  overflow: hidden;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -12,24 +13,180 @@
   position: absolute;
   left: 4px;
   bottom: 94px;
+  animation: move-in-from-left 1s;
 }
 
 .banner-golliras {
   position: absolute;
-  bottom: 24px;
+  /*bottom: 24px;*/
+  bottom: -200px;
   left: 11px;
+  animation: move-in-from-bottom 1s 0.4s forwards;
 }
 
 .banner-kingkong {
   position: absolute;
   bottom: 0px;
-  right: 12px;
+  /*right: 12px;*/
+  right: -1000px;
+  animation: move-in-from-right ease-out 1s 0.7s forwards;
 }
 
 .banner-logo {
   position: absolute;
-  top: 18px;
+  top: -200px;
+  /*top: 18px;*/
   left: 18px;
+  animation: move-in-from-top 1s 0.6s forwards;
 }
 
-.banner-headline {position: absolute;top: 31px;left: 122px;margin: 0;font-family: "Spoqa Han Sans";font-size: 33px;font-weight: 700;font-style: italic;line-height: 1.1;letter-spacing: 0.03em;color: #ffffff;text-shadow: 0 0 4px rgba(1, 1, 1, 0.6);}
+.banner-headline {
+  position: absolute;
+  top: 31px;
+  left: 122px;
+  margin: 0;
+  font-family: "Spoqa Han Sans";
+  font-size: 33px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  text-shadow: 0 0 4px rgba(1, 1, 1, 0.6);
+}
+
+/**
+ * --------------------------------
+ * 애니메이션 키프레임 설정
+ * ----------------------------- */
+@keyframes move-in-from-top {
+  0% { top: -200px; }
+  100% { top: 18px; }
+}
+@keyframes move-in-from-bottom {
+  0% { bottom: -200px; }
+  100% { bottom: 24px; }
+}
+@keyframes move-in-from-left {
+  0% { left: -1000px; }
+  100% { left: 4px; }
+}
+@keyframes move-in-from-right {
+  0% { right: -1000px; }
+  100% { right: 12px; }
+}
+@keyframes blink {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  25% { opacity: 0; }
+  50% { opacity: 1; }
+  75% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.blink {
+  opacity: 0;
+  animation: blink 0.2s 1.4s forwards;
+}
+.blink:nth-child(2n) {
+  animation: blink 0.2s 1.2s forwards;
+}
+.blink:nth-child(3n) {
+  animation: blink 0.2s 1.3s forwards;
+}
+.blink:nth-child(4n) {
+  animation: blink 0.2s 1.4s forwards;
+}
+.blink:nth-child(5n) {
+  animation: blink 0.2s 1.5s forwards;
+}
+.blink:nth-child(6n) {
+  animation: blink 0.2s 1.6s forwards;
+}
+.blink:nth-child(7n) {
+  animation: blink 0.2s 1.7s forwards;
+}
+.blink:nth-child(8n) {
+  animation: blink 0.2s 1.8s forwards;
+}
+.blink:nth-child(9n) {
+  animation: blink 0.2s 1.9s forwards;
+}
+.blink:nth-child(10n) {
+  animation: blink 0.2s 1.10s forwards;
+}
+.blink:nth-child(11n) {
+  animation: blink 0.2s 1.11s forwards;
+}
+.blink:nth-child(12n) {
+  animation: blink 0.2s 1.12s forwards;
+}
+.blink:nth-child(13n) {
+  animation: blink 0.2s 1.13s forwards;
+}
+.blink:nth-child(14n) {
+  animation: blink 0.2s 1.14s forwards;
+}
+.blink:nth-child(15n) {
+  animation: blink 0.2s 1.15s forwards;
+}
+.blink:nth-child(16n) {
+  animation: blink 0.2s 1.16s forwards;
+}
+.blink:nth-child(17n) {
+  animation: blink 0.2s 1.17s forwards;
+}
+.blink:nth-child(18n) {
+  animation: blink 0.2s 1.18s forwards;
+}
+.blink:nth-child(19n) {
+  animation: blink 0.2s 1.19s forwards;
+}
+.blink:nth-child(20n) {
+  animation: blink 0.2s 1.20s forwards;
+}
+.blink:nth-child(21n) {
+  animation: blink 0.2s 1.21s forwards;
+}
+.blink:nth-child(22n) {
+  animation: blink 0.2s 1.22s forwards;
+}
+.blink:nth-child(23n) {
+  animation: blink 0.2s 1.23s forwards;
+}
+.blink:nth-child(24n) {
+  animation: blink 0.2s 1.24s forwards;
+}
+.blink:nth-child(25n) {
+  animation: blink 0.2s 1.25s forwards;
+}
+.blink:nth-child(26n) {
+  animation: blink 0.2s 1.26s forwards;
+}
+.blink:nth-child(27n) {
+  animation: blink 0.2s 1.27s forwards;
+}
+.blink:nth-child(28n) {
+  animation: blink 0.2s 1.28s forwards;
+}
+.blink:nth-child(29n) {
+  animation: blink 0.2s 1.29s forwards;
+}
+.blink:nth-child(30n) {
+  animation: blink 0.2s 1.30s forwards;
+}
+.blink:nth-child(31n) {
+  animation: blink 0.2s 1.31s forwards;
+}
+.blink:nth-child(32n) {
+  animation: blink 0.2s 1.32s forwards;
+}
+.blink:nth-child(33n) {
+  animation: blink 0.2s 1.33s forwards;
+}
+.blink:nth-child(34n) {
+  animation: blink 0.2s 1.34s forwards;
+}
+.blink:nth-child(35n) {
+  animation: blink 0.2s 1.35s forwards;
+}

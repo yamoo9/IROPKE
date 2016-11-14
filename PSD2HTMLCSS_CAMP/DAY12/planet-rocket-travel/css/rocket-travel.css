@@ -1,0 +1,108 @@
+@charset "utf-8";
+
+body {
+  margin: 0;
+}
+
+.Space {
+  position: relative;
+  height: 7700px;
+  background: url("../assets/space-bg.jpg") center top;
+}
+
+/* 이미지 업스케일링: http://waifu2x.udp.jp/ */
+.Rocket {
+  position: fixed;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  height: 230px;
+  /* 10장의 이미지가 합쳐진 배경 이미지 */
+  width: 100px;
+  margin-left: -50px;
+  margin-top: -115px;
+  background: url("../assets/rocket_2x.png");
+  background-position-x: -900px;
+}
+
+.Rocket.take-off {
+  animation: Rocket 1s steps(10) infinite;
+}
+
+/* Browser Support: [Desktop] IE 10+, [Mobile] */
+/* Rocket Animation Design */
+@keyframes Rocket {
+  0% {
+    background-position-x: 0px;
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(0.95) translateY(-15px);
+  }
+  100% {
+    background-position-x: -1000px;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.Moon {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 960px;
+  height: 503px;
+  margin-left: -480px;
+  background: url("../assets/moon.png");
+}
+
+/* Common Planet Module */
+.Planent {
+  position: absolute;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin-left: -200px;
+  background: url("../assets/planets.png");
+  animation: planet 2s infinite;
+}
+
+/* Each Planet Module */
+.Sun {
+  top: 100px;
+}
+.Ｍercury {
+  top: 800px;
+  background-position: -400px 0;
+}
+.Venus {
+  top: 1500px;
+  background-position: -800px 0;
+}
+.Earth {
+  top: 2200px;
+  background-position: -1200px 0;
+}
+.Ｍars {
+  top: 2900px;
+  background-position: -1600px 0;
+}
+.Jupiter {
+  top: 3600px;
+  background-position: -2000px 0;
+}
+.Saturn {
+  top: 4300px;
+  background-position: -2400px 0;
+}
+.Uranus {
+  top: 5000px;
+  background-position: -2800px 0;
+}
+.Neptune {
+  top: 5700px;
+  background-position: -3200px 0;
+}
+.Pluto {
+  top: 6400px;
+  background-position: -3600px 0;
+}

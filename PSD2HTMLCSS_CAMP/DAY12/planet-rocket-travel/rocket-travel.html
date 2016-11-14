@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8">
+  <title>로켓, 우주 여행을 가다</title>
+  <link rel="stylesheet" href="css/rocket-travel.css">
+</head>
+<body>
+  <!-- Space -->
+  <div class="Space">
+    <!-- Rocket -->
+    <div title="로켓" class="Rocket"></div>
+    <!-- Planets -->
+    <div title="태양" class="Planent Sun"></div>
+    <div title="수성" class="Planent Ｍercury"></div>
+    <div title="금성" class="Planent Venus"></div>
+    <div title="지구" class="Planent Earth"></div>
+    <div title="화성" class="Planent Ｍars"></div>
+    <div title="목성" class="Planent Jupiter"></div>
+    <div title="토성" class="Planent Saturn"></div>
+    <div title="천왕성" class="Planent Uranus"></div>
+    <div title="해왕성" class="Planent Neptune"></div>
+    <div title="명왕성" class="Planent Pluto"></div>
+    <!-- Moon -->
+    <div title="달" class="Moon"></div>
+  </div>
+
+<script>
+window.onscroll = function() {
+  var r = document.querySelector('.Rocket');
+  console.log(r, this.scrollY);
+  if ( this.scrollY < 6800 ) {
+    r.classList.add('take-off');
+  } else {
+    r.classList.remove('take-off');
+  }
+}
+</script>
+</body>
+</html>
