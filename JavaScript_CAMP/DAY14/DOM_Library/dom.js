@@ -35,6 +35,20 @@
     }
     return obj;
   };
+  var getStyle = (function(){
+    if (global.getComputedStyle) {
+      return function(el, prop) {
+        return global.getComputedStyle(el)[prop];
+      };
+    } else {
+      return function(el, prop) {
+        return el.currentStyle[prop];
+      };
+    }
+  })();
+  var setStyle = function(el, prop, value) {
+    el.style[prop] = value;
+  };
 
   // 생성자 함수 (Constructor)
   var dom = function(params, context) {
@@ -156,12 +170,11 @@
     }
   });
 
-  dom.fn.extend = function(extend_obj) {
-    dom.extend(dom.fn, extend_obj);
-  };
-
   // 인스턴스 메소드
   dom.extend(dom.fn, {
+    'extend': function(extend_obj) {
+      dom.extend(dom.fn, extend_obj);
+    },
     'each': function(callback) {
       // this === dom {} 인스턴스 객체
       for ( var i=0, l=this.length; i<l; i++ ) {
@@ -173,13 +186,12 @@
       return this[0].classList.contains(class_name);
     },
     'addClass': function(class_name) {
-      // this === dom {} 인스턴스 객체
       this.each(function(index, el) {
         el.classList.add(class_name);
       });
+      return this;
     },
     'removeClass': function(class_name) {
-      // this === dom {} 인스턴스 객체
       this.each(function(index, el) {
         if (!class_name) {
           el.className = '';
@@ -187,12 +199,37 @@
           el.classList.remove(class_name);
         }
       });
+      return this;
     },
     'toggleClass': function(class_name) {
-      // this === dom {} 인스턴스 객체
       this.each(function(index, el) {
         el.classList.toggle(class_name);
       });
+      return this;
+    },
+    'css': function(prop, value) {
+      var instance = this;
+      // [GET] 1. prop 문자열인 경우, value는 없음
+      if ( typeof prop === 'string' ) {
+        if ( !value ) {
+          return getStyle(instance[0], prop);
+        }
+        // [SET] 2. prop 문자열인 경우, value 있음
+        else {
+          instance.each(function(index, el) {
+            setStyle(el, prop, value);
+          });
+        }
+      }
+      // [SET] 3. prop이 객체인 경우
+      if ( typeof prop === 'object' ) {
+        dom.each(prop, function(prop, value) {
+          instance.each(function(index, el){
+            setStyle(el, prop, value);
+          });
+        });
+      }
+      return this;
     },
     'html': function(html) {
 
