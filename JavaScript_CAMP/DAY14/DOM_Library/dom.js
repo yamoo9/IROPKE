@@ -24,20 +24,13 @@
 (function(global){
   'use strict';
 
-  var doc = global.document;
+  var doc   = global.document;
+  var slice = Array.prototype.slice;
 
   // 생성자 함수 (Constructor)
   var dom = function(params, context) {
-    // this === undefined
-    // // new를 사용하지 않아도 객체를 생성하는 패턴
-    // // new를 강제화하는 패턴
-    // if ( this.constructor !== dom ) {
-    // return this || new dom(params, context);
-    if (!this) {
-      return new dom(params, context);
-    }
-    // return !this && new dom(params, context);
-    // return this;
+    // 엄격모드(strict)에서 new를 강제화하는 패턴
+    if (!this) { return new dom(params, context); }
 
     // 생성된 인스턴스 객체 참조 변수
     var instance = this;
@@ -56,7 +49,6 @@
     }
 
     // 1. `params` 값이 빈 문자열이거나, 아무런 값을 전달 받지 못했을 때
-    // dom(), dom(''), dom('     ')
     if ( !params || (typeof params === 'string' && dom.trim(params) === '' ) ) {
       instance.length = 0;
       return instance;
@@ -69,8 +61,35 @@
       return instance;
     }
 
-    // 3. CSS 선택자 문자열을 전달 받았을 때
-    if ( typeof params === 'string' ) {
+    // 3. HTML 문자열을 전달 받았을 때
+    // <tag> 감지 정규표현식: /^\s*<(\w+|!)[^>]*>/
+    var check_tag = /^\s*<(\w+|!)[^>]*>/;
+    if ( typeof params === 'string' && check_tag.test(params) ) {
+      // 실제 문서가 아니고 문서의 조각(가상 문서)를 생성한 다음에
+      var frag_doc = current_context.createDocumentFragment();
+      var temp = current_context.createElement('div');
+      frag_doc.appendChild(temp);
+      temp = frag_doc.querySelector('div');
+      // 사용자가 전달한 params (html string)를 동적으로 생성하여
+      // 가상 문서에 붙인 후, instance 객체의 멤버로 할당
+      temp.innerHTML = params;
+      dom.each( dom.makeArray(temp.children) , function(index, item) {
+        instance[index] = item;
+      });
+      instance.length = temp.children.length;
+      temp.parentNode.removeChild(temp);
+      return instance;
+    }
+
+
+    // 4. 배열을 전달 받았을 때
+    // 4. CSS 선택자 문자열을 전달 받았을 때
+    if ( dom.isArray(params) ) {
+      dom.each(params, function(index, item) {
+        instance[index] = item;
+      });
+      instance.length = params.length;
+    } else {
       var collection = current_context.querySelectorAll(params);
       for (var i=0, l=collection.length; i<l; i++) {
         instance[i] = collection[i];
@@ -78,17 +97,7 @@
       instance.length = l;
     }
 
-    // 4. 배열을 전달 받았을 때
-    if ( dom.isArray(params) ) {
-      dom.each(params, function(index, item) {
-        instance[index] = item;
-      });
-      instance.length = params.length;
-      return instance;
-    }
-
-    // 5. HTML 문자열을 전달 받았을 때
-    // <tag> 감지 정규표현식: /^\s*<(\w+|!)[^>]*>/
+    return instance;
 
   };
 
@@ -101,12 +110,14 @@
   dom.isArray = function(o) {
     return o instanceof Array;
   };
-
+  // 데이터를 배열로 변경하여 반환하는 함수
+  dom.makeArray = function(o) {
+    return slice.call(o, 0);
+  };
   // 양쪽의 공백을 제거합니다.
   dom.trim = function(string) {
     return string.replace(/^\s+/,'').replace(/\s+$/,'');
   };
-
   // 배열, 객체 데이터 유형을 처리합니다.
   dom.each = function(obj, callback) {
     // obj 데이터 유형이 배열(Array)인 경우,
