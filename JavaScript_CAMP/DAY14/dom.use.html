@@ -8,13 +8,42 @@
 </head>
 <body>
 
+  <div>divistion one</div>
+  <div>divistion two</div>
+  <div>divistion three</div>
+
 <script>
 (function(global, $){
   'use strict';
 
-  var $instace = $();
+  // 객체 인스턴스 생성
+
+  var $instace = $('div');
+
+  var $blank = $('  ');
 
   console.log($instace); // dom {}
+
+  console.log('$blank:', $blank);
+
+  console.log('%c------------------------------', 'color: #3d9a21');
+
+
+  // 객체 인스턴스를 만들지 않고 재사용
+
+  var nodeList = [ document.documentElement, document.head, document.body ];
+
+  dom.each(nodeList, function(index, item){
+      console.log(index + ':', item);
+  });
+
+  console.log('%c------------------------------', 'color: #3d9a21');
+
+  var coffee = { name: 'coffee', amount: '100ml' };
+
+  dom.each(coffee, function(key, value){
+      console.log(key, ':', value);
+  });
 
 })(this, this.dom);
 </script>

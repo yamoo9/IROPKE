@@ -38,12 +38,54 @@
     }
     // return !this && new dom(params, context);
     // return this;
+
+    // context 객체 설정
+    var current_context = null;
+    // Element Node를 전달 받았을 때
+    if ( context && context.nodeType ) {
+      current_context = context;
+    }
+    // String을 전달 받았을 때
+    else if (typeof doc === 'string') {
+      current_context = doc.querySelector(context);
+    } else {
+      current_context = doc;
+    }
+
+    // 1. `params` 값이 빈 문자열이거나, 아무런 값을 전달 받지 못했을 때
+    // dom(), dom(''), dom('     ')
+    if ( !params || (typeof params === 'string' && dom.trim(params) === '' ) ) {
+      console.log(!params);
+      this.length = 0;
+      return this;
+    }
+
+    // 2. 단일 요소 노드를 전달 받았을 때
+
+    // 3. CSS 선택자 문자열을 전달 받았을 때
+    if ( typeof params === 'string' ) {
+      var collection = current_context.querySelectorAll(params);
+      for (var i=0, l=collection.length; i<l; i++) {
+        this[i] = collection[i];
+      }
+      this.length = l;
+    }
+
+    // 4. 배열을 전달 받았을 때
+
+    // 5. HTML 문자열을 전달 받았을 때
   };
 
   // 프로토타입 객체
   dom.fn = dom.prototype;
 
   // 유틸리티(클래스, Static) 메소드
+
+  // 양쪽의 공백을 제거합니다.
+  dom.trim = function(string) {
+    return string.replace(/^\s+/,'').replace(/\s+$/,'');
+  };
+
   // 배열, 객체 데이터 유형을 처리합니다.
   dom.each = function(obj, callback) {
     // obj 데이터 유형이 배열(Array)인 경우,
