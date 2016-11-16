@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8">
+  <title>using dom library</title>
+  <script src="DOM_Library/dom.js"></script>
+</head>
+<body>
+
+<script>
+(function(global, $){
+  'use strict';
+
+  var $instace = $();
+
+  console.log($instace); // dom {}
+
+})(this, this.dom);
+</script>
+</body>
+</html>
