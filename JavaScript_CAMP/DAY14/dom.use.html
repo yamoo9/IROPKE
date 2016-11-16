@@ -18,20 +18,33 @@
 
   // 객체 인스턴스 생성
 
+  var nodeList = [ document.documentElement, document.head, document.body ];
+
   var $instace = $('div');
 
   var $blank = $('  ');
 
-  console.log($instace); // dom {}
+  var $single_el = $(document);
+
+  var $el_array = $( nodeList );
+
+  console.log('$instace:', $instace); // dom {}
+
+  console.log('%c------------------------------', 'color: #3d9a21');
 
   console.log('$blank:', $blank);
 
   console.log('%c------------------------------', 'color: #3d9a21');
 
+  console.log('$single_el:', $single_el);
+
+  console.log('%c------------------------------', 'color: #3d9a21');
+
+  console.log('$el_array:', $el_array);
+
+  // --------------------------------------------------------------------------------
 
   // 객체 인스턴스를 만들지 않고 재사용
-
-  var nodeList = [ document.documentElement, document.head, document.body ];
 
   dom.each(nodeList, function(index, item){
       console.log(index + ':', item);
