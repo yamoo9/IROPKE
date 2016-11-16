@@ -26,6 +26,15 @@
 
   var doc   = global.document;
   var slice = Array.prototype.slice;
+  var splice = Array.prototype.splice;
+  var extend = function(obj, extend_obj) {
+    for ( var prop in extend_obj ) {
+      if ( extend_obj.hasOwnProperty(prop) ) {
+        obj[prop] = extend_obj[prop];
+      }
+    }
+    return obj;
+  };
 
   // 생성자 함수 (Constructor)
   var dom = function(params, context) {
@@ -107,15 +116,16 @@
   // 유틸리티(클래스, Static) 메소드
   // 유틸리티를 확장하는 메소드
   // 믹스인 패턴 (객체 합성 패턴)
-  dom.include = function(obj, extend_obj) {
-    for ( var prop in extend_obj ) {
-      if ( extend_obj.hasOwnProperty(prop) ) {
-        obj[prop] = extend_obj[prop];
-      }
+  dom.extend = function() {
+    var o    = arguments[0];
+    var args = splice.call(arguments, 1);
+    for ( var i=0, l=args.length; i<l; i++ ) {
+      extend(o, args[i]);
     }
+    return o;
   };
 
-  dom.include(dom, {
+  dom.extend(dom, {
     'isArray': function(o) {
       return o instanceof Array;
     },
@@ -146,10 +156,51 @@
     }
   });
 
-  // 인스턴스 메소드
-  dom.fn.each = function(callback) {
-
+  dom.fn.extend = function(extend_obj) {
+    dom.extend(dom.fn, extend_obj);
   };
+
+  // 인스턴스 메소드
+  dom.extend(dom.fn, {
+    'each': function(callback) {
+      // this === dom {} 인스턴스 객체
+      for ( var i=0, l=this.length; i<l; i++ ) {
+        callback.call(this[i], i, this[i]);
+      }
+      return this; // 인스턴스 반환 (인스턴스 메소드 체이닝)
+    },
+    'hasClass': function(class_name) {
+      return this[0].classList.contains(class_name);
+    },
+    'addClass': function(class_name) {
+      // this === dom {} 인스턴스 객체
+      this.each(function(index, el) {
+        el.classList.add(class_name);
+      });
+    },
+    'removeClass': function(class_name) {
+      // this === dom {} 인스턴스 객체
+      this.each(function(index, el) {
+        if (!class_name) {
+          el.className = '';
+        } else {
+          el.classList.remove(class_name);
+        }
+      });
+    },
+    'toggleClass': function(class_name) {
+      // this === dom {} 인스턴스 객체
+      this.each(function(index, el) {
+        el.classList.toggle(class_name);
+      });
+    },
+    'html': function(html) {
+
+    },
+    'text': function(text) {
+
+    },
+  });
 
   // dom 생성자 함수 전역에 공개
   global.dom = dom;
