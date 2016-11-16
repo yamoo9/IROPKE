@@ -105,39 +105,46 @@
   dom.fn = dom.prototype;
 
   // 유틸리티(클래스, Static) 메소드
-
-  // 전달된 데이터가 배열인지 확인합니다.
-  dom.isArray = function(o) {
-    return o instanceof Array;
-  };
-  // 데이터를 배열로 변경하여 반환하는 함수
-  dom.makeArray = function(o) {
-    return slice.call(o, 0);
-  };
-  // 양쪽의 공백을 제거합니다.
-  dom.trim = function(string) {
-    return string.replace(/^\s+/,'').replace(/\s+$/,'');
-  };
-  // 배열, 객체 데이터 유형을 처리합니다.
-  dom.each = function(obj, callback) {
-    // obj 데이터 유형이 배열(Array)인 경우,
-    // function(index, item) {}
-    if ( dom.isArray(obj) && obj.length ) {
-      for ( var i=0, l=obj.length; i<l; i++ ) {
-        var item = obj[i];
-        callback.call(item, i, item);
+  // 유틸리티를 확장하는 메소드
+  // 믹스인 패턴 (객체 합성 패턴)
+  dom.include = function(obj, extend_obj) {
+    for ( var prop in extend_obj ) {
+      if ( extend_obj.hasOwnProperty(prop) ) {
+        obj[prop] = extend_obj[prop];
       }
     }
-    // obj 데이터 유형이 객체인 경우,
-    // function(key, value) {}
-    if ( typeof obj === 'object' && !('length' in obj) ) {
-      for ( var prop in obj ) {
-        if ( obj.hasOwnProperty(prop) ) {
-          callback.call(obj, prop, obj[prop]);
+  };
+
+  dom.include(dom, {
+    'isArray': function(o) {
+      return o instanceof Array;
+    },
+    'makeArray': function(o) {
+      return slice.call(o, 0);
+    },
+    'trim': function(string) {
+      return string.replace(/^\s+/,'').replace(/\s+$/,'');
+    },
+    'each': function(obj, callback) {
+      // obj 데이터 유형이 배열(Array)인 경우,
+      // function(index, item) {}
+      if ( dom.isArray(obj) && obj.length ) {
+        for ( var i=0, l=obj.length; i<l; i++ ) {
+          var item = obj[i];
+          callback.call(item, i, item);
+        }
+      }
+      // obj 데이터 유형이 객체인 경우,
+      // function(key, value) {}
+      if ( typeof obj === 'object' && !('length' in obj) ) {
+        for ( var prop in obj ) {
+          if ( obj.hasOwnProperty(prop) ) {
+            callback.call(obj, prop, obj[prop]);
+          }
         }
       }
     }
-  };
+  });
 
   // 인스턴스 메소드
   dom.fn.each = function(callback) {
