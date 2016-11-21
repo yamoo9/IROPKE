@@ -1,1 +1,28 @@
 /*! arbuzz.css © yamoo9.net, 2016 */
+.box {
+  background: hsla(0, 0%, 20%, 0.45);
+  color: #fff;
+  text-align: center;
+}
+
+.dress {
+  height: 410px;
+  line-height: 410px;
+}
+
+.v-space {
+  margin-bottom: 20px;
+}
+.v-space-top {
+  margin-top: 20px;
+}
+
+.product {
+  height: 300px;
+  line-height: 300px;
+}
+
+.hx2 {
+  height: 620px;
+  line-height: 620px;
+}

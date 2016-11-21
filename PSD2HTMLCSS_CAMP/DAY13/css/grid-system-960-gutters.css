@@ -41,7 +41,7 @@
 }
 
 .show-grid.overlay .container:before {
-
+  z-index: 10000;
 }
 
 /* row module */
@@ -57,6 +57,12 @@
   margin-right: 10px;
 }
 
+[class*="col-"] [class*="col-"]:first-child,
+.first { margin-left: 0; }
+
+[class*="col-"] [class*="col-"]:last-child,
+.last { margin-right: 0; }
+
 .col-1  { width: 60px;  }
 .col-2  { width: 140px; }
 .col-3  { width: 220px; }
@@ -71,5 +77,58 @@
 .col-12 { width: 940px; }
 
 /* push, pull module */
+[class*="push-"],
+[class*="pull-"] { position: relative; }
+
+.push-1  { left: 80px;  }
+.push-2  { left: 160px; }
+.push-3  { left: 240px; }
+.push-4  { left: 320px; }
+.push-5  { left: 400px; }
+.push-6  { left: 480px; }
+.push-7  { left: 560px; }
+.push-8  { left: 640px; }
+.push-9  { left: 720px; }
+.push-10 { left: 800px; }
+.push-11 { left: 880px; }
+.push-12 { left: 960px; }
+
+.pull-1  { right: 80px;  }
+.pull-2  { right: 160px; }
+.pull-3  { right: 240px; }
+.pull-4  { right: 320px; }
+.pull-5  { right: 400px; }
+.pull-6  { right: 480px; }
+.pull-7  { right: 560px; }
+.pull-8  { right: 640px; }
+.pull-9  { right: 720px; }
+.pull-10 { right: 800px; }
+.pull-11 { right: 880px; }
+.pull-12 { right: 960px; }
 
 /* prefix, suffix module */
+.prefix-1  { margin-left: 90px;  }
+.prefix-2  { margin-left: 170px; }
+.prefix-3  { margin-left: 250px; }
+.prefix-4  { margin-left: 330px; }
+.prefix-5  { margin-left: 410px; }
+.prefix-6  { margin-left: 490px; }
+.prefix-7  { margin-left: 570px; }
+.prefix-8  { margin-left: 650px; }
+.prefix-9  { margin-left: 730px; }
+.prefix-10 { margin-left: 810px; }
+.prefix-11 { margin-left: 890px; }
+.prefix-12 { margin-left: 970px; }
+
+.suffix-1  { margin-right: 90px;  }
+.suffix-2  { margin-right: 170px; }
+.suffix-3  { margin-right: 250px; }
+.suffix-4  { margin-right: 330px; }
+.suffix-5  { margin-right: 410px; }
+.suffix-6  { margin-right: 490px; }
+.suffix-7  { margin-right: 570px; }
+.suffix-8  { margin-right: 650px; }
+.suffix-9  { margin-right: 730px; }
+.suffix-10 { margin-right: 810px; }
+.suffix-11 { margin-right: 890px; }
+.suffix-12 { margin-right: 970px; }
