@@ -1,0 +1,10 @@
+.box {
+  height: 100px;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  line-height: 100px;
+}
+
+.box:nth-child(1) { background: #f00; }
+.box:nth-child(2) { background: #ff0; color: #000;}

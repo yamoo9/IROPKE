@@ -1,0 +1,74 @@
+/**
+ *  Aware PSD를 토대로 960 그리드 시스템 설계(Design)
+ *  페이지 너비 960px
+ *  컬럼 개수 8
+ *  거터 너비 0
+ *  컬럼 너비 120px
+ */
+
+/* 컨테이너(Container) 모듈 */
+.container {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 로우(Row) 모듈 */
+.row:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* 컬럼(Column) 모듈 */
+[class*="col-"] { float: left; }
+
+.col-1 { width: 120px; }
+.col-2 { width: 240px; }
+.col-3 { width: 360px; }
+.col-4 { width: 480px; }
+.col-5 { width: 600px; }
+.col-6 { width: 720px; }
+.col-7 { width: 840px; }
+.col-8 { width: 960px; }
+
+/* 푸시(Push)/풀(Pull) 모듈 */
+[class*="push-"],
+[class*="pull-"] { position: relative; }
+
+.push-1 { left: 120px; }
+.push-2 { left: 240px; }
+.push-3 { left: 360px; }
+.push-4 { left: 480px; }
+.push-5 { left: 600px; }
+.push-6 { left: 720px; }
+.push-7 { left: 840px; }
+.push-8 { left: 960px; }
+
+.pull-1 { right: 120px; }
+.pull-2 { right: 240px; }
+.pull-3 { right: 360px; }
+.pull-4 { right: 480px; }
+.pull-5 { right: 600px; }
+.pull-6 { right: 720px; }
+.pull-7 { right: 840px; }
+.pull-8 { right: 960px; }
+
+/* 프리픽스(Prefix)/서픽스(Suffix) 모듈 */
+.prefix-1 { margin-left: 120px; }
+.prefix-2 { margin-left: 240px; }
+.prefix-3 { margin-left: 360px; }
+.prefix-4 { margin-left: 480px; }
+.prefix-5 { margin-left: 600px; }
+.prefix-6 { margin-left: 720px; }
+.prefix-7 { margin-left: 840px; }
+.prefix-8 { margin-left: 960px; }
+
+.suffix-1 { margin-right: 120px; }
+.suffix-2 { margin-right: 240px; }
+.suffix-3 { margin-right: 360px; }
+.suffix-4 { margin-right: 480px; }
+.suffix-5 { margin-right: 600px; }
+.suffix-6 { margin-right: 720px; }
+.suffix-7 { margin-right: 840px; }
+.suffix-8 { margin-right: 960px; }

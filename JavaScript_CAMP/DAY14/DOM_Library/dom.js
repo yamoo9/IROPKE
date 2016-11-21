@@ -140,6 +140,9 @@
   };
 
   dom.extend(dom, {
+    'ajax': function(o){
+
+    },
     'isArray': function(o) {
       return o instanceof Array;
     },
@@ -235,6 +238,15 @@
 
     },
     'text': function(text) {
+
+    },
+    'append': function() {
+
+    },
+    'appendTo': function() {
+
+    },
+    'wrap': function() {
 
     },
   });
