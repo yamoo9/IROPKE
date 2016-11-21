@@ -13,6 +13,31 @@
   margin-right: auto;
 }
 
+/* 쇼 그리드(Show Grid) 모듈 */
+.show-grid {
+  background: linear-gradient(transparent 9px, hsla(267, 17%, 31%, 0.34) 9px);
+  background-size: 1px 10px;
+}
+/* 쇼 백그라운드 가이드라인 모듈 */
+.show-grid .container {
+  position: relative;
+}
+/* 쇼 오버레이 가이드라인 모듈 */
+.show-grid .container::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2000px;
+  background: linear-gradient(90deg, hsla(0, 100%, 50%, 0.3) 50%, hsla(0, 50%, 30%, 0.7) 50%);
+  background-size: 240px 1px;
+}
+.show-grid.overlay .container::before {
+  z-index: 10000;
+}
+
 /* 로우(Row) 모듈 */
 .row:after {
   content: '';

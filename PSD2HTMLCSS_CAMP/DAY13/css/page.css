@@ -6,5 +6,5 @@
   line-height: 100px;
 }
 
-.box:nth-child(1) { background: #f00; }
+.box:nth-child(1) { background: #dac494; }
 .box:nth-child(2) { background: #ff0; color: #000;}
