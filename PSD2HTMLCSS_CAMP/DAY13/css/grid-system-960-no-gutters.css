@@ -31,7 +31,7 @@
   left: 0;
   right: 0;
   height: 2000px;
-  background: linear-gradient(90deg, hsla(0, 100%, 50%, 0.3) 50%, hsla(0, 50%, 30%, 0.7) 50%);
+  background: linear-gradient(90deg, hsla(30, 100%, 50%, 0.5) 50%, hsla(0, 50%, 30%, 0.5) 50%);
   background-size: 240px 1px;
 }
 .show-grid.overlay .container::before {
