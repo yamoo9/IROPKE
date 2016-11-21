@@ -7,7 +7,7 @@
   <!-- style modules -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/grid-system-960-no-gutters.css">
-  <link rel="stylesheet" href="css/page.css">
+  <link rel="stylesheet" href="css/aware.css">
 </head>
 <body class="show-grid">
 
@@ -25,18 +25,6 @@
     </div>
   </div>
 
-<script>
-(function(global){
-  'use strict';
-  var doc = global.document;
-  var body = doc.querySelector('body');
-  doc.addEventListener('keydown', function(e) {
-    if (e.ctrlKey) { body.classList.toggle('overlay'); }
-    if (e.keyCode === 71 && e.shiftKey) {
-      body.classList.toggle('show-grid');
-    }
-  });
-})(this);
-</script>
+<script src="js/toggleGrid.js"></script>
 </body>
 </html>
