@@ -1,5 +1,16 @@
 /*! ui-carousel.js © yamoo9.net, 2016 */
 
+// 애니메이션 헬퍼 함수
+(function(global){
+  'use strict';
+  global.playAnimation = function (callback, ms) {
+    return global.setInterval(callback, ms);
+  };
+  global.stopAnimation = function (id) {
+    global.clearInterval(id);
+  };
+})(this);
+
 // TODO:
 // 0. 캐러셀 탭 패널을 감싼 `래퍼 요소의 너비`를 `탭 패널 너비 × 탭 패널 개수`로 설정한다.
 // 1. 인디케이터 탭 버튼을 누르면 캐러셀 콘텐츠는 해당 콘텐츠를 보여준다.
@@ -15,8 +26,12 @@
 
   // 참조 변수
   var doc = global.document;
+
   // 초기 변수
-  var active_index = 0;
+  var active_index        = 0;
+  var automation_duration = 500;
+  var using_animation     = true;
+  var interval_id         = 0;
   var widget, tablist, tabs, prev_btn, next_btn, tabpanel_wrapper;
 
   // 컴포넌트 초기화(Component Initialization)
@@ -27,6 +42,8 @@
     settingTabpanelWidth();
     // 이벤트 바인딩(Binding Events)
     bindEvents();
+    // 자동으로 애니메이션 설정
+    using_animation && playCarousel();
   };
 
   // 핸들러 및 함수 정의(Define Event Handlers & Functions)
@@ -39,23 +56,37 @@
     tabpanel_wrapper = widget.querySelector('.ui-carousel-tabpanel-wrapper');
   };
   var settingTabpanelWidth = function() {
-    var tabpanels      = tabpanel_wrapper.children;
+    var tabpanels = tabpanel_wrapper.children;
     for ( var tabpanel, i=0, l=tabpanels.length; i<l; i++ ) {
       tabpanel = tabpanels[i];
       tabpanel.style.width = widget.clientWidth + 'px';
     }
     tabpanel_wrapper.style.width = tabpanels[0].clientWidth * l + 'px';
   };
+  var resizeCarouselSize = function() {
+    widget.style.height = tabpanel_wrapper.children[0].clientHeight + 'px';
+    settingTabpanelWidth();
+    activeTab.call(tabs[active_index], active_index);
+  };
   var bindEvents = function() {
+    // 문서 준비 마무리 & 리사이즈 이벤트 바인딩
+    global.addEventListener('DOMContentLoaded', resizeCarouselSize);
+    global.addEventListener('resize', resizeCarouselSize);
+    // 캐러셀 컴포넌트 마우스 이벤트 바인딩
+    widget.addEventListener('mouseenter', stopCarousel);
+    widget.addEventListener('mouseleave', playCarousel);
     // 탭 이벤트 바인딩
     for(var tab, i=0, l=tabs.length; i<l; i++) {
       tab         = tabs[i];
       tab.idx     = i;
       tab.onclick = activeTab.bind(tab, tab.idx);
+      tab.onfocus = stopCarousel;
     }
     // 버튼 이벤트 바인딩
     prev_btn.onclick = prevActiveTab;
     next_btn.onclick = nextActiveTab;
+    // prev_btn.onfocus = stopCarousel;
+    // next_btn.onfocus = stopCarousel;
   };
   var activeTab = function(idx, e) {
     // 이벤트 객체가 전달된 경우에만 기본 동작 차단
@@ -84,6 +115,12 @@
   var nextActiveTab = function() {
     active_index = ++active_index % tabpanel_wrapper.children.length;
     activeTab.call(tabs[active_index], active_index);
+  };
+  var playCarousel = function() {
+    interval_id = global.playAnimation( nextActiveTab, automation_duration );
+  };
+  var stopCarousel = function() {
+    global.stopAnimation(interval_id);
   };
 
   // 컴포넌트 실행(Excute Component)
@@ -121,4 +158,4 @@
   global.addEventListener('DOMContentLoaded', resizeCarouselHeight);
   global.addEventListener('resize', resizeCarouselHeight);
 
-})(this);
+}) // (this);
