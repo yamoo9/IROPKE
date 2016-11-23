@@ -25,17 +25,42 @@
   'use strict';
 
   // 참조 변수
-  var doc = global.document;
+  var doc    = global.document;
+  var splice = Array.prototype.splice;
+
+  var _extend = function(obj, extend_obj) {
+    for ( var prop in extend_obj ) {
+      if ( extend_obj.hasOwnProperty(prop) ) {
+        obj[prop] = extend_obj[prop];
+      }
+    }
+    return obj;
+  };
+  var extend = function() {
+    var o    = arguments[0];
+    var args = splice.call(arguments, 1);
+    for ( var i=0, l=args.length; i<l; i++ ) {
+      _extend(o, args[i]);
+    }
+    return o;
+  };
 
   // 초기 변수
-  var active_index        = 0;
-  var automation_duration = 500;
-  var using_animation     = true;
+  var default_settings = {
+    'active_index' : 0,
+    'auto_rolling' : true,
+    'time'         : 3000
+  };
+
+  // var active_index        = 0;
+  // var automation_duration = 500;
+  // var using_animation     = true;
   var interval_id         = 0;
-  var widget, tablist, tabs, prev_btn, next_btn, tabpanel_wrapper;
+  var settings, widget, tablist, tabs, prev_btn, next_btn, tabpanel_wrapper;
 
   // 컴포넌트 초기화(Component Initialization)
-  var init = function() {
+  var init = function(custom_settings) {
+    settings = extend({}, default_settings, custom_settings);
     // 캐러셀 컴포넌트 객체 참조
     referenceCarouselControls();
     // 캐러셀 탭 패널을 감싼 `래퍼 요소의 너비`를 `탭 패널 너비 × 탭 패널 개수`로 설정한다.
@@ -43,7 +68,9 @@
     // 이벤트 바인딩(Binding Events)
     bindEvents();
     // 자동으로 애니메이션 설정
-    using_animation && playCarousel();
+    settings.auto_rolling && playCarousel();
+    // 초기 활성화
+    activeTab.call(tabs[settings.active_index], settings.active_index);
   };
 
   // 핸들러 및 함수 정의(Define Event Handlers & Functions)
@@ -66,7 +93,7 @@
   var resizeCarouselSize = function() {
     widget.style.height = tabpanel_wrapper.children[0].clientHeight + 'px';
     settingTabpanelWidth();
-    activeTab.call(tabs[active_index], active_index);
+    activeTab.call(tabs[settings.active_index], settings.active_index);
   };
   var bindEvents = function() {
     // 문서 준비 마무리 & 리사이즈 이벤트 바인딩
@@ -106,25 +133,29 @@
       }
     }
     parent.classList.add('active');
-    active_index = activate_tab.idx;
+    settings.active_index = activate_tab.idx;
   };
   var prevActiveTab = function() {
-    active_index = --active_index < 0 ? (tabpanel_wrapper.children.length - 1) : active_index;
-    activeTab.call(tabs[active_index], active_index);
+    settings.active_index = --settings.active_index < 0 ? (tabpanel_wrapper.children.length - 1) : settings.active_index;
+    activeTab.call(tabs[settings.active_index], settings.active_index);
   };
   var nextActiveTab = function() {
-    active_index = ++active_index % tabpanel_wrapper.children.length;
-    activeTab.call(tabs[active_index], active_index);
+    settings.active_index = ++settings.active_index % tabpanel_wrapper.children.length;
+    activeTab.call(tabs[settings.active_index], settings.active_index);
   };
   var playCarousel = function() {
-    interval_id = global.playAnimation( nextActiveTab, automation_duration );
+    interval_id = global.playAnimation( nextActiveTab, settings.time );
   };
   var stopCarousel = function() {
     global.stopAnimation(interval_id);
   };
 
   // 컴포넌트 실행(Excute Component)
-  init();
+  init({
+    'active_index': 7,
+    // 'auto_rolling': false,
+    'time': 2000
+  });
 
 })(this);
 
