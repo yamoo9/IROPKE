@@ -16,6 +16,7 @@
   // 참조 변수
   var doc = global.document;
   // 초기 변수
+  var active_index = 0;
   var widget, tablist, tabs, prev_btn, next_btn, tabpanel_wrapper;
 
   // 컴포넌트 초기화(Component Initialization)
@@ -26,6 +27,7 @@
     settingTabpanelWidth();
     // 이벤트 바인딩(Binding Events)
     bindEvents();
+    console.log('init:', active_index);
   };
 
 
@@ -50,13 +52,19 @@
     for(var tab, i=0, l=tabs.length; i<l; i++) {
       tab = tabs[i];
       tab.idx = i;
-      tab.onclick = activeTab.bind(tab);
+      // tab.onclick = activeTab.bind(tab);
+      tab.onclick = function(e) {
+        console.log(e);
+        e.preventDefault();
+        // activeTab.call(this, this.idx);
+      };
     }
+    prev_btn.onclick = prevActiveTab;
+    next_btn.onclick = nextActiveTab;
   };
   // 인디케이터 탭 버튼을 누르면 캐러셀 콘텐츠는 해당 콘텐츠를 보여준다.
-  var activeTab = function(e) {
-    e.preventDefault();
-    var distance_x = widget.clientWidth * this.idx * -1;
+  var activeTab = function(idx) {
+    var distance_x = widget.clientWidth * idx * -1;
     tabpanel_wrapper.style.left = distance_x + 'px';
     updateIndicator(this);
   };
@@ -71,6 +79,17 @@
       }
     }
     parent.classList.add('active');
+    // 활성화 인덱스 업데이트
+    active_index = activate_tab.idx;
+    console.log('update:', active_index);
+  };
+  var prevActiveTab = function() {
+    active_index = --active_index < 0 ? (tabpanel_wrapper.children.length - 1) : active_index;
+    activeTab.call(tabs[active_index], active_index);
+  };
+  var nextActiveTab = function() {
+    active_index = ++active_index % tabpanel_wrapper.children.length;
+    activeTab.call(tabs[active_index], active_index);
   };
 
 
