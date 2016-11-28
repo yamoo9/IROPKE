@@ -69,6 +69,8 @@
     bindEvents();
     // 자동으로 애니메이션 설정
     settings.auto_rolling && playCarousel();
+    // 초기 활성화
+    activeTab.call(tabs[settings.active_index], settings.active_index);
   };
 
   // 핸들러 및 함수 정의(Define Event Handlers & Functions)
@@ -110,6 +112,8 @@
     // 버튼 이벤트 바인딩
     prev_btn.onclick = prevActiveTab;
     next_btn.onclick = nextActiveTab;
+    // prev_btn.onfocus = stopCarousel;
+    // next_btn.onfocus = stopCarousel;
   };
   var activeTab = function(idx, e) {
     // 이벤트 객체가 전달된 경우에만 기본 동작 차단
@@ -148,10 +152,96 @@
 
   // 컴포넌트 실행(Excute Component)
   init({
-    // 'active_index': 7,
+    'active_index': 7,
     // 'auto_rolling': false,
-    'time': 2500
+    'time': 2000
   });
+
+}) // (this);
+
+(function(global){
+  'use strict';
+
+  var _extend = function(obj, extend_obj) {
+    for ( var prop in extend_obj ) {
+      if ( extend_obj.hasOwnProperty(prop) ) {
+        obj[prop] = extend_obj[prop];
+      }
+    }
+    return obj;
+  };
+
+  // 생성자 함수
+  var Carousel = function(selector, custom_settings) {
+    this.init(selector, custom_settings);
+    this.settings;
+  };
+  // 옵션 기본 값
+  Carousel.default_settings = {
+    'active_index' : 0,
+    'auto_rolling' : true,
+    'time'         : 3000
+  };
+  // 스태틱 메소드
+  Carousel.extend = function() {
+    var o    = arguments[0];
+    var args = splice.call(arguments, 1);
+    for ( var i=0, l=args.length; i<l; i++ ) {
+      _extend(o, args[i]);
+    }
+    return o;
+  };
+
+  // 인스턴스 메소드
+  Carousel.fn = Carousel.prototype = {
+    'init': function(selector, custom_settings) {
+      // 사용자 정의 옵션 객체와 기본 옵션 객체 믹스인
+      this.settings = Carousel.extend({}, default_settings, custom_settings);
+      // 캐러셀 컴포넌트 객체 참조
+      this.referenceCarouselControls();
+      // 캐러셀 탭 패널을 감싼 `래퍼 요소의 너비`를 `탭 패널 너비 × 탭 패널 개수`로 설정한다.
+      this.settingTabpanelWidth();
+      // 이벤트 바인딩(Binding Events)
+      this.bindEvents();
+      // 자동으로 애니메이션 설정
+      this.settings.auto_rolling && this.playCarousel();
+      // 초기 활성화
+      activeTab.call(tabs[settings.active_index], settings.active_index);
+    },
+    'referenceCarouselControls': function() {
+
+    },
+    'settingTabpanelWidth': function() {
+
+    },
+    'bindEvents': function() {
+
+    },
+    'playCarousel': function() {
+
+    },
+  };
+
+  var interval_id         = 0;
+  var settings, widget, tablist, tabs, prev_btn, next_btn, tabpanel_wrapper;
+
+  // 컴포넌트 초기화(Component Initialization)
+  var init = function(custom_settings) {
+    settings = extend({}, default_settings, custom_settings);
+    // 캐러셀 컴포넌트 객체 참조
+    referenceCarouselControls();
+    // 캐러셀 탭 패널을 감싼 `래퍼 요소의 너비`를 `탭 패널 너비 × 탭 패널 개수`로 설정한다.
+    settingTabpanelWidth();
+    // 이벤트 바인딩(Binding Events)
+    bindEvents();
+    // 자동으로 애니메이션 설정
+    settings.auto_rolling && playCarousel();
+    // 초기 활성화
+    activeTab.call(tabs[settings.active_index], settings.active_index);
+  };
+
+  // 전역에 공개
+  global.Carousel = Carousel;
 
 })(this);
 
