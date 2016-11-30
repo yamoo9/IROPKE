@@ -1,4 +1,20 @@
 /*! app.js © yamoo9.net, 2016 */
+
+
+/////////////////////////
+// webpack Sass Loader //
+/////////////////////////
+require('../sass/style.sass');
+
+
+
+
+
+
+
+
+
+
 // Front-End Develop
 // (function(global){
 //   'use strict';
@@ -36,19 +52,14 @@ let currency = require('./modules/currency');
 ////////////
 // jQuery //
 ////////////
-// let $ = require('jquery');
+let $ = require('jquery');
 // $('div').append(`<p>using jQuery: ${result}</p>`);
 
 let $currencies = $('[data-currency]');
 $.each($currencies, (idx)=>{
   let $currency = $currencies.eq(idx);
-  let result = null;
-  let sign = $currency.data('currency');
-  if( sign === '' ) {
-    result = currency($currency.text());
-  } else {
-    result = currency($currency.text(), sign);
-  }
+  let sign      = $currency.data('currency');
+  let result    = sign === '' ? currency($currency.text()) : currency($currency.text(), sign);
   $currency.text( result );
 });
 

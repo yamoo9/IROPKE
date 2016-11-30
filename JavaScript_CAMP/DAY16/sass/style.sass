@@ -1,4 +1,7 @@
 /*! style.css © yamoo9.net, 2016 */
+
+@import mixins
+
 html
   // UI 축의 변경을 고정
   overflow-y: scroll
@@ -13,5 +16,6 @@ body
     family: "Spoqa Han Sans"
   line-height: 1.5
 
-
-
+nav.gnb
+  ul
+    +reset-list()
