@@ -1,0 +1,27 @@
+{
+  "name": "webpack-project-kit",
+  "version": "1.0.0",
+  "description": "Making ProjectKit using Webpack Module Bundler.",
+  "scripts": {
+    "start": "npm run sass && npm run server",
+    "server": "http-server -a localhost -p 9090 -o",
+    "sass": "node-sass sass -o css",
+    "clean": "rm -rf css/*"
+  },
+  "keywords": [
+    "webpack",
+    "babel",
+    "ECMAScript 2015",
+    "Sass"
+  ],
+  "author": "yamoo9 <yamoo9@naver.com>",
+  "devDependencies": {
+    "node-sass": "^3.13.0",
+    "webpack": "^1.13.3"
+  },
+  "dependencies": {
+    "angular": "^1.5.9",
+    "jquery": "^3.1.1",
+    "jquery.easing": "^1.4.1"
+  }
+}
