@@ -26,7 +26,7 @@ let webpack_config = {
       },
       // Babel Loader
       {
-        'test': /\.js$/,
+        'test': /\.es6$/,
         'exclude': /node_modules/,
         'loader': 'babel',
         'query': {
@@ -35,6 +35,10 @@ let webpack_config = {
       },
     ]
   },
+  // 결정사항 추가
+  'resolve': {
+    'extensions': ['', '.js', '.es6']
+  }
 
   // 개발 모드
   // 'devtool': 'source-map',

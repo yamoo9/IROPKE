@@ -18,4 +18,8 @@ let currency = (n=1000, sign='원', position='after')=> {
 };
 
 // 모듈 공개(외부로 노출)
-module.exports = currency;
+// module.exports = currency;
+
+// ECMAScript 2015 모듈 내보내기 문법
+export default currency;
+// export let currecy;

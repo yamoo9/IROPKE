@@ -3,75 +3,79 @@
 /////////////////////////
 // webpack Sass Loader //
 /////////////////////////
-require('../sass/style.sass');
+// require('../sass/style.sass');
+// import '../sass/style.sass';
 
 
-// ----------------------------------------------------
+// // ----------------------------------------------------
 
-// Front-End Develop
-// (function(global){
-//   'use strict';
+// // Front-End Develop
+// // (function(global){
+// //   'use strict';
 
-// })(this);
+// // })(this);
 
-//////////////////////////////////
-// ES6 모듈 로드 방식
-// import './modules/currency';
-//////////////////////////////////
+// //////////////////////////////////
+// // ES6 모듈 로드 방식
+// // import './modules/currency';
+// //////////////////////////////////
 
-// ----------------------------------------------------
+// // ----------------------------------------------------
 
-/////////////////////////
-// Server-Side Develop //
-/////////////////////////
+// /////////////////////////
+// // Server-Side Develop //
+// /////////////////////////
 
-// Node.js 내장(기본) 모듈
-// CommonJS 진영의 모듈 로더 방법
-// let path = require('path');
-// console.log( path.join(__dirname, 'css') );
+// // Node.js 내장(기본) 모듈
+// // CommonJS 진영의 모듈 로더 방법
+// // let path = require('path');
+// // import path from 'path';
+// // console.log( path.join(__dirname, 'css') );
 
-// ----------------------------------------------------
+// // ----------------------------------------------------
 
-/////////////////////
-// 외부 파일 모듈 로드 //
-/////////////////////
-let currency = require('./modules/currency');
-// let result   = currency(3241000);
+// /////////////////////
+// // 외부 파일 모듈 로드 //
+// /////////////////////
+// // let currency = require('./modules/currency');
+// import currency from './modules/currency';
+// // let result   = currency(3241000);
 
-////////////////
-// DOM Script //
-////////////////
-// let body    = document.querySelector('body');
-// let new_div = document.createElement('div');
-// body.appendChild(new_div);
-// new_div.innerHTML = result;
+// ////////////////
+// // DOM Script //
+// ////////////////
+// // let body    = document.querySelector('body');
+// // let new_div = document.createElement('div');
+// // body.appendChild(new_div);
+// // new_div.innerHTML = result;
 
-// ----------------------------------------------------
+// // ----------------------------------------------------
 
-////////////
-// jQuery //
-////////////
-let $ = require('jquery');
-// $('div').append(`<p>using jQuery: ${result}</p>`);
+// ////////////
+// // jQuery //
+// ////////////
+// // let $ = require('jquery');
+// import jQuery as $ from 'jquery';
+// // $('div').append(`<p>using jQuery: ${result}</p>`);
 
-let $currencies = $('[data-currency]');
-$.each($currencies, (idx)=>{
-  let $currency = $currencies.eq(idx);
-  let sign      = $currency.data('currency');
-  let result    = sign === '' ? currency($currency.text()) : currency($currency.text(), sign);
-  $currency.text( result );
-});
+// let $currencies = $('[data-currency]');
+// $.each($currencies, (idx)=>{
+//   let $currency = $currencies.eq(idx);
+//   let sign      = $currency.data('currency');
+//   let result    = sign === '' ? currency($currency.text()) : currency($currency.text(), sign);
+//   $currency.text( result );
+// });
 
-// Class 문법 사용
-class AppButton extends HTMLButtonElement {
-  constructor(selector) {
-    super();
-    this.selector = selector;
-  }
-  getSelector() {
-    return this.selector;
-  }
-}
+// // Class 문법 사용
+// class AppButton extends HTMLButtonElement {
+//   constructor(selector) {
+//     super();
+//     this.selector = selector;
+//   }
+//   getSelector() {
+//     return this.selector;
+//   }
+// }
 
 
 
@@ -86,3 +90,10 @@ class AppButton extends HTMLButtonElement {
 // webpack {entry.js} {bundle.js} -p // 압축
 // webpack {entry.js} {bundle.js} -w // 관찰
 // webpack {entry.js} {bundle.js} -d // 소스맵
+
+
+// ----------------------------------------------------
+
+let Carousel = require('./modules/Carousel');
+
+console.log(typeof Carousel);
