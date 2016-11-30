@@ -24,6 +24,15 @@ let webpack_config = {
         // 'loader': 'style-loader!css-loader!sass-loader'
         // 'loader': ['style-loader', 'css-loader', 'sass-loader']
       },
+      // Babel Loader
+      {
+        'test': /\.js$/,
+        'exclude': /node_modules/,
+        'loader': 'babel',
+        'query': {
+          'presets': ['es2015']
+        }
+      },
     ]
   },
 

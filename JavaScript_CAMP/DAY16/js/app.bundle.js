@@ -44,22 +44,24 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/*! app.js © yamoo9.net, 2016 */
+	'use strict';
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/*! app.js © yamoo9.net, 2016 */
 
 	/////////////////////////
 	// webpack Sass Loader //
 	/////////////////////////
 	__webpack_require__(1);
 
-
-
-
-
-
-
-
-
+	// ----------------------------------------------------
 
 	// Front-End Develop
 	// (function(global){
@@ -72,6 +74,8 @@
 	// import './modules/currency';
 	//////////////////////////////////
 
+	// ----------------------------------------------------
+
 	/////////////////////////
 	// Server-Side Develop //
 	/////////////////////////
@@ -81,10 +85,12 @@
 	// let path = require('path');
 	// console.log( path.join(__dirname, 'css') );
 
+	// ----------------------------------------------------
+
 	/////////////////////
 	// 외부 파일 모듈 로드 //
 	/////////////////////
-	let currency = __webpack_require__(5);
+	var currency = __webpack_require__(5);
 	// let result   = currency(3241000);
 
 	////////////////
@@ -95,20 +101,47 @@
 	// body.appendChild(new_div);
 	// new_div.innerHTML = result;
 
+	// ----------------------------------------------------
+
 	////////////
 	// jQuery //
 	////////////
-	let $ = __webpack_require__(6);
+	var $ = __webpack_require__(6);
 	// $('div').append(`<p>using jQuery: ${result}</p>`);
 
-	let $currencies = $('[data-currency]');
-	$.each($currencies, (idx)=>{
-	  let $currency = $currencies.eq(idx);
-	  let sign      = $currency.data('currency');
-	  let result    = sign === '' ? currency($currency.text()) : currency($currency.text(), sign);
-	  $currency.text( result );
+	var $currencies = $('[data-currency]');
+	$.each($currencies, function (idx) {
+	  var $currency = $currencies.eq(idx);
+	  var sign = $currency.data('currency');
+	  var result = sign === '' ? currency($currency.text()) : currency($currency.text(), sign);
+	  $currency.text(result);
 	});
 
+	// class 문법 사용
+
+	var AppButton = function (_HTMLButtonElement) {
+	  _inherits(AppButton, _HTMLButtonElement);
+
+	  function AppButton(selector) {
+	    _classCallCheck(this, AppButton);
+
+	    var _this = _possibleConstructorReturn(this, (AppButton.__proto__ || Object.getPrototypeOf(AppButton)).call(this));
+
+	    _this.selector = selector;
+	    return _this;
+	  }
+
+	  _createClass(AppButton, [{
+	    key: 'getSelector',
+	    value: function getSelector() {
+	      return this.selector;
+	    }
+	  }]);
+
+	  return AppButton;
+	}(HTMLButtonElement);
+
+	// ----------------------------------------------------
 
 	// webpack - module bundler
 
@@ -119,7 +152,6 @@
 	// webpack {entry.js} {bundle.js} -p // 압축
 	// webpack {entry.js} {bundle.js} -w // 관찰
 	// webpack {entry.js} {bundle.js} -d // 소스맵
-
 
 /***/ },
 /* 1 */
@@ -476,25 +508,26 @@
 	/*! currency.js © yamoo9.net, 2016 */
 	'use strict';
 
-	let currency = (n=1000, sign='원', position='after')=> {
+	var currency = function currency() {
+	  var n = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1000;
+	  var sign = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '원';
+	  var position = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'after';
+
 	  // 1. 전달인자 숫자/문자 → 배열화
-	  n = (n+'').split('');
+	  n = (n + '').split('');
 
 	  // 2. 배열 데이터 순환
-	  for (let i = n.length - 3; i>0; i-=3 ) {
+	  for (var i = n.length - 3; i > 0; i -= 3) {
 	    // 3. 끝에서 3번째 자리마다 앞에 콤마(,) 삽입
 	    n.splice(i, 0, ',');
 	  }
 	  // 4. 배열 → 문자화 후에 결과 반환
-	  let result_currency = n.join('');
-	  return position==='after' ?
-	    result_currency + sign :
-	    sign + result_currency;
+	  var result_currency = n.join('');
+	  return position === 'after' ? result_currency + sign : sign + result_currency;
 	};
 
 	// 모듈 공개(외부로 노출)
 	module.exports = currency;
-
 
 /***/ },
 /* 6 */
