@@ -5,6 +5,9 @@
   "scripts": {
     "start": "npm run sass && npm run server",
     "server": "http-server -a localhost -p 9090 -o",
+    "webpack": "webpack js/app.js js/app.bundle.js -d",
+    "webpack-watch": "webpack js/app.js js/app.bundle.js -w",
+    "webpack-build": "webpack js/app.js js/app.bundle.js -p",
     "sass": "node-sass sass -o css",
     "clean": "rm -rf css/*"
   },

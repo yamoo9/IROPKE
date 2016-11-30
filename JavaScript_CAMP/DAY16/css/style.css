@@ -1,0 +1,11 @@
+@charset "UTF-8";
+/*! style.css © yamoo9.net, 2016 */
+html {
+  overflow-y: scroll;
+  font-size: 10px; }
+
+body {
+  margin: 0;
+  font-size: 1.4rem;
+  font-family: "Spoqa Han Sans";
+  line-height: 1.5; }
