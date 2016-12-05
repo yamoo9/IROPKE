@@ -21,7 +21,7 @@
 
 #### 프로젝트-킷(ProjectKit) 다운로드 및 인스톨
 
-[ProjectKit.zip](https://github.com/yamoo9/FDS/raw/master/2nd/Special%20Lecture/ProjectKit.zip)을 다운로드 받아 압축을 푼 후, 아래 명령을 CLI 환경에서 실행하여 의존 모듈을 모두 설치합니다. (※ [Node.js](http://nodejs.org/) 설치 필요)
+ProjectKit.zip을 다운로드 받아 압축을 푼 후, 아래 명령을 CLI 환경에서 실행하여 의존 모듈을 모두 설치합니다. (※ [Node.js](http://nodejs.org/) 설치 필요)
 
 ```sh
 # 전역에서 실행 가능하도록 gulp 모듈을 설치합니다. (이미 설치되어 있다면 이 과정은 생략)
